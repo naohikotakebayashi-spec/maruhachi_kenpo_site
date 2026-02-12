@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康保険資格確認書 交付申請書・滅失届・再交付申請書 - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+        .content-section { background: white; border-radius: 8px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .content-section h2 { font-size: 1.5rem; color: #0066cc; margin-bottom: 20px; padding-left: 15px; border-left: 4px solid #0066cc; }
+        .content-section h3 { font-size: 1.2rem; color: #333; margin: 25px 0 15px; font-weight: 600; }
+        .content-section h4 { font-size: 1.05rem; color: #0066cc; margin: 20px 0 10px; font-weight: 600; }
+        .content-section p { margin-bottom: 15px; line-height: 1.8; }
+        .content-section ul { margin: 15px 0 15px 30px; }
+        .content-section li { margin-bottom: 10px; }
+        .highlight-box { background: #e3f2fd; border-left: 4px solid #0066cc; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+        .warning-box { background: #ffebee; border-left: 4px solid #f44336; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box h4 { color: #c62828; margin-bottom: 10px; }
+        .download-section { background: #f0f8ff; border: 2px solid #0066cc; border-radius: 8px; padding: 25px; margin: 30px 0; text-align: center; }
+        .download-section h3 { color: #0066cc; margin-bottom: 20px; font-size: 1.3rem; }
+        .download-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; background: #0066cc; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,102,204,0.3); }
+        .download-btn:hover { background: #0052a3; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,102,204,0.4); }
+        .download-btn::before { content: '📥'; font-size: 1.3rem; }
+        .table-wrapper { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #0066cc; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .checklist { background: #f9f9f9; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .checklist-item { padding: 15px; margin: 10px 0; background: white; border-left: 4px solid #0066cc; border-radius: 4px; display: flex; align-items: center; }
+        .checklist-item::before { content: '☐'; font-size: 1.5rem; margin-right: 15px; color: #0066cc; }
+        .back-link { display: inline-block; margin: 20px 0; padding: 10px 20px; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; }
+        .back-link:hover { background: #0052a3; }
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-main">
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="procedure-certificate.html">保険証・資格確認書に関する手続き</a><span>›</span>
+        <span>健康保険資格確認書 交付申請書・滅失届・再交付申請書</span>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">健康保険資格確認書<br><small style="font-size: 1.2rem;">交付申請書・滅失届・再交付申請書</small></h1>
+
+        <div class="download-section">
+            <h3>📄 申請書ダウンロード</h3>
+            <p>以下のボタンから資格確認書の申請書をダウンロードできます。<br>Excelファイルには手引き、記載例、原本が含まれています。</p>
+            <div class="download-buttons">
+                <a href="qualification-certificate-form.xlsx" class="download-btn" download="健康保険資格確認書交付_滅失届_再交付_申請書.xlsx">資格確認書申請書をダウンロード</a>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>どんな場合に使用するのか</h2>
+            
+            <h3>1. 資格確認書の発行が必要な場合</h3>
+            <p>資格確認書の発行が必要な場合に必要事項を入力し、申請してください。<br>本人、家族分どちらも申請できます。</p>
+
+            <h3>2. 保険証の代わりとして資格確認書が必要な場合</h3>
+            <p><strong>2024年12月2日以降、保険証は発行されません。</strong>マイナ保険証をお持ちでなく、代わりとなる資格確認書が必要な場合は申請してください。</p>
+        </div>
+
+        <div class="content-section">
+            <h2>手続き方法</h2>
+
+            <div class="checklist">
+                <div class="checklist-item">
+                    【記入例】の色付け部分を参考に原本へ入力してください
+                </div>
+                <div class="checklist-item">
+                    必要事項を入力してExcel形式で送付してください（入力が難しい場合は記入したもので受け付けます）
+                </div>
+                <div class="checklist-item">
+                    原本の郵送は不要です
+                </div>
+            </div>
+
+            <h3>提出先</h3>
+            <div class="highlight-box">
+                <p><strong>Email:</strong> shakaihoken@maruhachi.co.jp</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>記入方法</h2>
+
+            <h3>被保険者情報</h3>
+            <ul>
+                <li><strong>記号・番号</strong>：被保険者証の記号を記入してください</li>
+                <li><strong>会社/支店</strong>：会社名を記入してください（出向者は出向元会社を記入）</li>
+                <li><strong>氏名</strong>：フリガナと氏名を記入してください</li>
+                <li><strong>郵便番号</strong>：郵便番号を記入してください</li>
+                <li><strong>住所</strong>：現住所を記入してください</li>
+            </ul>
+
+            <h3>対象者欄</h3>
+
+            <h4>被保険者分の発行を申請する場合</h4>
+            <p>「被保険者分の発行を申請します」にチェックを入れ、フリガナと氏名を記入してください。<br>
+            氏名は「同　上」と記入できます。</p>
+
+            <h4>被扶養者分の発行を申請する場合</h4>
+            <p>「被扶養者分の発行を申請します」にチェックを入れ、被扶養者①②③にそれぞれフリガナと氏名を記入してください。<br>
+            最大3名まで申請できます。</p>
+
+            <h3>理由欄</h3>
+
+            <h4>資格確認書の発行を申請する場合</h4>
+            <p>該当する理由にチェックを入れてください：</p>
+            <ul>
+                <li>マイナンバーカードを作っていない または 返納したため</li>
+                <li>マイナ保険証の連携手続きをしていない</li>
+                <li>マイナ保険証更新や再発行、電子証明書有効期限切れ等の手続き中のため<br>
+                    <small>※手続き中使用の期限の短いものを発行</small></li>
+                <li>その他特別な事情（高齢、障害などの理由を記入）</li>
+            </ul>
+
+            <h4>資格確認書の再発行を申請する場合</h4>
+            <p>該当する理由にチェックを入れてください：</p>
+            <ul>
+                <li>滅失・き損したため</li>
+                <li>盗難にあったため</li>
+                <li>その他事情（理由を記入）</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>重要な注意事項</h2>
+
+            <div class="warning-box">
+                <h4>⚠️ マイナ保険証をお持ちの方は発行対象外</h4>
+                <p>マイナ保険証をお持ちの方は、資格確認書の発行対象外となります。</p>
+            </div>
+
+            <div class="note-box">
+                <h4>📅 有効期限があります</h4>
+                <p><strong>保険証と違い、資格確認書には有効期限があります。</strong></p>
+                <p>有効期限は発行された年度末の3月31日となります。年度末近くでの申請時は特にご注意ください。</p>
+            </div>
+
+            <div class="note-box">
+                <h4>⏱️ 発行までに時間がかかる場合があります</h4>
+                <p>資格確認書の発行までに、手続きの関係上お時間がかかる場合がありますので、お急ぎの際はマイナ保険証のご利用もご検討ください。</p>
+            </div>
+
+            <div class="note-box">
+                <h4>↩️ 資格喪失時は返却が必要</h4>
+                <p>有効期限内に資格喪失（退職・転籍・扶養から外れた等）した場合は返却をお願いします。</p>
+            </div>
+
+            <div class="note-box">
+                <h4>📎 再申請時の添付書類</h4>
+                <p>資格確認書をき損または有効期限切れで再申請する場合は、お手持ちの資格確認書を添付してください。</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ マイナンバーカードを紛失した場合</h4>
+                <p>マイナンバーカードを紛失した場合、<strong>健康保険組合では再交付できません。</strong>お住まいの市区町村で再発行手続きを行ってください。</p>
+                <p>また、マイナンバーカード機能停止のお手続きが必要となりますので、総合フリーダイヤル<strong>（0120-95-0178※音声ガイダンス2番）</strong>へ連絡して頂き、至急警察へ届出てください。</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>よくある質問</h2>
+
+            <h3>Q1. マイナ保険証を持っていますが、資格確認書も発行できますか？</h3>
+            <p><strong>A1.</strong> いいえ、マイナ保険証をお持ちの方は資格確認書の発行対象外となります。</p>
+
+            <h3>Q2. 資格確認書の有効期限はいつまでですか？</h3>
+            <p><strong>A2.</strong> 発行された年度末の3月31日が有効期限となります。例えば、2024年12月に発行された場合、有効期限は2025年3月31日です。</p>
+
+            <h3>Q3. 家族分も同時に申請できますか？</h3>
+            <p><strong>A3.</strong> はい、被保険者と被扶養者（最大3名）を同時に申請できます。</p>
+
+            <h3>Q4. 資格確認書を紛失してしまいました。どうすればよいですか？</h3>
+            <p><strong>A4.</strong> 「滅失・き損したため」を理由として再発行申請を行ってください。ただし、お手持ちの資格確認書（破損している場合でも）を添付する必要があります。</p>
+
+            <h3>Q5. 申請してからどのくらいで発行されますか？</h3>
+            <p><strong>A5.</strong> 手続きの関係上、お時間がかかる場合があります。お急ぎの場合は、マイナ保険証のご利用をご検討ください。</p>
+        </div>
+
+        <div class="download-section">
+            <h3>📄 再度ダウンロード</h3>
+            <div class="download-buttons">
+                <a href="qualification-certificate-form.xlsx" class="download-btn" download="健康保険資格確認書交付_滅失届_再交付_申請書.xlsx">資格確認書申請書をダウンロード</a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                ※ファイルには手引き、記載例、原本が含まれています。
+            </p>
+        </div>
+
+        <a href="procedure-certificate.html" class="back-link">← 保険証・資格確認書に関する手続きに戻る</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

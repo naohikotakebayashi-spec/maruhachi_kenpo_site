@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医療費が高額になるときの手続き - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .category-nav { background: white; max-width: 1200px; margin: 20px auto; padding: 20px; border-radius: 8px; display: flex; gap: 10px; overflow-x: auto; }
+        .category-nav a { padding: 10px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; white-space: nowrap; font-size: 0.9rem; transition: all 0.3s; }
+        .category-nav a:hover { background: #0066cc; color: white; }
+        .category-nav a.active { background: #0066cc; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+        .accordion-item { background: white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        .accordion-header { padding: 20px 25px; background: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; border-left: 4px solid transparent; }
+        .accordion-header:hover { background: #f0f8ff; border-left-color: #0066cc; }
+        .accordion-header h3 { font-size: 1.2rem; color: #333; font-weight: 600; }
+        .accordion-icon { font-size: 1.5rem; color: #0066cc; transition: transform 0.3s; }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #fafafa; }
+        .accordion-item.active .accordion-content { max-height: 3000px; transition: max-height 0.5s ease-in; }
+        .accordion-body { padding: 25px; }
+        .accordion-body h4 { font-size: 1.1rem; color: #0066cc; margin: 20px 0 10px; font-weight: 600; }
+        .accordion-body p { margin-bottom: 15px; line-height: 1.8; }
+        .accordion-body ul { margin: 15px 0 15px 30px; }
+        .accordion-body li { margin-bottom: 8px; }
+        .document-downloads { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .download-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; border: 2px solid #0066cc; font-weight: 500; transition: all 0.3s; }
+        .download-btn:hover { background: #0066cc; color: white; }
+        .download-btn::before { content: '📄'; font-size: 1.2rem; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+        .related-info { background: #e3f2fd; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .related-info h4 { color: #0066cc; margin-bottom: 15px; }
+        .related-info a { display: block; color: #0066cc; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #bbdefb; }
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-main">
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="index.html">手続き・申請</a><span>›</span>
+        <span>医療費が高額になるときの手続き</span>
+    </div>
+    <div class="category-nav">
+        <a href="procedure-family.html">扶養家族</a>
+        <a href="procedure-certificate.html">資格確認書・限度額</a>
+        <a href="procedure-injury.html">病気・ケガ</a>
+        <a href="procedure-payment.html" >立て替え払い</a>
+        <a href="procedure-medical-cost.html" class='active'>医療費高額</a>
+        <a href="procedure-birth.html" >出産</a>
+        <a href="procedure-death.html" >死亡</a>
+        <a href="procedure-retirement.html" >退職</a>
+        <a href="procedure-checkup.html" >検診</a>
+    </div>
+    <div class="container">
+        <h1 class="page-title">医療費が高額になるときの手続き</h1>
+        
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>限度額適用認定証が欲しいとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>医療機関での窓口支払いを自己負担限度額までに抑えることができます。</p>
+                    
+                    <div class="note-box">
+                        <h4>💡 マイナ保険証なら申請不要！</h4>
+                        <p>マイナンバーカードを健康保険証として利用している場合は、限度額適用認定証の申請は不要です。</p>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">メリット</h4>
+                    <ul>
+                        <li>医療機関の窓口での支払いが自己負担限度額までとなります</li>
+                        <li>高額な医療費を一時的に立て替える必要がありません</li>
+                    </ul>
+
+                    <h4 style="margin-top: 30px;">提出書類</h4>
+                    <p>健康保険限度額適用認定申請書</p>
+                    <div class="document-downloads">
+                        <a href="limit-application-form.xlsx" class="download-btn" download="健康保険限度額適用認定申請書_高額療養費.xlsx">書類（Excel）</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>高額療養費について</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>高額療養費制度とは</h4>
+                    <p>1か月の医療費の自己負担額が一定額を超えた場合、超えた分が払い戻されます。</p>
+                    
+                    <div class="note-box">
+                        <h4>申請不要</h4>
+                        <p>診療月の約3ヶ月後に自動的に支給されます。申請は不要です。</p>
+                    </div>
+
+                    <h4 style="margin-top: 30px;">世帯合算について</h4>
+                    <p>同一世帯で複数人が医療機関を受診した場合、自己負担額を合算できます。</p>
+                    
+                    <div class="note-box">
+                        <h4>合算の条件</h4>
+                        <ul>
+                            <li>同一月内の医療費であること</li>
+                            <li>1人21,000円以上の自己負担があること</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="margin-top: 30px;">多数回該当について</h4>
+                    <p>過去12ヶ月以内に3回以上高額療養費の支給を受けている場合、4回目からは自己負担限度額が軽減されます。</p>
+
+                    <div class="related-info" style="margin-top: 20px;">
+                        <h4>関連情報</h4>
+                        <a href="limit-certificate-info.html">限度額適用認定証について</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function toggleAccordion(element) {
+            const accordionItem = element.parentElement;
+            accordionItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

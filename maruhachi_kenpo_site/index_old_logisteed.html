@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>丸八真綿健康保険組合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f0f0f0;
+        }
+
+        .header-top {
+            background: white;
+            padding: 30px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title {
+            font-size: 2rem;
+            color: #333;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .header-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .font-size-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .font-size-btns {
+            display: flex;
+            gap: 5px;
+        }
+
+        .font-size-btns button {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #999;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-box input {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .search-box button {
+            padding: 6px 20px;
+            background: #999;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .main-nav {
+            background: linear-gradient(to bottom, #5c8dd6 0%, #4a7bc4 100%);
+        }
+
+        .main-nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .main-nav a {
+            flex: 1;
+            padding: 18px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            transition: background 0.3s;
+        }
+
+        .main-nav a:last-child {
+            border-right: none;
+        }
+
+        .main-nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        .main-content {
+            background: white;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .news-section {
+            padding: 25px;
+        }
+
+        .news-title {
+            background: linear-gradient(to right, #5cb3cc 0%, #4a9fb8 100%);
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            margin: -25px -25px 20px -25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .news-title::before {
+            content: '📢';
+            font-size: 1.2rem;
+        }
+
+        .news-list {
+            list-style: none;
+        }
+
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+
+        .news-date {
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .news-link {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .news-link:hover {
+            color: #4a7bc4;
+            text-decoration: underline;
+        }
+
+        .news-more {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .news-more a {
+            display: inline-block;
+            padding: 8px 30px;
+            background: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+
+        .bottom-nav {
+            padding: 25px;
+            background: white;
+        }
+
+        .bottom-nav-container {
+            border: 3px solid #5c8dd6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bottom-nav-header {
+            display: flex;
+            background: #f8f8f8;
+        }
+
+        .bottom-nav-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: #e0e0e0;
+            color: #666;
+            font-weight: 500;
+            cursor: pointer;
+            border-right: 2px solid white;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-tab:last-child {
+            border-right: none;
+        }
+
+        .bottom-nav-tab.active {
+            background: #5c8dd6;
+            color: white;
+        }
+
+        .bottom-nav-tab:hover {
+            opacity: 0.8;
+        }
+
+        .bottom-nav-content {
+            padding: 30px;
+            background: #f8fbff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .situation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .situation-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .situation-item:hover {
+            border-color: #5c8dd6;
+            box-shadow: 0 4px 12px rgba(92, 141, 214, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .situation-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .situation-icon-emoji {
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+
+        .situation-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-item {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .sidebar-mascot {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-mascot img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-mascot-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .sidebar-item a {
+            display: block;
+            padding: 12px;
+            background: #f8f8f8;
+            color: #333;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-item a:hover {
+            background: #e8e8e8;
+        }
+
+        .sidebar-item a::before {
+            content: '●';
+            color: #999;
+            margin-right: 8px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .main-nav-content {
+                flex-wrap: wrap;
+            }
+
+            .main-nav a {
+                flex: 0 0 50%;
+            }
+
+            .situation-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bottom-nav-header {
+                flex-direction: column;
+            }
+
+            .bottom-nav-tab {
+                border-right: none;
+                border-bottom: 2px solid white;
+            }
+
+            .header-top-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-top">
+        <div class="header-top-content">
+            <h1 class="site-title">丸八真綿健康保険組合</h1>
+            <div class="header-tools">
+                <span class="font-size-label">文字のサイズ</span>
+                <div class="font-size-btns">
+                    <button title="小">小</button>
+                    <button title="中">中</button>
+                    <button title="大">大</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="">
+                    <button>検索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="about/index.html">健保のしくみ</a>
+            <a href="benefits/index.html">健保の給付</a>
+            <a href="health/index.html">保健事業</a>
+            <a href="when/index.html">各種手続き</a>
+            <a href="forms/index.html">申請書一覧</a>
+            <a href="contact/index.html">よくある質問</a>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="main-content">
+            <div class="hero-image">
+                <img src="images/header-bg.jpg" alt="丸八真綿健康保険組合">
+            </div>
+
+            <div class="news-section">
+                <div class="news-title">お知らせ</div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <span class="news-date">[2025/04/01]</span>
+                        <a href="#" class="news-link">令和7年度保健事業の補助金額改定について</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/12/09]</span>
+                        <a href="#" class="news-link">年末年始休業のお知らせ</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/11/14]</span>
+                        <a href="#" class="news-link">2025年12月2日以降、健康保険証は使用できません</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/10/28]</span>
+                        <a href="#" class="news-link">インフルエンザ予防接種補助のお知らせ</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/10/01]</span>
+                        <a href="#" class="news-link">2025年度インフルエンザ予防接種費用補助開始</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/09/17]</span>
+                        <a href="#" class="news-link">レディース健診のご案内</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/08/04]</span>
+                        <a href="#" class="news-link">夏季休業のお知らせ</a>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">[2025/07/01]</span>
+                        <a href="#" class="news-link">被扶養者資格確認について</a>
+                    </li>
+                </ul>
+                <div class="news-more">
+                    <a href="#">→ 一覧を見る</a>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="bottom-nav-container">
+                    <div class="bottom-nav-header">
+                        <div class="bottom-nav-tab active" onclick="switchTab('tab1')">こんなときどうする？</div>
+                        <div class="bottom-nav-tab" onclick="switchTab('tab2')">給付から探す</div>
+                        <div class="bottom-nav-tab" onclick="switchTab('tab3')">健診等から探す</div>
+                        <div class="bottom-nav-tab" onclick="switchTab('tab4')">用語から探す</div>
+                    </div>
+                    <div class="bottom-nav-content">
+                        <!-- タブ1: こんなときどうする？ -->
+                        <div id="tab1" class="tab-content active">
+                            <div class="situation-grid">
+                                <a href="benefits/high-medical-cost.html" class="situation-item">
+                                    <img src="images/characters/hospital.png" alt="病院" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🏥</div>
+                                    <div class="situation-text">限度額適用認定証が必要なとき</div>
+                                </a>
+                                <a href="when/family-change.html" class="situation-item">
+                                    <img src="images/characters/family.png" alt="家族" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👨‍👩‍👧‍👦</div>
+                                    <div class="situation-text">被扶養者が増えたとき・減ったとき</div>
+                                </a>
+                                <a href="benefits/childbirth.html" class="situation-item">
+                                    <img src="images/characters/baby.png" alt="赤ちゃん" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👶</div>
+                                    <div class="situation-text">出産したとき</div>
+                                </a>
+                                <a href="benefits/childbirth.html" class="situation-item">
+                                    <img src="images/characters/pregnant.png" alt="妊婦" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🤰</div>
+                                    <div class="situation-text">出産のため仕事を休んだ</div>
+                                </a>
+                                <a href="when/insurance-card-lost.html" class="situation-item">
+                                    <img src="images/characters/card-lost.png" alt="紛失" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🪪</div>
+                                    <div class="situation-text">保険証を紛失したとき</div>
+                                </a>
+                                <a href="benefits/advance-payment.html" class="situation-item">
+                                    <img src="images/characters/payment.png" alt="支払い" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💳</div>
+                                    <div class="situation-text">立て替え払いをしたとき</div>
+                                </a>
+                                <a href="when/retirement.html" class="situation-item">
+                                    <img src="images/characters/retirement.png" alt="退職" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🏢</div>
+                                    <div class="situation-text">退職するとき</div>
+                                </a>
+                                <a href="benefits/unable-to-work.html" class="situation-item">
+                                    <img src="images/characters/sick.png" alt="病気" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🛌</div>
+                                    <div class="situation-text">病気で仕事を休んだとき</div>
+                                </a>
+                                <a href="when/index.html" class="situation-item">
+                                    <img src="images/characters/name-change.png" alt="氏名変更" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">✏️</div>
+                                    <div class="situation-text">氏名が変わったとき</div>
+                                </a>
+                                <a href="when/index.html" class="situation-item">
+                                    <img src="images/characters/moving.png" alt="引っ越し" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🏠</div>
+                                    <div class="situation-text">住所が変わったとき</div>
+                                </a>
+                                <a href="benefits/accident.html" class="situation-item">
+                                    <img src="images/characters/accident.png" alt="事故" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🚗</div>
+                                    <div class="situation-text">交通事故にあったとき</div>
+                                </a>
+                                <a href="benefits/death.html" class="situation-item">
+                                    <img src="images/characters/funeral.png" alt="葬儀" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💐</div>
+                                    <div class="situation-text">亡くなったとき</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- タブ2: 給付から探す -->
+                        <div id="tab2" class="tab-content">
+                            <div class="situation-grid">
+                                <a href="benefits/medical-visit.html" class="situation-item">
+                                    <img src="images/characters/medical.png" alt="医療" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🏥</div>
+                                    <div class="situation-text">病気・けが</div>
+                                </a>
+                                <a href="benefits/high-medical-cost.html" class="situation-item">
+                                    <img src="images/characters/expensive.png" alt="高額" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💰</div>
+                                    <div class="situation-text">高額療養費</div>
+                                </a>
+                                <a href="benefits/childbirth.html" class="situation-item">
+                                    <img src="images/characters/baby.png" alt="出産" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👶</div>
+                                    <div class="situation-text">出産</div>
+                                </a>
+                                <a href="benefits/childbirth.html" class="situation-item">
+                                    <img src="images/characters/maternity-leave.png" alt="産休" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🤱</div>
+                                    <div class="situation-text">産休</div>
+                                </a>
+                                <a href="benefits/advance-payment.html" class="situation-item">
+                                    <img src="images/characters/corset.png" alt="コルセット" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🦴</div>
+                                    <div class="situation-text">コルセット</div>
+                                </a>
+                                <a href="benefits/advance-payment.html" class="situation-item">
+                                    <img src="images/characters/glasses.png" alt="眼鏡" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👓</div>
+                                    <div class="situation-text">小児弱視眼鏡</div>
+                                </a>
+                                <a href="benefits/advance-payment.html" class="situation-item">
+                                    <img src="images/characters/payment.png" alt="支払い" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💳</div>
+                                    <div class="situation-text">立て替え払い</div>
+                                </a>
+                                <a href="benefits/unable-to-work.html" class="situation-item">
+                                    <img src="images/characters/sick-leave.png" alt="傷病手当" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">♿</div>
+                                    <div class="situation-text">傷病手当金</div>
+                                </a>
+                                <a href="benefits/accident.html" class="situation-item">
+                                    <img src="images/characters/car-accident.png" alt="事故" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🚗</div>
+                                    <div class="situation-text">第三者行為（交通事故等）</div>
+                                </a>
+                                <a href="benefits/death.html" class="situation-item">
+                                    <img src="images/characters/funeral.png" alt="死亡" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💐</div>
+                                    <div class="situation-text">死亡</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- タブ3: 健診等から探す -->
+                        <div id="tab3" class="tab-content">
+                            <div class="situation-grid">
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/checkup.png" alt="健診" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🩺</div>
+                                    <div class="situation-text">配偶者健診・家族健診</div>
+                                </a>
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/womens-health.png" alt="婦人科" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👩</div>
+                                    <div class="situation-text">被保険者婦人科検診</div>
+                                </a>
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/vaccine.png" alt="予防接種" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💉</div>
+                                    <div class="situation-text">インフルエンザ予防接種費用補助</div>
+                                </a>
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/exercise.png" alt="運動" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🏃</div>
+                                    <div class="situation-text">健康ポータルサイト PepUp</div>
+                                </a>
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/dock.png" alt="ドック" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🔬</div>
+                                    <div class="situation-text">人間ドック</div>
+                                </a>
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/brain.png" alt="脳検査" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🧠</div>
+                                    <div class="situation-text">単独脳検査</div>
+                                </a>
+                                <a href="health/tokutei-kenshin.html" class="situation-item">
+                                    <img src="images/characters/health-guidance.png" alt="特定健診" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">📋</div>
+                                    <div class="situation-text">特定健診・特定保健指導</div>
+                                </a>
+                                <a href="health/index.html" class="situation-item">
+                                    <img src="images/characters/no-smoking.png" alt="禁煙" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🚭</div>
+                                    <div class="situation-text">卒煙プログラム</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- タブ4: 用語から探す -->
+                        <div id="tab4" class="tab-content">
+                            <div class="situation-grid">
+                                <a href="benefits/high-medical-cost.html" class="situation-item">
+                                    <img src="images/characters/certificate.png" alt="認定証" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">📋</div>
+                                    <div class="situation-text">限度額適用認定証</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/worker.png" alt="被保険者" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👤</div>
+                                    <div class="situation-text">被保険者</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/dependent.png" alt="被扶養者" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👨‍👩‍👧</div>
+                                    <div class="situation-text">被扶養者</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/family-support.png" alt="扶養" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👨‍👩‍👧‍👦</div>
+                                    <div class="situation-text">扶養</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/money.png" alt="保険料" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💴</div>
+                                    <div class="situation-text">保険料</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/insurance-card.png" alt="保険証" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">💳</div>
+                                    <div class="situation-text">保険証</div>
+                                </a>
+                                <a href="when/retirement.html" class="situation-item">
+                                    <img src="images/characters/voluntary.png" alt="任意継続" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">📝</div>
+                                    <div class="situation-text">任意継続被保険者</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/nursing-care.png" alt="介護保険" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">🏥</div>
+                                    <div class="situation-text">介護保険制度</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/elderly.png" alt="後期高齢者" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">👴</div>
+                                    <div class="situation-text">後期高齢者医療制度</div>
+                                </a>
+                                <a href="about/index.html" class="situation-item">
+                                    <img src="images/characters/notice.png" alt="通知" class="situation-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                                    <div class="situation-icon-emoji" style="display:none">📄</div>
+                                    <div class="situation-text">医療費通知</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <!-- マスコットキャラクター -->
+            <div class="sidebar-mascot">
+                <img src="images/characters/kenpo-mascot.png" alt="健保組合マスコット" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23e3f2fd%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2260%22 text-anchor=%22middle%22 dy=%22.3em%22%3E👨‍⚕️%3C/text%3E%3C/svg%3E'">
+                <div class="sidebar-mascot-text">
+                    <strong>健康サポート隊</strong><br>
+                    皆さまの健康づくりを応援します！
+                </div>
+            </div>
+
+            <div class="sidebar-item">
+                <a href="#">けんぽだよりバックナンバー</a>
+            </div>
+            <div class="sidebar-item">
+                <a href="health/index.html">配偶者健診・家族健診</a>
+            </div>
+            <div class="sidebar-item">
+                <a href="health/index.html">被保険者婦人科検診</a>
+            </div>
+            <div class="sidebar-item">
+                <a href="health/index.html">人間ドック</a>
+            </div>
+            <div class="sidebar-item">
+                <a href="health/index.html">健康ポータルサイト「PepUp」</a>
+            </div>
+            <div class="sidebar-item">
+                <a href="health/index.html">卒煙プログラム</a>
+            </div>
+            <div class="sidebar-item">
+                <a href="health/index.html">インフルエンザ予防接種費用補助</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>COPYRIGHT(C) 丸八真綿健康保険組合 ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // タブ切り替え機能
+        function switchTab(tabName) {
+            // すべてのタブとコンテンツを非アクティブに
+            const tabs = document.querySelectorAll('.bottom-nav-tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.background = '#e0e0e0';
+                tab.style.color = '#666';
+            });
+            
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // クリックされたタブをアクティブに
+            event.target.classList.add('active');
+            event.target.style.background = '#5c8dd6';
+            event.target.style.color = 'white';
+            
+            // 対応するコンテンツを表示
+            document.getElementById(tabName).style.display = 'block';
+        }
+    </script>
+</body>
+</html>

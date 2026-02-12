@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>届出申請書一覧 | 丸八真綿健康保険組合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* トップバー */
+        .top-bar {
+            background: #0066cc;
+            height: 8px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: white;
+            padding: 20px 0 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 0;
+            align-items: flex-start;
+            padding-top: 5px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 25px;
+            margin-right: 30px;
+        }
+
+        .header-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        /* 文字サイズ調整 */
+        .font-size-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 0 20px;
+        }
+
+        .font-size-control .label {
+            padding: 0 10px 0 0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .font-size-control button {
+            padding: 6px 14px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 40px;
+            margin: 0;
+        }
+
+        .font-size-control button:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+
+        .font-size-control button:last-of-type {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .font-size-control button:not(:first-of-type) {
+            border-left: none;
+        }
+
+        .font-size-control button:hover {
+            background: #f5f5f5;
+        }
+
+        .font-size-control button.active {
+            background: #e0e0e0;
+        }
+
+        /* 検索ボックス */
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 6px 35px 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* メインナビゲーション */
+        .main-nav {
+            background: white;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+
+        .main-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 40px;
+            gap: 0;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 20px 30px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: normal;
+            border-left: 1px solid #ddd;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .main-nav a:first-child {
+            border-left: none;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #0066cc;
+            background: #f8f9fa;
+        }
+
+        /* パンくずリスト */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+
+        .content-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            color: #0066cc;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #0066cc;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.9;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #0066cc;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        /* カテゴリータブ */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 12px 24px;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .category-tab:hover {
+            background: #e0e0e0;
+        }
+
+        .category-tab.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        /* 申請書テーブル */
+        .forms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .forms-table thead {
+            background: #0066cc;
+            color: white;
+        }
+
+        .forms-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .forms-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .forms-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .form-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,102,204,0.3);
+        }
+
+        .download-icon {
+            margin-right: 5px;
+        }
+
+        /* フッター */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-nav-content {
+                flex-direction: column;
+            }
+
+            .main-nav a {
+                border-left: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .content-wrapper {
+                padding: 20px;
+            }
+
+            .forms-table {
+                font-size: 0.85rem;
+            }
+
+            .forms-table th,
+            .forms-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="../index.html">
+                    <span class="logo-text">丸八真綿</span>
+                    <h1>健康保険組合</h1>
+                </a>
+            </div>
+            <div class="header-nav">
+                <div class="header-links">
+                    <a href="../index.html">ホーム</a>
+                    <a href="../contact/index.html">お問い合わせ</a>
+                    <a href="../privacy.html">個人情報の取り扱いについて</a>
+                    <a href="../links.html">関連リンク</a>
+                    <a href="../sitemap.html">サイトマップ</a>
+                </div>
+                <div class="font-size-control">
+                    <span class="label">文字サイズ</span>
+                    <button>小</button>
+                    <button class="active">中</button>
+                    <button>大</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="検索">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="../about/index.html">健保組合のご案内</a>
+            <a href="../when/index.html">こんなときは？</a>
+            <a href="../benefits/index.html">病気やケガをしたとき</a>
+            <a href="../health/index.html">疾病予防・健康づくり（保健事業）</a>
+            <a href="index.html" class="active">届出申請書一覧</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">ホーム</a> ＞ 届出申請書一覧
+    </div>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <h1 class="page-title">届出申請書一覧</h1>
+
+            <div class="section">
+                <p>
+                    各種給付の申請や、被保険者・被扶養者に関する届出に必要な申請書をダウンロードできます。
+                    申請書は印刷してご使用ください。記入後、必要書類を添えて健保組合へ提出してください。
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>📝 申請書記入のポイント</h3>
+                <ul>
+                    <li>黒または青のボールペンで、はっきりと記入してください</li>
+                    <li>印鑑は認印で結構です（シャチハタ不可）</li>
+                    <li>事業主証明欄がある場合は、会社の総務担当者に記入を依頼してください</li>
+                    <li>医師の証明が必要な場合は、医療機関で記入してもらってください</li>
+                    <li>記入漏れや添付書類の不足があると、手続きに時間がかかります</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>カテゴリー別申請書一覧</h2>
+                
+                <div class="category-tabs">
+                    <div class="category-tab active" onclick="filterCategory('all')">すべて</div>
+                    <div class="category-tab" onclick="filterCategory('medical')">医療費・給付</div>
+                    <div class="category-tab" onclick="filterCategory('family')">被扶養者関係</div>
+                    <div class="category-tab" onclick="filterCategory('health')">保健事業</div>
+                    <div class="category-tab" onclick="filterCategory('other')">その他</div>
+                </div>
+
+                <table class="forms-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">申請書名</th>
+                            <th style="width: 40%;">用途・説明</th>
+                            <th style="width: 20%;">ダウンロード</th>
+                        </tr>
+                    </thead>
+                    <tbody id="formsTableBody">
+                        <!-- 医療費・給付関係 -->
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">療養費支給申請書</div>
+                                <div class="form-description">保険証を忘れて全額自己負担した場合など</div>
+                            </td>
+                            <td>やむを得ず保険証を使用せずに医療費を支払った場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">高額療養費支給申請書</div>
+                                <div class="form-description">医療費が高額になった場合</div>
+                            </td>
+                            <td>1ヶ月の医療費が自己負担限度額を超えた場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">限度額適用認定申請書</div>
+                                <div class="form-description">入院等で医療費が高額になる見込みの場合</div>
+                            </td>
+                            <td>事前に申請することで、窓口負担が自己負担限度額までになります</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">傷病手当金支給申請書</div>
+                                <div class="form-description">病気やケガで働けない場合</div>
+                            </td>
+                            <td>業務外の病気やケガで連続して3日以上休んだ場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">出産育児一時金支給申請書</div>
+                                <div class="form-description">出産したとき（直接支払制度を利用しない場合）</div>
+                            </td>
+                            <td>出産育児一時金の支給を申請する際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">出産手当金支給申請書</div>
+                                <div class="form-description">出産のため仕事を休んだ場合</div>
+                            </td>
+                            <td>被保険者本人が出産で休業した場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">埋葬料（費）支給申請書</div>
+                                <div class="form-description">被保険者または被扶養者が死亡したとき</div>
+                            </td>
+                            <td>埋葬を行った方が埋葬料の支給を申請する際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="medical">
+                            <td>
+                                <div class="form-name">第三者行為による傷病届</div>
+                                <div class="form-description">交通事故など第三者の行為によりケガをした場合</div>
+                            </td>
+                            <td>交通事故や暴行などで保険証を使う場合に必ず提出してください</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- 被扶養者関係 -->
+                        <tr data-category="family">
+                            <td>
+                                <div class="form-name">被扶養者（異動）届</div>
+                                <div class="form-description">家族を扶養に入れる・外すとき</div>
+                            </td>
+                            <td>結婚、出産、就職などで被扶養者に異動があった場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="family">
+                            <td>
+                                <div class="form-name">被扶養者資格確認調書</div>
+                                <div class="form-description">被扶養者の資格確認時</div>
+                            </td>
+                            <td>年に1回実施する被扶養者資格確認調査の際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="family">
+                            <td>
+                                <div class="form-name">被保険者証再交付申請書</div>
+                                <div class="form-description">保険証を紛失・破損したとき</div>
+                            </td>
+                            <td>保険証やマイナ保険証を紛失・破損した場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- 保健事業関係 -->
+                        <tr data-category="health">
+                            <td>
+                                <div class="form-name">人間ドック補助金申請書</div>
+                                <div class="form-description">人間ドックを受診したとき</div>
+                            </td>
+                            <td>人間ドックの補助金（30,000円）を申請する際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="health">
+                            <td>
+                                <div class="form-name">レディース健診補助金申請書</div>
+                                <div class="form-description">レディース健診を受診したとき</div>
+                            </td>
+                            <td>レディース健診の補助金（10,000円）を申請する際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="health">
+                            <td>
+                                <div class="form-name">被扶養者健診申込書</div>
+                                <div class="form-description">被扶養者健診を受診する場合</div>
+                            </td>
+                            <td>被扶養者（35歳以上）が健診を受診する際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="health">
+                            <td>
+                                <div class="form-name">インフルエンザ予防接種補助金申請書</div>
+                                <div class="form-description">インフルエンザ予防接種を受けたとき</div>
+                            </td>
+                            <td>インフルエンザ予防接種の補助金（3,000円）を申請する際に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- その他 -->
+                        <tr data-category="other">
+                            <td>
+                                <div class="form-name">住所変更届</div>
+                                <div class="form-description">住所が変わったとき</div>
+                            </td>
+                            <td>被保険者または被扶養者の住所が変更になった場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="other">
+                            <td>
+                                <div class="form-name">氏名変更届</div>
+                                <div class="form-description">氏名が変わったとき</div>
+                            </td>
+                            <td>結婚などで氏名が変更になった場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr data-category="other">
+                            <td>
+                                <div class="form-name">任意継続被保険者資格取得申出書</div>
+                                <div class="form-description">退職後も健康保険を継続したいとき</div>
+                            </td>
+                            <td>退職後、最長2年間健康保険を継続する場合に使用します</td>
+                            <td>
+                                <a href="#" class="download-btn">
+                                    <span class="download-icon">📥</span>PDF
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>申請書の提出方法</h2>
+                
+                <div class="info-box">
+                    <h3>📮 提出先</h3>
+                    <p>
+                        <strong>郵送の場合：</strong><br>
+                        〒220-0011 神奈川県横浜市西区高島2-6-32 横浜東口ウィスポートビル7階<br>
+                        丸八真綿健康保険組合 給付係
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>窓口持参の場合：</strong><br>
+                        上記住所の健保組合窓口までお持ちください<br>
+                        受付時間：平日 9:00～17:00（土日祝日、年末年始を除く）
+                    </p>
+                </div>
+
+                <h3>💡 よくある質問</h3>
+                <p><strong>Q: 申請書はどのように印刷すればよいですか？</strong></p>
+                <p>A: A4サイズの用紙に印刷してください。両面印刷は避け、片面印刷でお願いします。</p>
+
+                <p style="margin-top: 15px;"><strong>Q: 申請から給付までどれくらいかかりますか？</strong></p>
+                <p>A: 書類到着後、通常2～3週間程度で指定口座に振り込まれます。</p>
+
+                <p style="margin-top: 15px;"><strong>Q: 記入方法がわからない場合は？</strong></p>
+                <p>A: 健保組合までお電話（045-XXX-XXXX）でお問い合わせください。</p>
+            </div>
+
+            <div class="section">
+                <h2>お問い合わせ</h2>
+                <p>
+                    申請書や手続きに関するご質問は、お気軽に健保組合までお問い合わせください。
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>電話：</strong>045-XXX-XXXX（平日 9:00～17:00）<br>
+                    <strong>FAX：</strong>045-XXX-XXXX
+                </p>
+                <p style="margin-top: 15px;">
+                    <a href="../contact/index.html" style="color: #0066cc; font-weight: 500;">お問い合わせフォームはこちら →</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 丸八真綿健康保険組合 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 文字サイズ調整機能
+        const fontSizeButtons = document.querySelectorAll('.font-size-control button');
+        fontSizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                fontSizeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const size = this.textContent;
+                if (size === '小') {
+                    document.body.style.fontSize = '14px';
+                } else if (size === '中') {
+                    document.body.style.fontSize = '16px';
+                } else if (size === '大') {
+                    document.body.style.fontSize = '18px';
+                }
+            });
+        });
+
+        // カテゴリーフィルター機能
+        function filterCategory(category) {
+            const rows = document.querySelectorAll('#formsTableBody tr');
+            const tabs = document.querySelectorAll('.category-tab');
+            
+            // タブのアクティブ状態を更新
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // テーブル行のフィルター
+            rows.forEach(row => {
+                if (category === 'all') {
+                    row.style.display = '';
+                } else {
+                    if (row.getAttribute('data-category') === category) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

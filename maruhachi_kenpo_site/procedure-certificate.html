@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資格確認書・限度額適用認定証に関する手続き - 丸八真綿健康保険組合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-top {
+            background: #0066cc;
+            padding: 10px 0;
+        }
+
+        .header-top-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: right;
+            color: white;
+            font-size: 0.85rem;
+        }
+
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        .search-btn {
+            padding: 8px 20px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .main-nav {
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .main-nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .main-nav a {
+            padding: 18px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .main-nav a:hover {
+            background: #f0f8ff;
+            color: #0066cc;
+        }
+
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            font-size: 0.85rem;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 5px;
+            color: #999;
+        }
+
+        .category-nav {
+            background: white;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .category-nav a {
+            padding: 10px 20px;
+            background: #f0f8ff;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .category-nav a:hover {
+            background: #0066cc;
+            color: white;
+        }
+
+        .category-nav a.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #0066cc;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        /* アコーディオンスタイル */
+        .accordion-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .accordion-header:hover {
+            background: #f0f8ff;
+            border-left-color: #0066cc;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            color: #0066cc;
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fafafa;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 3000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .accordion-body {
+            padding: 25px;
+        }
+
+        .accordion-body h4 {
+            font-size: 1.1rem;
+            color: #0066cc;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        .accordion-body p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .accordion-body ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        .accordion-body li {
+            margin-bottom: 8px;
+        }
+
+        .document-downloads {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: #f0f8ff;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 2px solid #0066cc;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #0066cc;
+            color: white;
+        }
+
+        .download-btn::before {
+            content: '📄';
+            font-size: 1.2rem;
+        }
+
+        .note-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .note-box h4 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        .related-info {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .related-info h4 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .related-info a {
+            display: block;
+            color: #0066cc;
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 1px solid #bbdefb;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .category-nav {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .document-downloads {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-top-inner">
+                日本語 | English
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <h1>丸八真綿健康保険組合</h1>
+            </div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="index.html">手続き・申請</a>
+        <span>›</span>
+        <span>資格確認書・限度額適用認定証に関する手続き</span>
+    </div>
+
+    <div class="category-nav">
+        <a href="procedure-family.html">扶養家族</a>
+        <a href="procedure-certificate.html" class="active">資格確認書・限度額</a>
+        <a href="procedure-injury.html">病気・ケガ</a>
+        <a href="procedure-payment.html">立て替え払い</a>
+        <a href="procedure-medical-cost.html">医療費高額</a>
+        <a href="procedure-birth.html">出産</a>
+        <a href="procedure-death.html">死亡</a>
+        <a href="procedure-retirement.html">退職</a>
+        <a href="procedure-checkup.html">検診</a>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">資格確認書・限度額適用認定証に関する手続き</h1>
+
+        <!-- アコーディオン1 -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>資格確認書を紛失・毀損したとき（再交付申請）</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>以下のいずれかの場合に、「健康保険資格確認書交付・再交付申請書」を提出してください。</p>
+                    <ul>
+                        <li>資格確認書を紛失したとき</li>
+                        <li>資格確認書が毀損・印字カスレにより利用できなくなったとき</li>
+                        <li>盗難により資格確認書を紛失したとき</li>
+                    </ul>
+
+                    <div class="document-downloads">
+                        <a href="qualification-certificate-info.html" class="download-btn">健康保険資格確認書 詳細・ダウンロード</a>
+                        <a href="qualification-certificate-form.xlsx" class="download-btn" download="健康保険資格確認書交付_滅失届_再交付_申請書.xlsx">Excelを直接ダウンロード</a>
+                    </div>
+
+                    <div class="note-box">
+                        <h4>添付書類</h4>
+                        <p><strong>【毀損・印字カスレの場合】</strong><br>
+                        利用できなくなった資格確認書の現物を添えてください。</p>
+                    </div>
+
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <p><strong>【紛失した資格確認書が見つかった場合】</strong><br>
+                        速やかに健康保険組合へ返却してください。</p>
+                        <p><strong>【盗難などによる紛失の場合】</strong><br>
+                        警察への届出を行い、届出番号を控えておいてください。</p>
+                    </div>
+
+                    <h4>資格喪失時に返却できない場合</h4>
+                    <p>資格喪失時（退職、移籍、被扶養者削除等）に、紛失により資格確認書を返却できない場合は、「資格確認書交付」内の滅失届欄を記入し提出してください。</p>
+
+                    <div class="related-info">
+                        <h4>関連情報</h4>
+                        <a href="qualification-certificate-info.html">資格確認書の詳細・記入方法はこちら</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- アコーディオン2 -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>氏名・住所に変更があったとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>氏名が変更（訂正）になった場合、または住所が変更になった場合に、「氏名・住所変更届」を提出してください。</p>
+
+                    <div class="document-downloads">
+                        <a href="name-address-change-info.html" class="download-btn">氏名・住所変更届 詳細・ダウンロード</a>
+                        <a href="name-address-change-form.xlsx" class="download-btn" download="氏名_住所変更届.xlsx">Excelを直接ダウンロード</a>
+                    </div>
+
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <ul>
+                            <li>氏名変更と住所変更、同時変更の場合でも、1枚の用紙で変更が可能です。</li>
+                            <li>氏名変更の場合に丸八の資格確認書をお持ちの方は必ず添付のうえ提出してください。</li>
+                            <li>氏名変更後の資格確認書の発行が必要な方は「健康保険資格確認書交付・再交付申請書」も提出してください。</li>
+                            <li>氏名変更や婚姻などで給与振込口座や扶養状況に変更がある場合は別途給与担当者へ連絡してください。</li>
+                        </ul>
+                    </div>
+
+                    <div class="related-info">
+                        <h4>関連情報</h4>
+                        <a href="qualification-certificate-info.html">資格確認書の交付申請はこちら</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- アコーディオン3 削除（上のセクションと統合） -->
+
+        <!-- アコーディオン4 -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>医療費が高額になりそうなとき（限度額適用認定証）</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>入院や高額な外来診療を受ける場合に、「健康保険限度額適用認定申請書」を提出してください。</p>
+
+                    <div class="document-downloads">
+                        <a href="limit-certificate-info.html" class="download-btn">限度額適用認定申請書 詳細・ダウンロード</a>
+                        <a href="limit-certificate-form.xlsx" class="download-btn" download="健康保険限度額適用認定申請書_高額療養費.xlsx">Excelを直接ダウンロード</a>
+                    </div>
+
+                    <div class="success-box" style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px 20px; margin: 20px 0; border-radius: 4px;">
+                        <h4 style="color: #2e7d32; margin-bottom: 10px;">💡 マイナ保険証なら申請不要！</h4>
+                        <p><strong>健康保険証の利用登録済みマイナ保険証を利用すれば、限度額認定証の申請は不要です。</strong></p>
+                    </div>
+
+                    <h4>利用方法</h4>
+                    <p>健康保険組合から「健康保険限度額適用認定証」が交付されますので、医療機関の窓口に提示してください。<br>
+                    窓口での支払いが初めから自己負担限度額までとなり、高額な医療費を窓口で支払う負担が軽減されます。</p>
+
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <ul>
+                            <li>マイナ保険証を保有できない場合、資格確認書と併せて限度額適用認定証の提示が必要です</li>
+                            <li>有効期限は6か月です。有効期限が切れたら速やかに返却してください</li>
+                            <li>窓口で3割または2割の支払を済ませている場合は申請不要で自動給付されます（診療月の約3カ月後）</li>
+                        </ul>
+                    </div>
+
+                    <div class="related-info">
+                        <h4>関連情報</h4>
+                        <a href="limit-certificate-info.html">限度額適用認定証の詳細はこちら</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- アコーディオン5 削除 -->
+
+        <!-- アコーディオン6 -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>マイナンバーカードを所持していないとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>「マイナ保険証」での受診が原則です。（強制ではありません）</p>
+                    <p>「マイナ保険証」を保有できない場合、「資格確認書」を発行しますので、「健康保険資格確認書交付・再交付申請書」を提出してください。</p>
+
+                    <div class="document-downloads">
+                        <a href="qualification-certificate-info.html" class="download-btn">健康保険資格確認書 詳細・ダウンロード</a>
+                        <a href="qualification-certificate-form.xlsx" class="download-btn" download="健康保険資格確認書交付_滅失届_再交付_申請書.xlsx">Excelを直接ダウンロード</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(element) {
+            const accordionItem = element.parentElement;
+            accordionItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

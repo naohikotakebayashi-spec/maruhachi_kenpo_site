@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疾病予防・健康づくり（保健事業） | 丸八真綿健康保険組合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* トップバー */
+        .top-bar {
+            background: #0066cc;
+            height: 8px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: white;
+            padding: 20px 0 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 0;
+            align-items: flex-start;
+            padding-top: 5px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 25px;
+            margin-right: 30px;
+        }
+
+        .header-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        /* 文字サイズ調整 */
+        .font-size-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 0 20px;
+        }
+
+        .font-size-control .label {
+            padding: 0 10px 0 0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .font-size-control button {
+            padding: 6px 14px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 40px;
+            margin: 0;
+        }
+
+        .font-size-control button:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+
+        .font-size-control button:last-of-type {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .font-size-control button:not(:first-of-type) {
+            border-left: none;
+        }
+
+        .font-size-control button:hover {
+            background: #f5f5f5;
+        }
+
+        .font-size-control button.active {
+            background: #e0e0e0;
+        }
+
+        /* 検索ボックス */
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 6px 35px 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* メインナビゲーション */
+        .main-nav {
+            background: white;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+
+        .main-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 40px;
+            gap: 0;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 20px 30px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: normal;
+            border-left: 1px solid #ddd;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .main-nav a:first-child {
+            border-left: none;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #0066cc;
+            background: #f8f9fa;
+        }
+
+        /* パンくずリスト */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+
+        .content-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            color: #0066cc;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #0066cc;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.9;
+        }
+
+        .health-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+
+        .health-card:hover {
+            box-shadow: 0 6px 16px rgba(0,102,204,0.2);
+            transform: translateY(-5px);
+        }
+
+        .health-card h3 {
+            color: #0066cc;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .health-card .icon {
+            font-size: 2rem;
+        }
+
+        .health-card .highlight {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #0066cc;
+        }
+
+        .health-card .highlight h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .health-card .subsidy {
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .health-card ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .health-card li {
+            margin-bottom: 10px;
+        }
+
+        .health-card .link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 2px solid #0066cc;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .health-card .link:hover {
+            background: #0066cc;
+            color: white;
+        }
+
+        .new-badge {
+            display: inline-block;
+            background: #ff5722;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        .updated-badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f0f0f0;
+            font-weight: 500;
+            color: #333;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* フッター */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-nav-content {
+                flex-direction: column;
+            }
+
+            .main-nav a {
+                border-left: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .content-wrapper {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="../index.html">
+                    <span class="logo-text">丸八真綿</span>
+                    <h1>健康保険組合</h1>
+                </a>
+            </div>
+            <div class="header-nav">
+                <div class="header-links">
+                    <a href="../index.html">ホーム</a>
+                    <a href="../contact/index.html">お問い合わせ</a>
+                    <a href="../privacy.html">個人情報の取り扱いについて</a>
+                    <a href="../links.html">関連リンク</a>
+                    <a href="../sitemap.html">サイトマップ</a>
+                </div>
+                <div class="font-size-control">
+                    <span class="label">文字サイズ</span>
+                    <button>小</button>
+                    <button class="active">中</button>
+                    <button>大</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="検索">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="../about/index.html">健保組合のご案内</a>
+            <a href="../when/index.html">こんなときは？</a>
+            <a href="../benefits/index.html">病気やケガをしたとき</a>
+            <a href="index.html" class="active">疾病予防・健康づくり（保健事業）</a>
+            <a href="../forms/index.html">届出申請書一覧</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">ホーム</a> ＞ 疾病予防・健康づくり（保健事業）
+    </div>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <h1 class="page-title">疾病予防・健康づくり（保健事業）</h1>
+
+            <div class="section">
+                <p>
+                    丸八真綿健康保険組合では、皆さまの健康の保持・増進を図るため、さまざまな保健事業を実施しています。
+                    病気の早期発見・早期治療、生活習慣病の予防など、積極的にご活用ください。
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>令和7年度 主要保健事業</h2>
+
+                <div class="health-card">
+                    <h3><span class="icon">🏥</span>定期健康診断<span class="updated-badge">補助拡充</span></h3>
+                    <p>
+                        労働安全衛生法に基づく定期健康診断を実施します。年1回、必ず受診してください。
+                    </p>
+                    <div class="subsidy">
+                        補助額：全額補助（健保組合が直接契約医療機関に支払います）
+                    </div>
+                    <div class="highlight">
+                        <h4>対象者</h4>
+                        <p>被保険者（35歳未満および36歳以上の方）</p>
+                    </div>
+                    <ul>
+                        <li>会社を通じて実施します</li>
+                        <li>受診時に自己負担はありません</li>
+                        <li>検査項目：身長・体重、血圧、尿検査、血液検査、胸部X線など</li>
+                    </ul>
+                </div>
+
+                <div class="health-card">
+                    <h3><span class="icon">🔬</span>人間ドック<span class="updated-badge">補助増額</span></h3>
+                    <p>
+                        より詳しい検査で、病気の早期発見・早期治療につなげます。
+                    </p>
+                    <div class="subsidy">
+                        補助額：30,000円（令和7年度より増額）
+                    </div>
+                    <div class="highlight">
+                        <h4>対象者</h4>
+                        <p>35歳以上の被保険者および被扶養者（年度内に1回）</p>
+                    </div>
+                    <ul>
+                        <li>契約医療機関での受診をおすすめします</li>
+                        <li>受診後、領収書と結果表のコピーを添えて申請してください</li>
+                        <li>定期健康診断との併用はできません</li>
+                    </ul>
+                    <a href="#" class="link">契約医療機関一覧を見る</a>
+                </div>
+
+                <div class="health-card">
+                    <h3><span class="icon">👩</span>レディース健診<span class="new-badge">NEW</span></h3>
+                    <p>
+                        女性特有の疾患の早期発見を目的とした健診です。令和7年度より新設しました。
+                    </p>
+                    <div class="subsidy">
+                        補助額：10,000円
+                    </div>
+                    <div class="highlight">
+                        <h4>対象者</h4>
+                        <p>35歳以上の女性被保険者および女性被扶養者（年度内に1回）</p>
+                    </div>
+                    <div class="highlight">
+                        <h4>検査項目</h4>
+                        <ul style="margin: 10px 0;">
+                            <li>乳がん検診（マンモグラフィーまたは乳房超音波検査）</li>
+                            <li>子宮頸がん検診</li>
+                        </ul>
+                    </div>
+                    <ul>
+                        <li>人間ドックと併せて受診できます</li>
+                        <li>受診後、領収書と結果表のコピーを添えて申請してください</li>
+                    </ul>
+                    <a href="#" class="link">申込方法を見る</a>
+                </div>
+
+                <div class="health-card">
+                    <h3><span class="icon">🩺</span>被扶養者健診<span class="updated-badge">補助増額</span></h3>
+                    <p>
+                        被扶養者の方の健康管理のため、年1回の健康診断を実施しています。
+                    </p>
+                    <div class="subsidy">
+                        補助額：10,000円（令和7年度より7,000円から増額）
+                    </div>
+                    <div class="highlight">
+                        <h4>対象者</h4>
+                        <p>被扶養者（35歳以上）</p>
+                    </div>
+                    <ul>
+                        <li>全国の契約医療機関で受診できます</li>
+                        <li>特定健康診査の項目を含みます</li>
+                        <li>受診券を発行しますので、事前にお申し込みください</li>
+                    </ul>
+                    <a href="#" class="link">受診券を申し込む</a>
+                </div>
+
+                <div class="health-card">
+                    <h3><span class="icon">💉</span>インフルエンザ予防接種補助<span class="updated-badge">補助増額</span></h3>
+                    <p>
+                        インフルエンザの予防接種費用を補助します。
+                    </p>
+                    <div class="subsidy">
+                        補助額：1人につき3,000円（令和7年度より2,000円から増額）
+                    </div>
+                    <div class="highlight">
+                        <h4>対象者</h4>
+                        <p>被保険者および被扶養者（年度内に1回）</p>
+                    </div>
+                    <div class="highlight">
+                        <h4>実施期間</h4>
+                        <p>毎年10月1日～翌年1月31日</p>
+                    </div>
+                    <ul>
+                        <li>医療機関で接種後、領収書を添えて申請してください</li>
+                        <li>申請期限：接種日の翌年3月31日まで</li>
+                        <li>家族全員分をまとめて申請できます</li>
+                    </ul>
+                    <a href="../forms/index.html" class="link">申請書をダウンロード</a>
+                </div>
+
+                <div class="health-card">
+                    <h3><span class="icon">🏃</span>特定健康診査・特定保健指導</h3>
+                    <p>
+                        40歳から74歳までの方を対象に、メタボリックシンドロームに着目した健診と保健指導を実施します。
+                    </p>
+                    <div class="subsidy">
+                        自己負担なし（健保組合が全額負担）
+                    </div>
+                    <div class="highlight">
+                        <h4>対象者</h4>
+                        <p>40歳～74歳の被保険者および被扶養者</p>
+                    </div>
+                    <ul>
+                        <li>被保険者：定期健康診断に含まれています</li>
+                        <li>被扶養者：被扶養者健診として実施します</li>
+                        <li>健診結果により、保健指導の対象となる場合があります</li>
+                    </ul>
+                    <a href="tokutei-kenshin.html" class="link">詳細を見る</a>
+                </div>
+
+                <div class="health-card">
+                    <h3><span class="icon">🏥</span>健康相談・保健指導</h3>
+                    <p>
+                        健康に関する相談や、生活習慣改善のための保健指導を実施しています。
+                    </p>
+                    <ul>
+                        <li>健診結果に基づく保健指導</li>
+                        <li>生活習慣病予防のための個別相談</li>
+                        <li>メンタルヘルス相談</li>
+                        <li>栄養指導・運動指導</li>
+                    </ul>
+                    <p style="margin-top: 15px;">
+                        ご希望の方は健保組合までお問い合わせください。
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>令和7年度 保健事業の変更点</h2>
+                <div class="info-box">
+                    <h3>✨ 令和7年度からの主な変更</h3>
+                    <table>
+                        <tr>
+                            <th style="width: 30%;">項目</th>
+                            <th style="width: 30%;">令和6年度まで</th>
+                            <th style="width: 40%;">令和7年度から</th>
+                        </tr>
+                        <tr>
+                            <td>被扶養者健診補助</td>
+                            <td>7,000円</td>
+                            <td><strong style="color: #4caf50;">10,000円</strong></td>
+                        </tr>
+                        <tr>
+                            <td>レディース健診</td>
+                            <td>なし</td>
+                            <td><strong style="color: #ff5722;">新設（10,000円）</strong></td>
+                        </tr>
+                        <tr>
+                            <td>インフルエンザ予防接種</td>
+                            <td>2,000円</td>
+                            <td><strong style="color: #4caf50;">3,000円</strong></td>
+                        </tr>
+                        <tr>
+                            <td>人間ドック補助</td>
+                            <td>25,000円</td>
+                            <td><strong style="color: #4caf50;">30,000円</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>健診・予防接種の申込方法</h2>
+                
+                <h3>📝 申込の流れ</h3>
+                <ol style="padding-left: 25px; margin: 20px 0;">
+                    <li>健保組合ホームページまたは窓口で申込書を入手</li>
+                    <li>必要事項を記入し、健保組合へ提出</li>
+                    <li>受診券または補助券が郵送されます</li>
+                    <li>契約医療機関で受診（受診券提示）</li>
+                    <li>補助額を差し引いた金額を医療機関で支払い</li>
+                </ol>
+
+                <div class="info-box">
+                    <h3>💡 Webからの申込も可能です</h3>
+                    <p>
+                        健診予約システムを利用すると、24時間いつでも申込が可能です。
+                        契約医療機関の空き状況も確認できます。
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <a href="checkup-reservation.html" style="color: #856404; font-weight: 500;">健診予約システムはこちら →</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>契約医療機関</h2>
+                <p>
+                    健保組合が契約している医療機関では、補助を受けやすい仕組みになっています。
+                    お近くの契約医療機関をご確認ください。
+                </p>
+                <p style="margin-top: 15px;">
+                    <a href="facilities.html" style="color: #0066cc; font-weight: 500;">契約医療機関一覧はこちら →</a>
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>お問い合わせ</h2>
+                <p>
+                    保健事業に関するご質問やご不明な点がございましたら、お気軽に健保組合までお問い合わせください。
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>電話：</strong>045-XXX-XXXX（平日 9:00～17:00）<br>
+                    <strong>FAX：</strong>045-XXX-XXXX
+                </p>
+                <p style="margin-top: 15px;">
+                    <a href="../contact/index.html" style="color: #0066cc; font-weight: 500;">お問い合わせフォームはこちら →</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 丸八真綿健康保険組合 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 文字サイズ調整機能
+        const fontSizeButtons = document.querySelectorAll('.font-size-control button');
+        fontSizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                fontSizeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const size = this.textContent;
+                if (size === '小') {
+                    document.body.style.fontSize = '14px';
+                } else if (size === '中') {
+                    document.body.style.fontSize = '16px';
+                } else if (size === '大') {
+                    document.body.style.fontSize = '18px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

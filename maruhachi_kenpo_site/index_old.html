@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>丸八真綿健康保険組合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* トップバー */
+        .top-bar {
+            background: #0066cc;
+            height: 8px;
+        }
+
+        /* ヒーローセクション */
+        .hero-section {
+            position: relative;
+            height: 400px;
+            background-image: url('images/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-weight: 500;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        header {
+            background: white;
+            padding: 20px 0 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 0;
+            align-items: flex-start;
+            padding-top: 5px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 25px;
+            margin-right: 30px;
+        }
+
+        .header-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        /* 文字サイズ調整 */
+        .font-size-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 0 20px;
+        }
+
+        .font-size-control .label {
+            padding: 0 10px 0 0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .font-size-control button {
+            padding: 6px 14px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 40px;
+            margin: 0;
+        }
+
+        .font-size-control button:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+
+        .font-size-control button:last-of-type {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .font-size-control button:not(:first-of-type) {
+            border-left: none;
+        }
+
+        .font-size-control button:hover {
+            background: #f5f5f5;
+        }
+
+        .font-size-control button.active {
+            background: #e0e0e0;
+        }
+
+        /* 検索ボックス */
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 6px 35px 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* メインナビゲーション */
+        .main-nav {
+            background: white;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+
+        .main-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 40px;
+            gap: 0;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 20px 30px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: normal;
+            border-left: 1px solid #ddd;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .main-nav a:first-child {
+            border-left: none;
+        }
+
+        .main-nav a:hover {
+            color: #0066cc;
+            background: #f8f9fa;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* アイコングリッド */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .icon-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .icon-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .icon-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .icon-card .icon-placeholder {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .icon-card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* サイドバー */
+        .sidebar {
+            position: relative;
+        }
+
+        .sidebar-image {
+            width: 100%;
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar-image h3 {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .staff-placeholder {
+            width: 250px;
+            height: 350px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        /* お知らせセクション */
+        .news-section {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-section h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #0066cc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .news-section h2:before {
+            content: "✉";
+            font-size: 1.8rem;
+            color: #0066cc;
+        }
+
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            min-width: 100px;
+            font-weight: 500;
+        }
+
+        .news-text {
+            color: #333;
+            flex: 1;
+        }
+
+        .news-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 下部リンクセクション */
+        .bottom-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .bottom-link-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .bottom-link-card:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
+        }
+
+        .bottom-link-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .bottom-link-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* フッターメニュー */
+        .footer-menu {
+            background: white;
+            border-top: 2px solid #0066cc;
+            padding: 40px 0;
+            margin-bottom: 0;
+        }
+
+        .footer-menu-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-menu-section h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0066cc;
+        }
+
+        .footer-menu-section ul {
+            list-style: none;
+        }
+
+        .footer-menu-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-menu-section a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-menu-section a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        /* フッター */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-section {
+                height: 300px;
+            }
+
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .main-nav-content {
+                flex-direction: column;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .icon-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bottom-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-menu-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">丸八真綿</span>
+                <h1>健康保険組合</h1>
+            </div>
+            <div class="header-nav">
+                <div class="header-links">
+                    <a href="index.html">ホーム</a>
+                    <a href="contact/index.html">お問い合わせ</a>
+                    <a href="privacy.html">個人情報の取り扱いについて</a>
+                    <a href="links.html">関連リンク</a>
+                    <a href="sitemap.html">サイトマップ</a>
+                </div>
+                <div class="font-size-control">
+                    <span class="label">文字サイズ</span>
+                    <button>小</button>
+                    <button class="active">中</button>
+                    <button>大</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="検索">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h2>皆さまの健康と安心をサポートします</h2>
+            <p>丸八真綿健康保険組合</p>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="about/index.html">健保組合のご案内</a>
+            <a href="when/index.html">こんなときは？</a>
+            <a href="benefits/index.html">病気やケガをしたとき</a>
+            <a href="health/index.html">疾病予防・健康づくり（保健事業）</a>
+            <a href="forms/index.html">届出申請書一覧</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="icon-grid">
+                <a href="benefits/medical-visit.html" class="icon-card">
+                    <div class="icon-placeholder">🏥</div>
+                    <p>病気やケガで受診する</p>
+                </a>
+                <a href="benefits/high-medical-cost.html" class="icon-card">
+                    <div class="icon-placeholder">💰</div>
+                    <p>医療費が高額になった</p>
+                </a>
+                <a href="benefits/advance-payment.html" class="icon-card">
+                    <div class="icon-placeholder">🏦</div>
+                    <p>医療費を立替払いした</p>
+                </a>
+                <a href="when/family-change.html" class="icon-card">
+                    <div class="icon-placeholder">👨‍👩‍👧‍👦</div>
+                    <p>家族が増えた・減った</p>
+                </a>
+                <a href="benefits/unable-to-work.html" class="icon-card">
+                    <div class="icon-placeholder">♿</div>
+                    <p>病気やケガで働けない</p>
+                </a>
+                <a href="benefits/childbirth.html" class="icon-card">
+                    <div class="icon-placeholder">🤰</div>
+                    <p>出産で休業する</p>
+                </a>
+                <a href="benefits/accident.html" class="icon-card">
+                    <div class="icon-placeholder">🚗</div>
+                    <p>事故にあった</p>
+                </a>
+                <a href="when/retirement.html" class="icon-card">
+                    <div class="icon-placeholder">🏢</div>
+                    <p>会社を退職する</p>
+                </a>
+                <a href="benefits/death.html" class="icon-card">
+                    <div class="icon-placeholder">💐</div>
+                    <p>死亡した</p>
+                </a>
+                <a href="when/insurance-card-lost.html" class="icon-card">
+                    <div class="icon-placeholder">🪪</div>
+                    <p>マイナ保険証をなくした</p>
+                </a>
+                <a href="forms/index.html" class="icon-card">
+                    <div class="icon-placeholder">📄</div>
+                    <p>届出申請書一覧</p>
+                </a>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-image">
+                    <h3>こんなとき給付の内容や必要な手続きをご案内します</h3>
+                    <div class="staff-placeholder">👩‍💼</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-section">
+            <h2>けんぽからのお知らせ</h2>
+            <div class="news-item">
+                <span class="news-date">2025/11/21</span>
+                <span class="news-text">【2025年12月～】健康保険証の利用終了に伴う修正を行いました。</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2025/09/01</span>
+                <span class="news-text">【2025年10月～】19歳以上23歳未満の被扶養者に係る改正に伴う修正を行いました。</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2025/03/05</span>
+                <span class="news-text">【2025年4月～】入院時食事療養費の標準負担額引き上げに伴う修正を行いました。</span>
+            </div>
+            <p style="text-align: right; margin-top: 20px;">
+                <a href="news/archive.html" class="news-link">バックナンバーはこちら →</a>
+            </p>
+        </div>
+
+        <div class="bottom-links">
+            <a href="about/learn-more.html" class="bottom-link-card">
+                <h3>もっと知りたい健康保険</h3>
+                <p></p>
+            </a>
+            <a href="health/tokutei-kenshin.html" class="bottom-link-card">
+                <h3>特定健診・特定保健指導</h3>
+                <p></p>
+            </a>
+            <a href="about/generic-medicine.html" class="bottom-link-card">
+                <h3>活用しようジェネリック医薬品</h3>
+                <p></p>
+            </a>
+            <a href="health/facilities.html" class="bottom-link-card">
+                <h3>直営保養所・契約施設</h3>
+                <p></p>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-menu">
+        <div class="footer-menu-content">
+            <div class="footer-menu-section">
+                <h3>ホーム</h3>
+                <ul>
+                    <li><a href="news/index.html">けんぽからのお知らせ</a></li>
+                    <li><a href="news/archive.html">バックナンバー</a></li>
+                </ul>
+                <h3 style="margin-top: 30px;">健保組合のご案内</h3>
+                <ul>
+                    <li><a href="about/what-is.html">健康保険とは</a></li>
+                    <li><a href="about/work.html">健保組合のしごと</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-menu-section">
+                <h3>病気やケガをしたとき</h3>
+                <ul>
+                    <li><a href="benefits/medical-visit.html">外来で受診・入院したとき</a></li>
+                    <li><a href="benefits/high-medical-cost.html">医療費が高額になったとき</a></li>
+                    <li><a href="benefits/advance-payment.html">立替払いをしたとき</a></li>
+                    <li><a href="benefits/judo-therapy.html">接骨院・整骨院で柔道整復師にかかるとき</a></li>
+                    <li><a href="benefits/acupuncture.html">はり・きゅう、あんま・マッサージにかかるとき</a></li>
+                    <li><a href="benefits/unable-to-work.html">病気やケガで会社を休んだとき</a></li>
+                    <li><a href="benefits/accident.html">自動車事故にあったときなど（第三者の行為による傷病の場合）</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-menu-section">
+                <h3>もっと知りたい健康保険</h3>
+                <ul>
+                    <li><a href="about/payment-system.html">医療費支払いのしくみ</a></li>
+                    <li><a href="about/medical-deduction.html">医療費控除とは</a></li>
+                    <li><a href="about/prescription.html">保険給付の時効は2年</a></li>
+                    <li><a href="about/mynumber.html">マイナンバーと健康保険</a></li>
+                    <li><a href="about/nursing-care.html">介護保険制度のあらまし</a></li>
+                </ul>
+                <h3 style="margin-top: 30px;">届出申請書一覧</h3>
+                <ul>
+                    <li><a href="forms/index.html">各種申請書ダウンロード</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 丸八真綿健康保険組合 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 文字サイズ調整機能
+        const fontSizeButtons = document.querySelectorAll('.font-size-control button');
+        fontSizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                fontSizeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const size = this.textContent;
+                if (size === '小') {
+                    document.body.style.fontSize = '14px';
+                } else if (size === '中') {
+                    document.body.style.fontSize = '16px';
+                } else if (size === '大') {
+                    document.body.style.fontSize = '18px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

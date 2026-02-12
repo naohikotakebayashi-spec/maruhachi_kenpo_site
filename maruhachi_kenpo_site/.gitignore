@@ -1,0 +1,28 @@
+# ZIPファイル
+*.zip
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# エディタ設定
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 一時ファイル
+*.tmp
+*.bak
+*.log
+
+# Node.js (将来使う場合)
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# 開発用ファイル
+.env
+.env.local

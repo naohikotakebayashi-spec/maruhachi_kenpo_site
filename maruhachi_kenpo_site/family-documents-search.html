@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>被扶養者認定申請時の必要書類検索 - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+        .content-section { background: white; border-radius: 8px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .content-section h2 { font-size: 1.5rem; color: #0066cc; margin-bottom: 20px; padding-left: 15px; border-left: 4px solid #0066cc; }
+        .content-section h3 { font-size: 1.2rem; color: #333; margin: 25px 0 15px; font-weight: 600; }
+        .content-section p { margin-bottom: 15px; line-height: 1.8; }
+        .content-section ul { margin: 15px 0 15px 30px; }
+        .content-section li { margin-bottom: 10px; }
+        .highlight-box { background: #e3f2fd; border-left: 4px solid #0066cc; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+        .search-form { background: #f0f8ff; padding: 30px; border-radius: 8px; margin: 20px 0; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; }
+        .form-group select { width: 100%; padding: 12px; border: 2px solid #0066cc; border-radius: 4px; font-size: 1rem; }
+        .search-button { background: #0066cc; color: white; padding: 15px 40px; border: none; border-radius: 4px; font-size: 1.1rem; cursor: pointer; font-weight: 600; }
+        .search-button:hover { background: #0052a3; }
+        .result-box { background: white; border: 2px solid #0066cc; border-radius: 8px; padding: 25px; margin: 20px 0; display: none; }
+        .result-box.show { display: block; }
+        .document-list { background: #fafafa; padding: 20px; border-radius: 4px; margin: 15px 0; }
+        .document-item { padding: 15px; margin: 10px 0; background: white; border-left: 4px solid #0066cc; border-radius: 4px; }
+        .required-badge { background: #dc3545; color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.85rem; margin-left: 10px; }
+        .optional-badge { background: #6c757d; color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.85rem; margin-left: 10px; }
+        .back-link { display: inline-block; margin: 20px 0; padding: 10px 20px; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; }
+        .back-link:hover { background: #0052a3; }
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-main">
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="procedure-family.html">扶養家族に関する手続き</a><span>›</span>
+        <span>被扶養者認定申請時の必要書類検索</span>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">被扶養者認定申請時の必要書類検索</h1>
+
+        <div class="content-section">
+            <div class="highlight-box">
+                <p><strong>被扶養者認定申請に必要な書類は、申請される方の状況により異なります。</strong></p>
+                <p>以下の検索フォームで該当する項目を選択すると、必要な書類が表示されます。</p>
+            </div>
+
+            <div class="search-form">
+                <h2 style="margin-bottom: 25px;">必要書類を検索する</h2>
+                
+                <div class="form-group">
+                    <label for="relation">被扶養者との続柄</label>
+                    <select id="relation">
+                        <option value="">選択してください</option>
+                        <option value="spouse">配偶者</option>
+                        <option value="child">子ども</option>
+                        <option value="parent">父母</option>
+                        <option value="grandparent">祖父母</option>
+                        <option value="sibling">兄弟姉妹</option>
+                        <option value="other">その他の親族</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="living">居住形態</label>
+                    <select id="living">
+                        <option value="">選択してください</option>
+                        <option value="together">同居</option>
+                        <option value="separate">別居</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="situation">申請理由</label>
+                    <select id="situation">
+                        <option value="">選択してください</option>
+                        <option value="birth">出生</option>
+                        <option value="marriage">結婚</option>
+                        <option value="retirement">退職・離職</option>
+                        <option value="unemployment">雇用保険受給終了</option>
+                        <option value="income-decrease">収入減少</option>
+                        <option value="divorce">離婚</option>
+                        <option value="other">その他</option>
+                    </select>
+                </div>
+
+                <button class="search-button" onclick="searchDocuments()">必要書類を検索</button>
+            </div>
+
+            <div id="result" class="result-box">
+                <h2 style="color: #0066cc; margin-bottom: 20px;">必要な書類</h2>
+                
+                <div class="note-box">
+                    <h4>重要事項</h4>
+                    <ul>
+                        <li>健保への書類提出とは別に、会社へのマイナンバー申請をおこなってください。</li>
+                        <li>マイナンバー未申請の場合、医療機関での健康保険加入状況確認（オンライン資格確認）にて「資格なし」と判断され、医療費の全額自己負担を求められます。</li>
+                    </ul>
+                </div>
+
+                <div class="document-list">
+                    <h3>基本書類（全員必須）</h3>
+                    <div class="document-item">
+                        <strong>被扶養者届（異動届）</strong><span class="required-badge">必須</span>
+                        <p>記入後、1部複写し2部提出してください。（任意継続は1部提出）</p>
+                    </div>
+                    <div class="document-item">
+                        <strong>被扶養者認定伺</strong><span class="required-badge">必須</span>
+                        <p>※出生児を除き必須</p>
+                    </div>
+                </div>
+
+                <div id="additional-documents" class="document-list">
+                    <!-- JavaScriptで動的に生成 -->
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">共通して必要となる可能性のある書類</h2>
+
+            <h3>収入に関する書類</h3>
+            <ul>
+                <li>給与明細書（直近3ヶ月分）</li>
+                <li>源泉徴収票</li>
+                <li>確定申告書の写し</li>
+                <li>年金額改定通知書・年金振込通知書</li>
+                <li>雇用保険受給資格者証</li>
+                <li>失業給付非受給による扶養認定願</li>
+            </ul>
+
+            <h3>続柄に関する書類</h3>
+            <ul>
+                <li>戸籍謄本または戸籍抄本</li>
+                <li>住民票（続柄・世帯全員が記載されたもの）</li>
+            </ul>
+
+            <h3>別居の場合の書類</h3>
+            <ul>
+                <li>送金証明書（振込通知書の写しまたは現金書留の写し）</li>
+                <li>※送金者が被保険者と確認できる月次の仕送り実績が必要（手渡しは無効）</li>
+            </ul>
+
+            <div class="note-box">
+                <h4>書類提出上の注意</h4>
+                <ul>
+                    <li>証明書類は全て写しで可。もし原紙を提出された場合、後に返却依頼があっても応じられない場合があるのでご注意ください。</li>
+                    <li>被扶養申請者の方の氏名が確認できる部分も必要です。</li>
+                    <li>A4用紙で全てのページをプリントアウトして使用してください。</li>
+                    <li>プリントアウト後、必ず自筆署名の上提出してください。</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="procedure-family.html" class="back-link">← 扶養家族に関する手続きに戻る</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function searchDocuments() {
+            const relation = document.getElementById('relation').value;
+            const living = document.getElementById('living').value;
+            const situation = document.getElementById('situation').value;
+
+            if (!relation || !living || !situation) {
+                alert('すべての項目を選択してください。');
+                return;
+            }
+
+            const additionalDocs = document.getElementById('additional-documents');
+            additionalDocs.innerHTML = '<h3>追加で必要な書類</h3>';
+
+            // 状況に応じた書類を表示
+            if (situation === 'birth') {
+                additionalDocs.innerHTML += '<div class="document-item"><strong>出生を証明する書類</strong><span class="required-badge">必須</span><p>母子手帳の写し、または出生届の写し</p></div>';
+            }
+
+            if (situation === 'marriage') {
+                additionalDocs.innerHTML += '<div class="document-item"><strong>戸籍謄本または戸籍抄本</strong><span class="required-badge">必須</span><p>婚姻の事実が記載されたもの</p></div>';
+            }
+
+            if (situation === 'retirement') {
+                additionalDocs.innerHTML += '<div class="document-item"><strong>退職証明書または離職票の写し</strong><span class="required-badge">必須</span></div>';
+                additionalDocs.innerHTML += '<div class="document-item"><strong>雇用保険の受給に関する証明書</strong><span class="optional-badge">該当者のみ</span><p>雇用保険を受給する場合</p></div>';
+            }
+
+            if (situation === 'unemployment') {
+                additionalDocs.innerHTML += '<div class="document-item"><strong>雇用保険受給資格者証の写し</strong><span class="required-badge">必須</span><p>受給終了日が確認できるもの</p></div>';
+            }
+
+            // 収入証明
+            additionalDocs.innerHTML += '<div class="document-item"><strong>収入証明書類</strong><span class="required-badge">必須</span><p>給与明細書（直近3ヶ月分）、源泉徴収票、年金通知書など</p></div>';
+
+            // 別居の場合
+            if (living === 'separate') {
+                additionalDocs.innerHTML += '<div class="document-item"><strong>送金証明書</strong><span class="required-badge">必須</span><p>振込通知書の写し（直近1ヶ月分）。送金元と送金先の氏名・送金日・送金額が確認できるもの</p></div>';
+                additionalDocs.innerHTML += '<div class="document-item"><strong>住民票</strong><span class="required-badge">必須</span><p>被扶養者の住所が確認できるもの</p></div>';
+            }
+
+            // 父母・祖父母の場合
+            if (relation === 'parent' || relation === 'grandparent') {
+                additionalDocs.innerHTML += '<div class="document-item"><strong>質問票（父・母について）</strong><span class="required-badge">必須</span></div>';
+            }
+
+            document.getElementById('result').classList.add('show');
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

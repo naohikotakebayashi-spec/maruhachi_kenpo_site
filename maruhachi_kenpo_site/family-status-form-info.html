@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>被扶養者（家族）現況届 - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+        .content-section { background: white; border-radius: 8px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .content-section h2 { font-size: 1.5rem; color: #0066cc; margin-bottom: 20px; padding-left: 15px; border-left: 4px solid #0066cc; }
+        .content-section h3 { font-size: 1.2rem; color: #333; margin: 25px 0 15px; font-weight: 600; }
+        .content-section h4 { font-size: 1.05rem; color: #0066cc; margin: 20px 0 10px; font-weight: 600; }
+        .content-section p { margin-bottom: 15px; line-height: 1.8; }
+        .content-section ul { margin: 15px 0 15px 30px; }
+        .content-section li { margin-bottom: 10px; }
+        .highlight-box { background: #e3f2fd; border-left: 4px solid #0066cc; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+        .warning-box { background: #ffebee; border-left: 4px solid #f44336; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box h4 { color: #c62828; margin-bottom: 10px; }
+        .download-section { background: #f0f8ff; border: 2px solid #0066cc; border-radius: 8px; padding: 25px; margin: 30px 0; text-align: center; }
+        .download-section h3 { color: #0066cc; margin-bottom: 20px; font-size: 1.3rem; }
+        .download-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; background: #0066cc; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,102,204,0.3); }
+        .download-btn:hover { background: #0052a3; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,102,204,0.4); }
+        .download-btn::before { content: '📥'; font-size: 1.3rem; }
+        .table-wrapper { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #0066cc; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .checklist { background: #f9f9f9; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .checklist-item { padding: 15px; margin: 10px 0; background: white; border-left: 4px solid #0066cc; border-radius: 4px; display: flex; align-items: center; }
+        .checklist-item::before { content: '☐'; font-size: 1.5rem; margin-right: 15px; color: #0066cc; }
+        .back-link { display: inline-block; margin: 20px 0; padding: 10px 20px; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; }
+        .back-link:hover { background: #0052a3; }
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-main">
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="procedure-family.html">扶養家族に関する手続き</a><span>›</span>
+        <span>被扶養者（家族）現況届</span>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">被扶養者（家族）現況届</h1>
+
+        <div class="download-section">
+            <h3>📄 届出用紙ダウンロード</h3>
+            <p>以下のボタンから被扶養者（家族）現況届をダウンロードできます。<br>Excelファイルには様々な状況別の記載例が含まれています。</p>
+            <div class="download-buttons">
+                <a href="family-status-form.xlsx" class="download-btn" download="被扶養者_家族_現況届.xlsx">被扶養者現況届をダウンロード</a>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="warning-box">
+                <h4>重要</h4>
+                <p><strong>被扶養者（家族）1人につき、1枚ずつ作成してください。</strong></p>
+            </div>
+
+            <h2>この届出が必要な場合</h2>
+            
+            <h3>被扶養者として新たに認定を受けるとき</h3>
+            <ul>
+                <li>入社により被保険者となり、家族を扶養に入れるとき</li>
+                <li>子どもが生まれたとき（出生）</li>
+                <li>結婚して配偶者を扶養に入れるとき（婚姻）</li>
+                <li>家族が退職・離職して扶養に入るとき</li>
+                <li>家族の収入が減少して扶養条件を満たしたとき</li>
+                <li>同居している親族を扶養に入れるとき</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>記入方法</h2>
+
+            <h3>被保険者欄</h3>
+            <ul>
+                <li>被保険者証の記号・番号を正確に記入してください</li>
+                <li>会社名を記入してください</li>
+            </ul>
+
+            <h3>被扶養者欄</h3>
+
+            <h4>①申請理由</h4>
+            <p>該当する項目にチェック（✓）を入れてください：</p>
+            <ul>
+                <li><strong>1. 入社</strong>：被保険者の入社により扶養に入れる場合</li>
+                <li><strong>2. 出生</strong>：子どもが生まれた場合</li>
+                <li><strong>3. その他</strong>：婚姻、退職、収入減少など（具体的に記入）</li>
+            </ul>
+            <div class="note-box">
+                <h4>妊娠中の方</h4>
+                <p>出産予定日を記入してください。</p>
+            </div>
+
+            <h4>②現在加入中の健康保険</h4>
+            <p>扶養家族が現在他の健康保険に加入しているかを確認してください：</p>
+            <ul>
+                <li><strong>加入していない（重複加入なし）</strong>：他の健康保険に加入していない場合</li>
+                <li>他の健康保険に加入している場合は、その詳細を記入してください</li>
+            </ul>
+
+            <h4>③職業</h4>
+            <p>現在の状況について該当する項目にチェック（✓）を入れてください：</p>
+            <ul>
+                <li><strong>無職</strong>：離職（退職）日を記入</li>
+                <li><strong>パート等</strong></li>
+                <li><strong>自営業等</strong></li>
+                <li><strong>18歳以上（高校卒業後）</strong>：学生など</li>
+                <li><strong>18歳未満</strong></li>
+            </ul>
+
+            <h4>④収入</h4>
+            <p>現在の収入状況を詳しく記入してください。</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">収入の種類</th>
+                            <th style="width: 70%;">記入内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>年金以外の収入</strong></td>
+                            <td>
+                                • <strong>給与収入</strong>：月額平均と賞与額（年額）を記入<br>
+                                • <strong>営業収入</strong>：年額を記入<br>
+                                • <strong>その他収入</strong>：年額を記入<br>
+                                • <strong>無</strong>：収入がない場合はこちらにチェック
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>対象者のみ記入する項目</h3>
+
+            <h4>◎年金の受給対象の方</h4>
+            <ul>
+                <li><strong>年金 有</strong>：年金の種類を記入（老齢厚生年金、遺族年金など）</li>
+                <li>対象者で年金を受給していない場合は、理由を記入してください</li>
+            </ul>
+
+            <h4>◎離職による雇用保険（失業）の給付の受給について</h4>
+            <p>該当する項目にチェック（✓）を入れてください：</p>
+            <ul>
+                <li><strong>受給終了</strong>：終了年月日を記入</li>
+                <li><strong>受給中</strong>：60歳未満は日額3,612円未満、60歳以上は日額5,000円未満が条件</li>
+                <li><strong>受給資格なし</strong>：加入期間不足、未加入、満65歳以上の離職による一時金など</li>
+                <li><strong>受給放棄する</strong></li>
+                <li><strong>受給申請中（予定）</strong>：申請予定日を記入</li>
+                <li><strong>受給期間延長中</strong>：延長理由を記入</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>雇用保険給付の基準額</h4>
+                <p>雇用保険の失業給付を受給中の場合、以下の基準額未満であれば扶養に入ることができます：</p>
+                <ul>
+                    <li><strong>60歳未満</strong>：日額 3,612円未満</li>
+                    <li><strong>60歳以上</strong>：日額 5,000円未満</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>添付書類（事業所担当者確認欄）</h2>
+            
+            <p><strong>該当する添付書類の左枠□にチェック✔を入れてください。</strong><br>
+            すべてコピー可。メールにてPDF添付可。</p>
+
+            <div class="checklist">
+                <div class="checklist-item">
+                    世帯全体の住民票（扶養家族の続柄の記載のあるもの）
+                </div>
+                <div class="checklist-item">
+                    直近の所得証明書・非課税証明書
+                </div>
+                <div class="checklist-item">
+                    直近3ヶ月分の給与明細・雇用契約書
+                </div>
+                <div class="checklist-item">
+                    直近の源泉徴収票
+                </div>
+                <div class="checklist-item">
+                    直近の年金通知書
+                </div>
+                <div class="checklist-item">
+                    学生証（学生の場合）
+                </div>
+                <div class="checklist-item">
+                    送金の証明となるもの（通帳の振込履歴部分のコピー等）※別居の場合
+                </div>
+                <div class="checklist-item">
+                    その他（雇用保険受給資格者証など）
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>記載例について</h2>
+            
+            <p>ダウンロードしたExcelファイルには、以下の状況別の記載例が含まれています。</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">シート名</th>
+                            <th style="width: 70%;">内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>原本</td>
+                            <td>空白の届出用紙</td>
+                        </tr>
+                        <tr>
+                            <td>記載例（入社・妻）</td>
+                            <td>入社時に配偶者（妻）を扶養に入れる場合の記載例</td>
+                        </tr>
+                        <tr>
+                            <td>記載例（入社・子）</td>
+                            <td>入社時に子どもを扶養に入れる場合の記載例</td>
+                        </tr>
+                        <tr>
+                            <td>記載例（入社・親）</td>
+                            <td>入社時に親を扶養に入れる場合の記載例（年金受給者）</td>
+                        </tr>
+                        <tr>
+                            <td>記載例（婚姻）</td>
+                            <td>結婚により配偶者を扶養に入れる場合の記載例</td>
+                        </tr>
+                        <tr>
+                            <td>記載例（家族の退職・収入減少）</td>
+                            <td>家族の退職により扶養に入れる場合の記載例（雇用保険受給資格者証添付）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>提出方法</h2>
+            
+            <h3>提出先</h3>
+            <p><strong>Email:</strong> shakaihoken@maruhachi.co.jp</p>
+            <p>または、所属する事業所の人事総務部門へ提出してください。</p>
+            
+            <h3>提出期限</h3>
+            <p>事由発生日から速やかに（できるだけ早く）提出してください。</p>
+            
+            <div class="highlight-box">
+                <h4>電子提出も可能</h4>
+                <p>メールにて、記入済みのExcelファイルと添付書類のPDFを送付することができます。</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>よくある質問</h2>
+
+            <h3>Q1. 被扶養者異動届と被扶養者現況届の違いは？</h3>
+            <p><strong>A1.</strong> <strong>被扶養者異動届</strong>は扶養追加・削除の両方で使用しますが、<strong>被扶養者現況届</strong>は主に扶養追加時の詳細な現況を報告するために使用します。より詳細な情報を記入する必要があります。</p>
+
+            <h3>Q2. 1人の被扶養者に対して何枚必要ですか？</h3>
+            <p><strong>A2.</strong> 1人につき1枚ずつ作成してください。複数の家族を扶養に入れる場合は、それぞれ個別に作成が必要です。</p>
+
+            <h3>Q3. 雇用保険の失業給付を受給中ですが、扶養に入れますか？</h3>
+            <p><strong>A3.</strong> 失業給付の日額が基準額未満であれば扶養に入ることができます。60歳未満の場合は日額3,612円未満、60歳以上の場合は日額5,000円未満が条件です。</p>
+
+            <h3>Q4. 別居している親を扶養に入れられますか？</h3>
+            <p><strong>A4.</strong> はい、可能です。ただし、送金の証明となるもの（通帳の振込履歴部分のコピー等）の添付が必要です。被保険者からの仕送り額が被扶養者の収入を上回っている必要があります。</p>
+        </div>
+
+        <div class="download-section">
+            <h3>📄 再度ダウンロード</h3>
+            <div class="download-buttons">
+                <a href="family-status-form.xlsx" class="download-btn" download="被扶養者_家族_現況届.xlsx">被扶養者現況届をダウンロード</a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                ※ファイルには原本、記載例（入社・妻、入社・子、入社・親、婚姻、家族の退職・収入減少）が含まれています。
+            </p>
+        </div>
+
+        <a href="procedure-family.html" class="back-link">← 扶養家族に関する手続きに戻る</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

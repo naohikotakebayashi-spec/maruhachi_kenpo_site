@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | 丸八真綿健康保険組合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* トップバー */
+        .top-bar {
+            background: #0066cc;
+            height: 8px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: white;
+            padding: 20px 0 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 0;
+            align-items: flex-start;
+            padding-top: 5px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 25px;
+            margin-right: 30px;
+        }
+
+        .header-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .header-nav a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        /* 文字サイズ調整 */
+        .font-size-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 0 20px;
+        }
+
+        .font-size-control .label {
+            padding: 0 10px 0 0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .font-size-control button {
+            padding: 6px 14px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 40px;
+            margin: 0;
+        }
+
+        .font-size-control button:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+
+        .font-size-control button:last-of-type {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .font-size-control button:not(:first-of-type) {
+            border-left: none;
+        }
+
+        .font-size-control button:hover {
+            background: #f5f5f5;
+        }
+
+        .font-size-control button.active {
+            background: #e0e0e0;
+        }
+
+        /* 検索ボックス */
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 6px 35px 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* メインナビゲーション */
+        .main-nav {
+            background: white;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+
+        .main-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 40px;
+            gap: 0;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 20px 30px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: normal;
+            border-left: 1px solid #ddd;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .main-nav a:first-child {
+            border-left: none;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #0066cc;
+            background: #f8f9fa;
+        }
+
+        /* パンくずリスト */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+
+        .content-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            color: #0066cc;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #0066cc;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.9;
+        }
+
+        /* 連絡先カード */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .contact-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .contact-card .info {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .contact-card .sub-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* お問い合わせフォーム */
+        .contact-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group label .required {
+            color: #dc3545;
+            margin-left: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .submit-btn {
+            background: #0066cc;
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #856404;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* アクセスマップ */
+        .map-container {
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .access-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .access-info h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .access-info p {
+            margin-bottom: 10px;
+        }
+
+        /* フッター */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-nav-content {
+                flex-direction: column;
+            }
+
+            .main-nav a {
+                border-left: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .content-wrapper {
+                padding: 20px;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="../index.html">
+                    <span class="logo-text">丸八真綿</span>
+                    <h1>健康保険組合</h1>
+                </a>
+            </div>
+            <div class="header-nav">
+                <div class="header-links">
+                    <a href="../index.html">ホーム</a>
+                    <a href="index.html" style="color: #0066cc;">お問い合わせ</a>
+                    <a href="../privacy.html">個人情報の取り扱いについて</a>
+                    <a href="../links.html">関連リンク</a>
+                    <a href="../sitemap.html">サイトマップ</a>
+                </div>
+                <div class="font-size-control">
+                    <span class="label">文字サイズ</span>
+                    <button>小</button>
+                    <button class="active">中</button>
+                    <button>大</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="検索">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="../about/index.html">健保組合のご案内</a>
+            <a href="../when/index.html">こんなときは？</a>
+            <a href="../benefits/index.html">病気やケガをしたとき</a>
+            <a href="../health/index.html">疾病予防・健康づくり（保健事業）</a>
+            <a href="../forms/index.html">届出申請書一覧</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">ホーム</a> ＞ お問い合わせ
+    </div>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <h1 class="page-title">お問い合わせ</h1>
+
+            <div class="section">
+                <p>
+                    丸八真綿健康保険組合へのお問い合わせは、お電話、FAX、またはこのページのお問い合わせフォームからお願いいたします。
+                    ご質問やご不明な点がございましたら、お気軽にお問い合わせください。
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>お問い合わせ先</h2>
+                
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="icon">📞</div>
+                        <h3>お電話でのお問い合わせ</h3>
+                        <div class="info">045-XXX-XXXX</div>
+                        <div class="sub-info">
+                            受付時間：平日 9:00～17:00<br>
+                            （土日祝日、年末年始を除く）
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="icon">📠</div>
+                        <h3>FAXでのお問い合わせ</h3>
+                        <div class="info">045-XXX-XXXX</div>
+                        <div class="sub-info">
+                            24時間受付<br>
+                            （回答は翌営業日以降となります）
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="icon">✉️</div>
+                        <h3>郵便でのお問い合わせ</h3>
+                        <div class="info">〒220-0011</div>
+                        <div class="sub-info">
+                            神奈川県横浜市西区高島2-6-32<br>
+                            横浜東口ウィスポートビル7階<br>
+                            丸八真綿健康保険組合
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>お問い合わせフォーム</h2>
+                
+                <div class="info-box">
+                    <h3>📝 ご記入にあたってのお願い</h3>
+                    <ul style="margin: 10px 0; padding-left: 25px;">
+                        <li>お問い合わせ内容によっては、回答までにお時間をいただく場合がございます</li>
+                        <li>ご記入いただいた個人情報は、お問い合わせへの回答のみに使用いたします</li>
+                        <li>内容によっては回答できない場合がございますので、あらかじめご了承ください</li>
+                        <li>お急ぎの場合は、お電話でのお問い合わせをおすすめします</li>
+                    </ul>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">お名前 <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="例：山田 太郎">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kana">フリガナ <span class="required">*</span></label>
+                        <input type="text" id="kana" name="kana" required placeholder="例：ヤマダ タロウ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employee-number">被保険者証の記号・番号</label>
+                        <input type="text" id="employee-number" name="employee-number" placeholder="例：12345-67890">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">メールアドレス <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="例：example@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">電話番号 <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="例：090-1234-5678">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">お問い合わせ項目 <span class="required">*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">選択してください</option>
+                            <option value="benefit">給付金について</option>
+                            <option value="health">保健事業について</option>
+                            <option value="family">被扶養者について</option>
+                            <option value="insurance-card">保険証について</option>
+                            <option value="procedure">手続きについて</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="お問い合わせ内容を具体的にご記入ください"></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="submit-btn">送信する</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="section">
+                <h2>所在地・アクセス</h2>
+                
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        🗺️ Googleマップ
+                    </div>
+                </div>
+
+                <div class="access-info">
+                    <h3>📍 所在地</h3>
+                    <p>
+                        〒220-0011<br>
+                        神奈川県横浜市西区高島2-6-32 横浜東口ウィスポートビル7階<br>
+                        丸八真綿健康保険組合
+                    </p>
+
+                    <h3 style="margin-top: 25px;">🚃 アクセス</h3>
+                    <p>
+                        <strong>JR横浜駅</strong>東口より徒歩3分<br>
+                        <strong>横浜市営地下鉄ブルーライン 横浜駅</strong>より徒歩5分<br>
+                        <strong>東急東横線 横浜駅</strong>より徒歩5分<br>
+                        <strong>みなとみらい線 横浜駅</strong>より徒歩7分
+                    </p>
+
+                    <h3 style="margin-top: 25px;">🕐 受付時間</h3>
+                    <p>
+                        平日 9:00～17:00<br>
+                        （土日祝日、年末年始を除く）
+                    </p>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3>💡 ご来訪の際のお願い</h3>
+                        <p>
+                            ご来訪の際は、事前にお電話でご連絡いただけますと、スムーズにご案内できます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>よくあるお問い合わせ</h2>
+                
+                <p><strong>Q: 保険証を紛失してしまいました。どうすればよいですか？</strong></p>
+                <p>A: 速やかに健保組合へご連絡ください。再交付申請書を提出いただければ、新しい保険証を発行いたします。</p>
+
+                <p style="margin-top: 20px;"><strong>Q: 申請書の記入方法がわかりません。</strong></p>
+                <p>A: お電話でご相談いただくか、申請書に記載されている記入例をご参照ください。不明な点があれば、お気軽にお問い合わせください。</p>
+
+                <p style="margin-top: 20px;"><strong>Q: 給付金はいつ振り込まれますか？</strong></p>
+                <p>A: 申請書類が健保組合に到着してから、通常2～3週間程度で指定口座に振り込まれます。</p>
+
+                <p style="margin-top: 20px;"><strong>Q: 健診の予約方法を教えてください。</strong></p>
+                <p>A: 健診予約システムをご利用いただくか、申込書を健保組合へご提出ください。詳しくは保健事業のページをご覧ください。</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 丸八真綿健康保険組合 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 文字サイズ調整機能
+        const fontSizeButtons = document.querySelectorAll('.font-size-control button');
+        fontSizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                fontSizeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const size = this.textContent;
+                if (size === '小') {
+                    document.body.style.fontSize = '14px';
+                } else if (size === '中') {
+                    document.body.style.fontSize = '16px';
+                } else if (size === '大') {
+                    document.body.style.fontSize = '18px';
+                }
+            });
+        });
+
+        // フォーム送信処理（実際の実装時に動作を設定）
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('お問い合わせを受け付けました。\n後日、担当者よりご連絡いたします。');
+            // 実際の実装時にはここでフォームデータを送信
+        });
+    </script>
+</body>
+</html>

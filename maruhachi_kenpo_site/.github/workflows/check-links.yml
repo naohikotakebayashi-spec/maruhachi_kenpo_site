@@ -1,0 +1,45 @@
+name: Check Links
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for broken links
+        run: |
+          echo "🔍 Checking HTML files for common issues..."
+          
+          # HTMLファイルの存在確認
+          echo "📄 HTML files found:"
+          find . -name "*.html" -type f | grep -v node_modules
+          
+          # 基本的なリンクチェック
+          echo ""
+          echo "🔗 Checking for broken internal links..."
+          
+          # hrefで参照されているHTMLファイルが存在するか確認
+          for html in $(find . -name "*.html" -type f | grep -v node_modules); do
+            echo "Checking: $html"
+            grep -oP 'href="[^"]+\.html"' "$html" | sed 's/href="//;s/"//' | while read link; do
+              # 相対パスを絶対パスに変換
+              dir=$(dirname "$html")
+              target=$(realpath -m "$dir/$link" 2>/dev/null || echo "$link")
+              
+              # アンカーリンク（#で始まる）は除外
+              if [[ ! "$link" =~ ^# ]]; then
+                if [ ! -f "$target" ] && [ ! -f "$link" ]; then
+                  echo "  ⚠️  Broken link found: $link in $html"
+                fi
+              fi
+            done
+          done
+          
+          echo ""
+          echo "✅ Link check complete!"

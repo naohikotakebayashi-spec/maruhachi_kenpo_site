@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扶養家族に関する手続き - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .category-nav { background: white; max-width: 1200px; margin: 20px auto; padding: 20px; border-radius: 8px; display: flex; gap: 10px; overflow-x: auto; }
+        .category-nav a { padding: 10px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; white-space: nowrap; font-size: 0.9rem; transition: all 0.3s; }
+        .category-nav a:hover { background: #0066cc; color: white; }
+        .category-nav a.active { background: #0066cc; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+        .accordion-item { background: white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        .accordion-header { padding: 20px 25px; background: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; border-left: 4px solid transparent; }
+        .accordion-header:hover { background: #f0f8ff; border-left-color: #0066cc; }
+        .accordion-header h3 { font-size: 1.2rem; color: #333; font-weight: 600; }
+        .accordion-icon { font-size: 1.5rem; color: #0066cc; transition: transform 0.3s; }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #fafafa; }
+        .accordion-item.active .accordion-content { max-height: 3000px; transition: max-height 0.5s ease-in; }
+        .accordion-body { padding: 25px; }
+        .accordion-body h4 { font-size: 1.1rem; color: #0066cc; margin: 20px 0 10px; font-weight: 600; }
+        .accordion-body p { margin-bottom: 15px; line-height: 1.8; }
+        .accordion-body ul { margin: 15px 0 15px 30px; }
+        .accordion-body li { margin-bottom: 8px; }
+        .document-downloads { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .download-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; border: 2px solid #0066cc; font-weight: 500; transition: all 0.3s; }
+        .download-btn:hover { background: #0066cc; color: white; }
+        .download-btn::before { content: '📄'; font-size: 1.2rem; }
+        .download-btn.disabled { background: #fff3e0; color: #e65100; border-color: #ff9800; cursor: not-allowed; pointer-events: none; border-style: dashed; }
+        .download-btn.disabled:hover { background: #fff3e0; color: #e65100; }
+        .download-btn.disabled::before { content: '📋'; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+        .related-info { background: #e3f2fd; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .related-info h4 { color: #0066cc; margin-bottom: 15px; }
+        .related-info a { display: block; color: #0066cc; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #bbdefb; }
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
+        @media (max-width: 768px) { .category-nav { flex-direction: column; } .footer-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-main">
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="index.html">手続き・申請</a><span>›</span>
+        <span>扶養家族に関する手続き</span>
+    </div>
+    <div class="category-nav">
+        <a href="procedure-family.html" class="active">扶養家族</a>
+        <a href="procedure-certificate.html">資格確認書・限度額</a>
+        <a href="procedure-injury.html">病気・ケガ</a>
+        <a href="procedure-payment.html">立て替え払い</a>
+        <a href="procedure-medical-cost.html">医療費高額</a>
+        <a href="procedure-birth.html">出産</a>
+        <a href="procedure-death.html">死亡</a>
+        <a href="procedure-retirement.html">退職</a>
+        <a href="procedure-checkup.html">検診</a>
+    </div>
+    <div class="container">
+        <h1 class="page-title">扶養家族に関する手続き</h1>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>被扶養者として認定されるとき（扶養申請）</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>被扶養者として認定されるためには、「三親等以内」「国内居住」「基準内収入」等、健康保険法などで定められている認定条件を満たすことが必要です。</p>
+                    <div class="document-downloads">
+                        <a href="family-form-info.html" class="download-btn">被扶養者届（異動届）詳細・ダウンロード</a>
+                        <a href="family-form.xlsx" class="download-btn" download="健康保険被扶養者_異動_届.xlsx">Excelを直接ダウンロード</a>
+                        <a href="family-status-form-info.html" class="download-btn">被扶養者現況届 詳細・ダウンロード</a>
+                        <a href="family-status-form.xlsx" class="download-btn" download="被扶養者_家族_現況届.xlsx">Excelを直接ダウンロード</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <ul>
+                            <li>「被扶養者認定申請時の必要書類検索」にて確認のうえ、検索の結果で表示される必要書類、該当する添付書類（必須）に漏れがないよう申請してください。</li>
+                            <li>健保への書類提出とは別に、会社へのマイナンバー申請をおこなってください。</li>
+                            <li>※マイナンバー未申請の場合、医療機関での健康保険加入状況確認（オンライン資格確認）にて「資格なし」と判断され、医療費の全額自己負担を求められます。</li>
+                        </ul>
+                    </div>
+                    <div class="related-info">
+                        <h4>関連情報</h4>
+                        <a href="family-eligibility.html">被扶養者になれる人の範囲</a>
+                        <a href="family-documents-search.html">被扶養者認定申請時の必要書類検索</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>被扶養者から外すとき（扶養削除）</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>被扶養者であるご家族が就職され、健康保険証を交付された場合は、被扶養者から外す（資格喪失）手続きが必要です。</p>
+                    <div class="document-downloads">
+                        <a href="family-form-info.html" class="download-btn">被扶養者届（異動届）詳細・ダウンロード</a>
+                    </div>
+                    <h4>添付書類</h4>
+                    <ul>
+                        <li>扶養削除対象者の「就職先の健康保険情報に変更後の」資格情報のお知らせの写し、またはマイナポータルの「医療保険資格情報」画面の写し</li>
+                        <li>扶養削除対象者の限度額適用認定証・高齢受給者証（交付されている場合）</li>
+                    </ul>
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <p>扶養削除対象者自身で国民健康保険に加入する場合は、就職日が確認できる書類の写し（雇用契約書・辞令など。内定通知は不可）を添付してください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>収入が増えた・減ったとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>収入が増えて扶養から外れる場合</h4>
+                    <p>被扶養者の年収が130万円以上（60歳以上または障害年金受給者は180万円以上）になった場合は、扶養から外す手続きが必要です。</p>
+                    <div class="document-downloads">
+                        <a href="family-form-info.html" class="download-btn">被扶養者届（異動届）詳細・ダウンロード</a>
+                        <a href="#" class="download-btn disabled">収入証明書類</a>
+                    </div>
+                    <h4>収入が減って扶養に入る場合</h4>
+                    <p>退職や勤務時間の減少などにより、年収が130万円未満になった場合は、扶養申請が可能です。</p>
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <p>収入の判断は、将来に向かっての恒常的な収入により行います。過去の収入ではなく、今後の収入見込みで判断されます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>家族が離職・退職したとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>配偶者や家族が退職し、他の健康保険の資格を喪失した場合は、扶養申請ができます。</p>
+                    <div class="document-downloads">
+                        <a href="family-form-info.html" class="download-btn">被扶養者届（異動届）詳細・ダウンロード</a>
+                        <a href="family-form.xlsx" class="download-btn" download="健康保険被扶養者_異動_届.xlsx">Excelを直接ダウンロード</a>
+                        <a href="family-status-form-info.html" class="download-btn">被扶養者現況届 詳細・ダウンロード</a>
+                        <a href="family-status-form.xlsx" class="download-btn" download="被扶養者_家族_現況届.xlsx">Excelを直接ダウンロード</a>
+                        <a href="#" class="download-btn disabled">退職証明書または離職票の写し</a>
+                        <a href="#" class="download-btn disabled">雇用保険受給に関する証明書</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <ul>
+                            <li>雇用保険の失業給付を受給する場合、日額3,612円以上（60歳以上は5,000円以上）の場合は扶養に入れません。</li>
+                            <li>失業給付受給終了後に扶養申請する場合は、雇用保険受給資格者証の写しが必要です。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>結婚したとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>結婚により配偶者を扶養に入れる場合は、以下の書類を提出してください。</p>
+                    <div class="document-downloads">
+                        <a href="family-form-info.html" class="download-btn">被扶養者届（異動届）詳細・ダウンロード</a>
+                        <a href="family-form.xlsx" class="download-btn" download="健康保険被扶養者_異動_届.xlsx">Excelを直接ダウンロード</a>
+                        <a href="family-status-form-info.html" class="download-btn">被扶養者現況届 詳細・ダウンロード</a>
+                        <a href="family-status-form.xlsx" class="download-btn" download="被扶養者_家族_現況届.xlsx">Excelを直接ダウンロード</a>
+                        <a href="#" class="download-btn disabled">戸籍謄本または戸籍抄本</a>
+                        <a href="#" class="download-btn disabled">収入証明書類</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <p>配偶者が就業している場合は、その収入が扶養認定基準額（年収130万円）未満であることを確認する書類が必要です。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item" id="child-birth">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>子どもが生まれたとき</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h4>提出書類</h4>
+                    <p>出生により子どもを扶養に入れる場合は、速やかに手続きを行ってください。</p>
+                    <div class="document-downloads">
+                        <a href="family-form-info.html" class="download-btn">被扶養者届（異動届）詳細・ダウンロード</a>
+                        <a href="#" class="download-btn disabled">出生を証明する書類</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>注意事項</h4>
+                        <ul>
+                            <li>出生日から1ヶ月以内に申請した場合、出生日に遡って認定されます。</li>
+                            <li>配偶者が別の健康保険に加入している場合は、収入の多い方の扶養に入ります。</li>
+                        </ul>
+                    </div>
+                    <div class="related-info">
+                        <h4>関連情報</h4>
+                        <a href="procedure-birth.html">出産育児一時金について</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function toggleAccordion(element) {
+            const accordionItem = element.parentElement;
+            accordionItem.classList.toggle('active');
+        }
+
+        // ページ読み込み時にハッシュをチェック
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement && targetElement.classList.contains('accordion-item')) {
+                    targetElement.classList.add('active');
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
