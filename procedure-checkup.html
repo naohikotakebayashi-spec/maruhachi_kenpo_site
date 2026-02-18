@@ -5,446 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>人間ドック等各種健診に関する手続き - 丸八真綿健康保険組合</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f5f5f5;
-        }
-
-        header {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .header-top {
-            background: #0066cc;
-            padding: 10px 0;
-        }
-
-        .header-top-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: right;
-            color: white;
-            font-size: 0.85rem;
-        }
-
-        .header-top-inner a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-
-        .header-top-inner a:hover {
-            text-decoration: underline;
-        }
-
-        .header-main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo a {
-            text-decoration: none;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            color: #0066cc;
-            font-weight: 600;
-        }
-
-        .logo .logo-sub {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .main-nav {
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 3px solid #0066cc;
-        }
-
-        .main-nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            padding: 0;
-        }
-
-        .main-nav-content a {
-            flex: 1;
-            text-align: center;
-            padding: 15px 10px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.95rem;
-            font-weight: 500;
-            border-right: 1px solid #e0e0e0;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .main-nav-content a:last-child {
-            border-right: none;
-        }
-
-        .main-nav-content a:hover,
-        .main-nav-content a.active {
-            background: #0066cc;
-            color: white;
-        }
-
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .breadcrumb a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 40px;
-        }
-
-        .page-title {
-            font-size: 1.8rem;
-            color: #0066cc;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #0066cc;
-            margin-bottom: 30px;
-        }
-
-        .page-intro {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border-left: 4px solid #0066cc;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-
-        .page-intro p {
-            color: #555;
-            line-height: 1.8;
-        }
-
-        /* 健診カード */
-        .health-card {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            border-top: 4px solid #0066cc;
-        }
-
-        .health-card h3 {
-            font-size: 1.3rem;
-            color: #333;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .health-card h3 .icon {
-            font-size: 1.5rem;
-            margin-right: 5px;
-        }
-
-        .health-card > p {
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .subsidy {
-            background: #e8f4fd;
-            padding: 12px 18px;
-            border-radius: 6px;
-            font-weight: bold;
-            color: #0066cc;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        .highlight {
-            background: #f8f9fa;
-            padding: 15px 18px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-        }
-
-        .highlight h4 {
-            color: #0066cc;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-        }
-
-        .highlight p {
-            color: #555;
-        }
-
-        .health-card ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 15px;
-        }
-
-        .health-card ul li {
-            padding: 6px 0 6px 20px;
-            position: relative;
-            color: #555;
-        }
-
-        .health-card ul li::before {
-            content: '●';
-            color: #0066cc;
-            font-size: 0.6rem;
-            position: absolute;
-            left: 0;
-            top: 10px;
-        }
-
-        .health-card .link {
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 0;
-        }
-
-        .health-card .link:hover {
-            text-decoration: underline;
-        }
-
-        .health-card .link::after {
-            content: ' ▶';
-            font-size: 0.7rem;
-        }
-
-        /* バッジ */
-        .new-badge {
-            background: #e74c3c;
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-
-        .updated-badge {
-            background: #f39c12;
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-
-        /* 被保険者・被扶養者タブ風セクション */
-        .target-tabs {
-            display: flex;
-            gap: 0;
-            margin-bottom: 0;
-        }
-
-        .target-tab {
-            padding: 10px 20px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            border-radius: 6px 6px 0 0;
-            cursor: default;
-        }
-
-        .target-tab.insured {
-            background: #0066cc;
-            color: white;
-        }
-
-        .target-tab.dependent {
-            background: #e8724a;
-            color: white;
-        }
-
-        .target-section {
-            border: 2px solid #e0e0e0;
-            border-radius: 0 8px 8px 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: #fafbfc;
-        }
-
-        .target-section.insured-section {
-            border-color: #0066cc;
-            border-top: none;
-        }
-
-        .target-section.dependent-section {
-            border-color: #e8724a;
-            border-top: none;
-            margin-top: -2px;
-        }
-
-        .target-section h4 {
-            color: #333;
-            font-size: 1.05rem;
-            margin-bottom: 10px;
-        }
-
-        .target-section table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 10px;
-        }
-
-        .target-section table th,
-        .target-section table td {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            font-size: 0.95rem;
-        }
-
-        .target-section table th {
-            background: #f0f4f8;
-            font-weight: 600;
-            color: #333;
-            width: 25%;
-            text-align: left;
-        }
-
-        .target-section table td {
-            color: #555;
-        }
-
-        .target-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .target-section ul li {
-            padding: 5px 0 5px 20px;
-            position: relative;
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .target-section ul li::before {
-            content: '●';
-            color: #0066cc;
-            font-size: 0.5rem;
-            position: absolute;
-            left: 0;
-            top: 10px;
-        }
-
-        .dependent-section ul li::before {
-            color: #e8724a;
-        }
-
-        .note-box {
-            background: #fff8e1;
-            border: 1px solid #ffcc02;
-            border-radius: 6px;
-            padding: 15px 18px;
-            margin-top: 15px;
-        }
-
-        .note-box p {
-            color: #795600;
-            font-size: 0.9rem;
-        }
-
-        .note-box p strong {
-            color: #e65100;
-        }
-
-        /* フッター */
-        footer {
-            background: #1a1a2e;
-            color: #ccc;
-            padding: 40px 0 20px;
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        @media (max-width: 768px) {
-            .main-nav-content {
-                flex-direction: column;
-            }
-            .main-nav-content a {
-                border-right: none;
-                border-bottom: 1px solid #e0e0e0;
-            }
-            .header-main {
-                flex-direction: column;
-                text-align: center;
-            }
-            .target-tabs {
-                flex-direction: column;
-            }
-            .target-tab {
-                border-radius: 6px 6px 0 0;
-            }
-            .target-section table th {
-                width: 35%;
-            }
-        }
-        /* 申込セクション（A案） */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .category-nav { background: white; max-width: 1200px; margin: 20px auto; padding: 20px; border-radius: 8px; display: flex; gap: 10px; overflow-x: auto; }
+        .category-nav a { padding: 10px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; white-space: nowrap; font-size: 0.9rem; transition: all 0.3s; }
+        .category-nav a:hover { background: #0066cc; color: white; }
+        .category-nav a.active { background: #0066cc; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+
+        /* アコーディオン */
+        .accordion-item { background: white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        .accordion-header { padding: 20px 25px; background: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; border-left: 4px solid transparent; }
+        .accordion-header:hover { background: #f0f8ff; border-left-color: #0066cc; }
+        .accordion-header h3 { font-size: 1.2rem; color: #333; font-weight: 600; }
+        .accordion-icon { font-size: 1.5rem; color: #0066cc; transition: transform 0.3s; }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #fafafa; }
+        .accordion-item.active .accordion-content { max-height: 5000px; transition: max-height 0.5s ease-in; }
+        .accordion-body { padding: 25px; }
+        .accordion-body h4 { font-size: 1.1rem; color: #0066cc; margin: 20px 0 10px; font-weight: 600; }
+        .accordion-body p { margin-bottom: 15px; line-height: 1.8; }
+        .accordion-body ul { margin: 15px 0 15px 30px; }
+        .accordion-body li { margin-bottom: 8px; }
+
+        /* 申請書ダウンロード・注意ボックス */
+        .document-downloads { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .download-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; border: 2px solid #0066cc; font-weight: 500; transition: all 0.3s; }
+        .download-btn:hover { background: #0066cc; color: white; }
+        .download-btn::before { content: '📄'; font-size: 1.2rem; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+
+        /* ===== 申込セクション（A案） ===== */
         .apply-section {
             margin-top: 25px;
             padding-top: 25px;
@@ -452,7 +58,7 @@
         }
 
         .apply-section-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: #0066cc;
             font-weight: 700;
             margin-bottom: 18px;
@@ -474,39 +80,23 @@
             transition: all 0.2s;
             position: relative;
             z-index: 1;
+            user-select: none;
         }
 
-        .apply-tab-insured {
-            background: #0066cc;
-            color: white;
-        }
-
-        .apply-tab-dependent {
-            background: #e8724a;
-            color: white;
-        }
-
-        .apply-tab:not(.active) {
-            opacity: 0.5;
-        }
-
-        .apply-tab:not(.active):hover {
-            opacity: 0.75;
-        }
+        .apply-tab-insured { background: #0066cc; color: white; }
+        .apply-tab-dependent { background: #e8724a; color: white; }
+        .apply-tab:not(.active) { opacity: 0.45; }
+        .apply-tab:not(.active):hover { opacity: 0.7; }
 
         .apply-tab-content {
             border: 2px solid #0066cc;
             border-radius: 0 8px 8px 8px;
             padding: 25px;
+            background: white;
         }
 
-        .apply-insured-border {
-            border-color: #0066cc;
-        }
-
-        .apply-dependent-border {
-            border-color: #e8724a;
-        }
+        .apply-insured-border { border-color: #0066cc; }
+        .apply-dependent-border { border-color: #e8724a; }
 
         .apply-methods {
             display: grid;
@@ -546,24 +136,9 @@
             transform: rotate(35deg);
         }
 
-        .apply-method-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
-
-        .apply-method-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .apply-method-desc {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
+        .apply-method-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .apply-method-title { font-size: 1.05rem; font-weight: 700; color: #333; margin-bottom: 8px; }
+        .apply-method-desc { font-size: 0.85rem; color: #666; margin-bottom: 16px; line-height: 1.6; }
 
         .apply-btn {
             display: inline-block;
@@ -575,260 +150,138 @@
             transition: all 0.2s;
         }
 
-        .apply-btn-paper {
-            background: #f5f5f5;
-            color: #333;
-            border: 2px solid #ccc;
-        }
+        .apply-btn-paper { background: #f5f5f5; color: #333; border: 2px solid #ccc; }
+        .apply-btn-paper:hover { background: #e8e8e8; }
+        .apply-btn-online { background: #0066cc; color: white; border: 2px solid #0066cc; }
+        .apply-btn-online:hover { background: #0052a3; }
+        .apply-btn-orange { background: #e8724a; border-color: #e8724a; }
+        .apply-btn-orange:hover { background: #d4613b; }
 
-        .apply-btn-paper:hover {
-            background: #e8e8e8;
-        }
+        .apply-qr-area { margin-top: 16px; }
+        .apply-qr-img { width: 150px; height: auto; margin: 0 auto; display: block; border-radius: 4px; }
+        .apply-qr-label { font-size: 0.8rem; color: #666; margin-top: 6px; text-align: center; }
 
-        .apply-btn-online {
-            background: #0066cc;
-            color: white;
-            border: 2px solid #0066cc;
-        }
+        /* フッター */
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
 
-        .apply-btn-online:hover {
-            background: #0052a3;
-        }
-
-        .apply-btn-orange {
-            background: #e8724a;
-            border-color: #e8724a;
-        }
-
-        .apply-btn-orange:hover {
-            background: #d4613b;
-        }
-
-        .apply-qr-area {
-            margin-top: 16px;
-        }
-
-        .apply-qr-placeholder {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
-            background: #f9f9f9;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: #999;
-            text-align: center;
-        }
-
-        .apply-qr-image {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto;
-            display: block;
-            border-radius: 6px;
-        }
-
-        .apply-qr-label {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 6px;
-            text-align: center;
-        }
-
-        .apply-qr-img {
-            width: 150px;
-            height: auto;
-            margin: 0 auto;
-            display: block;
-            border-radius: 4px;
-        }
-
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .apply-methods {
-                grid-template-columns: 1fr;
-            }
-            .apply-person-tabs {
-                flex-direction: row;
-            }
-            .apply-tab {
-                padding: 10px 18px;
-                font-size: 0.85rem;
-            }
+            .apply-methods { grid-template-columns: 1fr; }
+            .apply-tab { padding: 10px 18px; font-size: 0.85rem; }
+            .footer-content { grid-template-columns: 1fr; }
+            .main-nav-content { flex-wrap: wrap; justify-content: center; }
+            .category-nav { flex-wrap: wrap; }
         }
-
     </style>
 </head>
 <body>
     <header>
-        <div class="header-top">
-            <div class="header-top-inner">
-                <a href="index.html">ホーム</a>
-                <a href="contact/index.html">お問い合わせ</a>
-                <a href="privacy.html">個人情報の取り扱いについて</a>
-                <a href="sitemap.html">サイトマップ</a>
-            </div>
-        </div>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
         <div class="header-main">
-            <div class="logo">
-                <a href="index.html">
-                    <div class="logo-sub">丸八真綿</div>
-                    <h1>健康保険組合</h1>
-                </a>
-            </div>
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
         </div>
     </header>
-
     <nav class="main-nav">
         <div class="main-nav-content">
-            <a href="about/index.html">健保組合のご案内</a>
-            <a href="when/index.html">こんなときは？</a>
-            <a href="benefits/index.html">病気やケガをしたとき</a>
-            <a href="health/index.html" class="active">人間ドック等各種健診</a>
-            <a href="forms/index.html">届出申請書一覧</a>
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
         </div>
     </nav>
-
     <div class="breadcrumb">
-        <a href="index.html">ホーム</a> ＞ <a href="index.html">手続き・申請</a> ＞ 人間ドック等各種健診に関する手続き
+        <a href="index.html">Home</a><span>›</span>
+        <a href="index.html">手続き・申請</a><span>›</span>
+        <span>人間ドック等各種健診に関する手続き</span>
     </div>
-
+    <div class="category-nav">
+        <a href="procedure-family.html">扶養家族</a>
+        <a href="procedure-certificate.html">資格確認書・限度額</a>
+        <a href="procedure-injury.html">病気・ケガ</a>
+        <a href="procedure-payment.html">立て替え払い</a>
+        <a href="procedure-medical-cost.html">医療費高額</a>
+        <a href="procedure-birth.html">出産</a>
+        <a href="procedure-death.html">死亡</a>
+        <a href="procedure-retirement.html">退職</a>
+        <a href="procedure-checkup.html" class="active">健診</a>
+    </div>
     <div class="container">
         <h1 class="page-title">人間ドック等各種健診に関する手続き</h1>
 
-        <div class="page-intro">
-            <p>
-                当組合では、被保険者および被扶養者の皆さまの健康管理をサポートするため、
-                人間ドック、がん健診、レディース健診、被扶養者健診、インフルエンザ予防接種など
-                各種健診の補助を行っています。以下の内容をご確認のうえ、お手続きください。
-            </p>
-        </div>
-
-        <!-- 人間ドック -->
-        <div class="health-card">
-            <h3><span class="icon">🔬</span>人間ドック<span class="updated-badge">補助増額</span></h3>
-            <p>
-                より詳しい検査で、病気の早期発見・早期治療につなげます。被保険者・被扶養者ともに補助が受けられます。
-            </p>
-
-            <!-- 被保険者セクション -->
-            <div class="target-tabs">
-                <div class="target-tab insured">👤 被保険者</div>
+        <!-- ========== 1. 被保険者・被扶養者人間ドック ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>被保険者・被扶養者人間ドック</h3>
+                <span class="accordion-icon">▼</span>
             </div>
-            <div class="target-section insured-section">
-                <table>
-                    <tr>
-                        <th>対象者</th>
-                        <td>35歳以上の被保険者（年度内に1回）</td>
-                    </tr>
-                    <tr>
-                        <th>補助額</th>
-                        <td><strong>30,000円</strong>（令和7年度より増額）</td>
-                    </tr>
-                    <tr>
-                        <th>受診方法</th>
-                        <td>契約医療機関または任意の医療機関で受診</td>
-                    </tr>
-                    <tr>
-                        <th>申請方法</th>
-                        <td>受診後、領収書と結果表のコピーを添えて申請</td>
-                    </tr>
-                </table>
-                <ul>
-                    <li>契約医療機関での受診をおすすめします（窓口負担が軽減されます）</li>
-                    <li>定期健康診断との併用はできません</li>
-                    <li>申請期限：受診日の属する年度末まで</li>
-                </ul>
-            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>35歳以上の被保険者・被扶養者を対象に、年1回人間ドック費用の一部を補助します。</p>
 
-            <!-- 被扶養者セクション -->
-            <div class="target-tabs">
-                <div class="target-tab dependent">👨‍👩‍👧 被扶養者</div>
-            </div>
-            <div class="target-section dependent-section">
-                <table>
-                    <tr>
-                        <th>対象者</th>
-                        <td>35歳以上の被扶養者（年度内に1回）</td>
-                    </tr>
-                    <tr>
-                        <th>補助額</th>
-                        <td><strong>30,000円</strong>（令和7年度より増額）</td>
-                    </tr>
-                    <tr>
-                        <th>受診方法</th>
-                        <td>契約医療機関または任意の医療機関で受診</td>
-                    </tr>
-                    <tr>
-                        <th>申請方法</th>
-                        <td>被保険者を通じて、領収書と結果表のコピーを添えて申請</td>
-                    </tr>
-                </table>
-                <ul>
-                    <li>被保険者と同じ契約医療機関で受診できます</li>
-                    <li>特定健康診査の項目を含む場合は、被扶養者健診との併用はできません</li>
-                    <li>申請期限：受診日の属する年度末まで</li>
-                </ul>
-            </div>
+                    <div class="note-box">
+                        <h4>補助額</h4>
+                        <p>契約医療機関での受診の場合、自己負担額を軽減します。詳細は健保組合までお問い合わせください。</p>
+                    </div>
 
-            <div class="note-box">
-                <p><strong>⚠ ご注意：</strong>被保険者・被扶養者ともに、人間ドックと定期健康診断（被扶養者健診）の重複受診はできません。いずれか一方をお選びください。</p>
-            </div>
+                    <!-- A案：申込セクション -->
+                    <div class="apply-section">
+                        <div class="apply-section-title">📋 人間ドック利用申し込み</div>
 
-            <a href="#" class="link">契約医療機関一覧を見る</a>
-
-            <!-- 申込セクション -->
-            <div class="apply-section">
-                <div class="apply-section-title">📋 人間ドック利用申し込み</div>
-
-                <div class="apply-person-tabs">
-                    <div class="apply-tab apply-tab-insured active" onclick="switchApplyTab('insured')">👤 被保険者</div>
-                    <div class="apply-tab apply-tab-dependent" onclick="switchApplyTab('dependent')">👨‍👩‍👧 被扶養者</div>
-                </div>
-
-                <!-- 被保険者コンテンツ -->
-                <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
-                    <div class="apply-methods">
-                        <div class="apply-method-card">
-                            <div class="apply-method-icon">📄</div>
-                            <div class="apply-method-title">エクセル申込書で申し込む</div>
-                            <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
-                            <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                        <div class="apply-person-tabs">
+                            <div class="apply-tab apply-tab-insured active" onclick="event.stopPropagation(); switchApplyTab('insured')">👤 被保険者</div>
+                            <div class="apply-tab apply-tab-dependent" onclick="event.stopPropagation(); switchApplyTab('dependent')">👨‍👩‍👧 被扶養者</div>
                         </div>
-                        <div class="apply-method-card apply-method-digital">
-                            <div class="apply-recommend-badge">おすすめ</div>
-                            <div class="apply-method-icon">📱</div>
-                            <div class="apply-method-title">Googleフォームで申し込む</div>
-                            <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
-                            <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
-                            <div class="apply-qr-area">
-                                <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
-                                <div class="apply-qr-label">▲ スマホでスキャン</div>
+
+                        <!-- 被保険者コンテンツ -->
+                        <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
+                            <div class="apply-methods">
+                                <div class="apply-method-card">
+                                    <div class="apply-method-icon">📄</div>
+                                    <div class="apply-method-title">エクセル申込書で申し込む</div>
+                                    <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
+                                    <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                                </div>
+                                <div class="apply-method-card apply-method-digital">
+                                    <div class="apply-recommend-badge">おすすめ</div>
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
+                                    <div class="apply-qr-area">
+                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 被扶養者コンテンツ -->
-                <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
-                    <div class="apply-methods">
-                        <div class="apply-method-card">
-                            <div class="apply-method-icon">📄</div>
-                            <div class="apply-method-title">エクセル申込書で申し込む</div>
-                            <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
-                            <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
-                        </div>
-                        <div class="apply-method-card apply-method-digital">
-                            <div class="apply-recommend-badge">おすすめ</div>
-                            <div class="apply-method-icon">📱</div>
-                            <div class="apply-method-title">Googleフォームで申し込む</div>
-                            <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
-                            <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
-                            <div class="apply-qr-area">
-                                <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
-                                <div class="apply-qr-label">▲ スマホでスキャン</div>
+                        <!-- 被扶養者コンテンツ -->
+                        <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
+                            <div class="apply-methods">
+                                <div class="apply-method-card">
+                                    <div class="apply-method-icon">📄</div>
+                                    <div class="apply-method-title">エクセル申込書で申し込む</div>
+                                    <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
+                                    <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                                </div>
+                                <div class="apply-method-card apply-method-digital">
+                                    <div class="apply-recommend-badge">おすすめ</div>
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
+                                    <div class="apply-qr-area">
+                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -836,164 +289,101 @@
             </div>
         </div>
 
-        <!-- 定期健康診断 -->
-        <div class="health-card">
-            <h3><span class="icon">🏥</span>定期健康診断<span class="updated-badge">補助拡充</span></h3>
-            <p>
-                労働安全衛生法に基づく定期健康診断を実施します。年1回、必ず受診してください。
-            </p>
-            <div class="subsidy">
-                補助額：全額補助（健保組合が直接契約医療機関に支払います）
+        <!-- ========== 2. レディース健診（被扶養者） ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>レディース健診（被扶養者）</h3>
+                <span class="accordion-icon">▼</span>
             </div>
-            <div class="highlight">
-                <h4>対象者</h4>
-                <p>被保険者（35歳未満および36歳以上の方）</p>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>被扶養者の女性を対象に、レディース健診を実施します。</p>
+                    <div class="document-downloads">
+                        <a href="#" class="download-btn">レディース健診申込書</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>補助額</h4>
+                        <p>健診費用の一部を補助します。詳細は健保組合までお問い合わせください。</p>
+                    </div>
+                </div>
             </div>
-            <ul>
-                <li>会社を通じて実施します</li>
-                <li>受診時に自己負担はありません</li>
-                <li>検査項目：身長・体重、血圧、尿検査、血液検査、胸部X線など</li>
-            </ul>
         </div>
 
-        <!-- がん健診 -->
-        <div class="health-card">
-            <h3><span class="icon">🎗️</span>がん健診</h3>
-            <p>
-                がんの早期発見のための各種がん健診の補助を行います。
-            </p>
-            <div class="subsidy">
-                補助額：各検査項目について実費を補助
+        <!-- ========== 3. 特定健診（被扶養者・短時間労働者） ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>特定健診（被扶養者・短時間労働者）</h3>
+                <span class="accordion-icon">▼</span>
             </div>
-            <div class="highlight">
-                <h4>対象者</h4>
-                <p>35歳以上の被保険者および被扶養者（年度内に1回）</p>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>40歳以上の被扶養者および短時間労働者を対象に、特定健康診査を実施します。</p>
+                    <div class="document-downloads">
+                        <a href="#" class="download-btn">特定健診受診券申込書</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>費用</h4>
+                        <p>無料で受診できます。</p>
+                        <h4>対象者</h4>
+                        <ul>
+                            <li>40歳以上の被扶養者</li>
+                            <li>短時間労働者（パート・アルバイト等）</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="highlight">
-                <h4>検査項目</h4>
-                <p>胃がん、大腸がん、肺がん、前立腺がん（男性）等</p>
-            </div>
-            <ul>
-                <li>人間ドックに含まれる項目は対象外です</li>
-                <li>受診後、領収書と結果表のコピーを添えて申請してください</li>
-            </ul>
-            <a href="forms/index.html" class="link">申請書をダウンロード</a>
         </div>
 
-        <!-- レディース健診 -->
-        <div class="health-card">
-            <h3><span class="icon">👩</span>レディース健診<span class="new-badge">NEW</span></h3>
-            <p>
-                女性特有の疾患の早期発見を目的とした健診です。令和7年度より新設しました。
-            </p>
-            <div class="subsidy">
-                補助額：10,000円
+        <!-- ========== 4. インフルエンザ予防接種 ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>インフルエンザ予防接種</h3>
+                <span class="accordion-icon">▼</span>
             </div>
-            <div class="highlight">
-                <h4>対象者</h4>
-                <p>35歳以上の女性被保険者および女性被扶養者（年度内に1回）</p>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>被保険者・被扶養者を対象に、インフルエンザ予防接種の費用を補助します。</p>
+                    <div class="document-downloads">
+                        <a href="#" class="download-btn">予防接種補助申請書</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>補助額</h4>
+                        <p>1回につき3,000円を上限に補助します。</p>
+                        <h4>実施期間</h4>
+                        <p>毎年10月1日～翌年1月31日</p>
+                    </div>
+                </div>
             </div>
-            <div class="highlight">
-                <h4>検査項目</h4>
-                <ul style="margin: 10px 0;">
-                    <li>乳がん検診（マンモグラフィーまたは乳房超音波検査）</li>
-                    <li>子宮頸がん検診</li>
-                </ul>
-            </div>
-            <ul>
-                <li>人間ドックと併せて受診できます</li>
-                <li>受診後、領収書と結果表のコピーを添えて申請してください</li>
-            </ul>
-            <a href="#" class="link">申込方法を見る</a>
         </div>
-
-        <!-- 被扶養者健診 -->
-        <div class="health-card">
-            <h3><span class="icon">🩺</span>被扶養者健診<span class="updated-badge">補助増額</span></h3>
-            <p>
-                被扶養者の方の健康管理のため、年1回の健康診断を実施しています。
-            </p>
-            <div class="subsidy">
-                補助額：10,000円（令和7年度より7,000円から増額）
-            </div>
-            <div class="highlight">
-                <h4>対象者</h4>
-                <p>被扶養者（35歳以上）</p>
-            </div>
-            <ul>
-                <li>全国の契約医療機関で受診できます</li>
-                <li>特定健康診査の項目を含みます</li>
-                <li>受診券を発行しますので、事前にお申し込みください</li>
-            </ul>
-            <a href="#" class="link">受診券を申し込む</a>
-        </div>
-
-        <!-- インフルエンザ予防接種補助 -->
-        <div class="health-card">
-            <h3><span class="icon">💉</span>インフルエンザ予防接種補助<span class="updated-badge">補助増額</span></h3>
-            <p>
-                インフルエンザの予防接種費用を補助します。
-            </p>
-            <div class="subsidy">
-                補助額：1人につき3,000円（令和7年度より2,000円から増額）
-            </div>
-            <div class="highlight">
-                <h4>対象者</h4>
-                <p>被保険者および被扶養者（年度内に1回）</p>
-            </div>
-            <div class="highlight">
-                <h4>実施期間</h4>
-                <p>毎年10月1日～翌年1月31日</p>
-            </div>
-            <ul>
-                <li>医療機関で接種後、領収書を添えて申請してください</li>
-                <li>申請期限：接種日の翌年3月31日まで</li>
-                <li>家族全員分をまとめて申請できます</li>
-            </ul>
-            <a href="forms/index.html" class="link">申請書をダウンロード</a>
-        </div>
-
-        <!-- 特定健康診査・特定保健指導 -->
-        <div class="health-card">
-            <h3><span class="icon">🏃</span>特定健康診査・特定保健指導</h3>
-            <p>
-                40歳から74歳までの方を対象に、メタボリックシンドロームに着目した健診と保健指導を実施します。
-            </p>
-            <div class="subsidy">
-                自己負担なし（健保組合が全額負担）
-            </div>
-            <div class="highlight">
-                <h4>対象者</h4>
-                <p>40歳～74歳の被保険者および被扶養者</p>
-            </div>
-            <ul>
-                <li>被保険者：定期健康診断に含まれています</li>
-                <li>被扶養者：被扶養者健診として実施します</li>
-                <li>健診結果により、保健指導の対象となる場合があります</li>
-            </ul>
-            <a href="#" class="link">特定保健指導について詳しく見る</a>
-        </div>
-
     </div>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html">ホーム</a>
-                <a href="about/index.html">健保組合のご案内</a>
-                <a href="when/index.html">こんなときは？</a>
-                <a href="benefits/index.html">病気やケガをしたとき</a>
-                <a href="health/index.html">人間ドック等各種健診</a>
-                <a href="forms/index.html">届出申請書一覧</a>
-                <a href="contact/index.html">お問い合わせ</a>
-                <a href="privacy.html">個人情報保護方針</a>
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 丸八真綿健康保険組合 All Rights Reserved.</p>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
     </footer>
+
     <script>
+        function toggleAccordion(element) {
+            const accordionItem = element.parentElement;
+            accordionItem.classList.toggle('active');
+        }
+
         function switchApplyTab(type) {
             const insuredTab = document.querySelector('.apply-tab-insured');
             const dependentTab = document.querySelector('.apply-tab-dependent');
