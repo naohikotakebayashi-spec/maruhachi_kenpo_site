@@ -161,6 +161,64 @@
         .apply-qr-img { width: 150px; height: auto; margin: 0 auto; display: block; border-radius: 4px; }
         .apply-qr-label { font-size: 0.8rem; color: #666; margin-top: 6px; text-align: center; }
 
+        /* Googleフォーム中心レイアウト */
+        .apply-form-main {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+            border-radius: 10px;
+            border: 1px solid #d0e3f5;
+        }
+
+        /* 折りたたみ（エクセル版） */
+        .fallback-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            color: #888;
+            cursor: pointer;
+            border-top: 1px dashed #ddd;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .fallback-toggle:hover { color: #555; }
+
+        .fallback-arrow {
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            color: #aaa;
+        }
+
+        .fallback-arrow.open { transform: rotate(45deg); }
+
+        .fallback-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .fallback-content.open {
+            max-height: 300px;
+            transition: max-height 0.4s ease-in;
+        }
+
+        .fallback-inner {
+            padding: 14px 16px;
+            background: #f9f9f9;
+            border-radius: 0 0 8px 8px;
+            text-align: center;
+        }
+
+        .fallback-inner p {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 12px;
+        }
+
         /* ===== 2ボタン選択 ===== */
         .dock-choice-buttons {
             display: grid;
@@ -346,46 +404,48 @@
 
                             <!-- 被保険者コンテンツ -->
                             <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
-                                <div class="apply-methods">
-                                    <div class="apply-method-card">
-                                        <div class="apply-method-icon">📄</div>
-                                        <div class="apply-method-title">エクセル申込書で申し込む</div>
-                                        <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
-                                        <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                                <div class="apply-form-main">
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
+                                    <div class="apply-qr-area">
+                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
                                     </div>
-                                    <div class="apply-method-card apply-method-digital">
-                                        <div class="apply-recommend-badge">おすすめ</div>
-                                        <div class="apply-method-icon">📱</div>
-                                        <div class="apply-method-title">Googleフォームで申し込む</div>
-                                        <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
-                                        <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
-                                        <div class="apply-qr-area">
-                                            <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
-                                            <div class="apply-qr-label">▲ スマホでスキャン</div>
-                                        </div>
+                                </div>
+                                <div class="fallback-toggle" onclick="event.stopPropagation(); toggleFallback('insured')">
+                                    <span>オンライン申込ができない方はこちら</span>
+                                    <span class="fallback-arrow" id="fallback-arrow-insured">＋</span>
+                                </div>
+                                <div class="fallback-content" id="fallback-insured">
+                                    <div class="fallback-inner">
+                                        <p>インターネット環境がない等の理由でオンライン申込ができない方は、エクセル版の申込書をご利用ください。</p>
+                                        <a href="#" class="apply-btn apply-btn-paper">📥 エクセル申込書をダウンロード</a>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- 被扶養者コンテンツ -->
                             <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
-                                <div class="apply-methods">
-                                    <div class="apply-method-card">
-                                        <div class="apply-method-icon">📄</div>
-                                        <div class="apply-method-title">エクセル申込書で申し込む</div>
-                                        <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
-                                        <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                                <div class="apply-form-main">
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
+                                    <div class="apply-qr-area">
+                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
                                     </div>
-                                    <div class="apply-method-card apply-method-digital">
-                                        <div class="apply-recommend-badge">おすすめ</div>
-                                        <div class="apply-method-icon">📱</div>
-                                        <div class="apply-method-title">Googleフォームで申し込む</div>
-                                        <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
-                                        <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
-                                        <div class="apply-qr-area">
-                                            <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
-                                            <div class="apply-qr-label">▲ スマホでスキャン</div>
-                                        </div>
+                                </div>
+                                <div class="fallback-toggle" onclick="event.stopPropagation(); toggleFallback('dependent')">
+                                    <span>オンライン申込ができない方はこちら</span>
+                                    <span class="fallback-arrow" id="fallback-arrow-dependent">＋</span>
+                                </div>
+                                <div class="fallback-content" id="fallback-dependent">
+                                    <div class="fallback-inner">
+                                        <p>インターネット環境がない等の理由でオンライン申込ができない方は、エクセル版の申込書をご利用ください。</p>
+                                        <a href="#" class="apply-btn apply-btn-paper">📥 エクセル申込書をダウンロード</a>
                                     </div>
                                 </div>
                             </div>
@@ -546,6 +606,13 @@
                 arrow.classList.add('open');
                 btn.classList.add('active');
             }
+        }
+
+        function toggleFallback(type) {
+            const content = document.getElementById('fallback-' + type);
+            const arrow = document.getElementById('fallback-arrow-' + type);
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
         }
     </script>
 </body>
