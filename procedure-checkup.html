@@ -161,6 +161,65 @@
         .apply-qr-img { width: 150px; height: auto; margin: 0 auto; display: block; border-radius: 4px; }
         .apply-qr-label { font-size: 0.8rem; color: #666; margin-top: 6px; text-align: center; }
 
+        /* ===== 2ボタン選択 ===== */
+        .dock-choice-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .dock-choice-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 24px;
+            background: white;
+            border: 2px solid #d0d7de;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .dock-choice-btn:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 16px rgba(0,102,204,0.12);
+            transform: translateY(-2px);
+        }
+
+        .dock-choice-btn.active {
+            border-color: #0066cc;
+            background: #f0f7ff;
+        }
+
+        .dock-choice-icon { font-size: 2rem; flex-shrink: 0; }
+        .dock-choice-title { font-size: 1.05rem; font-weight: 700; color: #333; }
+        .dock-choice-desc { font-size: 0.82rem; color: #888; margin-top: 4px; }
+        .dock-choice-arrow {
+            margin-left: auto;
+            font-size: 1rem;
+            color: #0066cc;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .dock-choice-arrow.open { transform: rotate(180deg); }
+
+        /* パネル */
+        .dock-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .dock-panel.open {
+            max-height: 3000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .dock-panel-inner {
+            padding: 20px 0;
+        }
+
         /* フッター */
         footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
         .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
@@ -172,6 +231,7 @@
         @media (max-width: 768px) {
             .apply-methods { grid-template-columns: 1fr; }
             .apply-tab { padding: 10px 18px; font-size: 0.85rem; }
+            .dock-choice-buttons { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
             .main-nav-content { flex-wrap: wrap; justify-content: center; }
             .category-nav { flex-wrap: wrap; }
@@ -225,87 +285,127 @@
                 <div class="accordion-body">
                     <p>30歳以上の被保険者・被扶養者を対象に、年1回人間ドック受診費用の8割を補助します（上限40,000円）。また、女性の方は婦人科健診も併せてご利用いただけます。</p>
 
-                    <div class="note-box">
-                        <h4>人間ドック補助</h4>
-                        <p><strong>補助率：</strong>受診費用の8割<br>
-                        <strong>補助上限額：</strong>40,000円<br>
-                        <strong>対象者：</strong>30歳以上の被保険者および被扶養者（年度内1回）</p>
-                        <h4>ご利用例</h4>
-                        <ul>
-                            <li>受診費用が50,000円の場合 → 補助額40,000円（8割）、自己負担10,000円</li>
-                            <li>受診費用が40,000円の場合 → 補助額32,000円（8割）、自己負担8,000円</li>
-                        </ul>
-                    </div>
-
-                    <div class="note-box" style="border-left-color: #e91e8f;">
-                        <h4 style="color: #c2185b;">👩 婦人科健診補助（女性の方）</h4>
-                        <p>人間ドック受診時にオプションで婦人科項目を受診される場合、別途費用の8割を補助します。</p>
-                        <p><strong>補助率：</strong>受診費用の8割<br>
-                        <strong>補助上限額：</strong>12,000円<br>
-                        <strong>対象者：</strong>人間ドック対象の女性被保険者および女性被扶養者</p>
-                        <h4 style="color: #c2185b;">検査項目（乳房、子宮関係の項目に限る）</h4>
-                        <ul>
-                            <li>乳がん検診（マンモグラフィーまたは乳房超音波検査）</li>
-                            <li>子宮頸がん検診</li>
-                        </ul>
-                        <h4 style="color: #c2185b;">ご利用例（人間ドック＋婦人科健診）</h4>
-                        <ul>
-                            <li>人間ドック50,000円＋婦人科健診15,000円の場合<br>→ 人間ドック補助40,000円＋婦人科補助12,000円＝<strong>合計補助52,000円</strong>、自己負担13,000円</li>
-                        </ul>
-                    </div>
-
-                    <!-- A案：申込セクション -->
-                    <div class="apply-section">
-                        <div class="apply-section-title">📋 人間ドック利用申し込み</div>
-
-                        <div class="apply-person-tabs">
-                            <div class="apply-tab apply-tab-insured active" onclick="event.stopPropagation(); switchApplyTab('insured')">👤 被保険者</div>
-                            <div class="apply-tab apply-tab-dependent" onclick="event.stopPropagation(); switchApplyTab('dependent')">👨‍👩‍👧 被扶養者</div>
+                    <!-- 2つの選択ボタン -->
+                    <div class="dock-choice-buttons">
+                        <div class="dock-choice-btn" onclick="event.stopPropagation(); toggleDockPanel('apply')">
+                            <div class="dock-choice-icon">📋</div>
+                            <div class="dock-choice-text">
+                                <div class="dock-choice-title">人間ドック利用申し込み</div>
+                                <div class="dock-choice-desc">受診前のお申し込みはこちら</div>
+                            </div>
+                            <span class="dock-choice-arrow" id="arrow-apply">▼</span>
                         </div>
+                        <div class="dock-choice-btn" onclick="event.stopPropagation(); toggleDockPanel('claim')">
+                            <div class="dock-choice-icon">💰</div>
+                            <div class="dock-choice-text">
+                                <div class="dock-choice-title">人間ドック補助金申請</div>
+                                <div class="dock-choice-desc">受診後の補助金申請はこちら</div>
+                            </div>
+                            <span class="dock-choice-arrow" id="arrow-claim">▼</span>
+                        </div>
+                    </div>
 
-                        <!-- 被保険者コンテンツ -->
-                        <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
-                            <div class="apply-methods">
-                                <div class="apply-method-card">
-                                    <div class="apply-method-icon">📄</div>
-                                    <div class="apply-method-title">エクセル申込書で申し込む</div>
-                                    <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
-                                    <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                    <!-- ========== パネル1: 利用申し込み ========== -->
+                    <div class="dock-panel" id="panel-apply">
+                        <div class="dock-panel-inner">
+                            <div class="apply-section-title">📋 人間ドック利用申し込み</div>
+
+                            <div class="apply-person-tabs">
+                                <div class="apply-tab apply-tab-insured active" onclick="event.stopPropagation(); switchApplyTab('insured')">👤 被保険者</div>
+                                <div class="apply-tab apply-tab-dependent" onclick="event.stopPropagation(); switchApplyTab('dependent')">👨‍👩‍👧 被扶養者</div>
+                            </div>
+
+                            <!-- 被保険者コンテンツ -->
+                            <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
+                                <div class="apply-methods">
+                                    <div class="apply-method-card">
+                                        <div class="apply-method-icon">📄</div>
+                                        <div class="apply-method-title">エクセル申込書で申し込む</div>
+                                        <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
+                                        <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                                    </div>
+                                    <div class="apply-method-card apply-method-digital">
+                                        <div class="apply-recommend-badge">おすすめ</div>
+                                        <div class="apply-method-icon">📱</div>
+                                        <div class="apply-method-title">Googleフォームで申し込む</div>
+                                        <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                        <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
+                                        <div class="apply-qr-area">
+                                            <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                            <div class="apply-qr-label">▲ スマホでスキャン</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="apply-method-card apply-method-digital">
-                                    <div class="apply-recommend-badge">おすすめ</div>
-                                    <div class="apply-method-icon">📱</div>
-                                    <div class="apply-method-title">Googleフォームで申し込む</div>
-                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
-                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
-                                    <div class="apply-qr-area">
-                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
-                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
+                            </div>
+
+                            <!-- 被扶養者コンテンツ -->
+                            <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
+                                <div class="apply-methods">
+                                    <div class="apply-method-card">
+                                        <div class="apply-method-icon">📄</div>
+                                        <div class="apply-method-title">エクセル申込書で申し込む</div>
+                                        <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
+                                        <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
+                                    </div>
+                                    <div class="apply-method-card apply-method-digital">
+                                        <div class="apply-recommend-badge">おすすめ</div>
+                                        <div class="apply-method-icon">📱</div>
+                                        <div class="apply-method-title">Googleフォームで申し込む</div>
+                                        <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                        <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
+                                        <div class="apply-qr-area">
+                                            <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                            <div class="apply-qr-label">▲ スマホでスキャン</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- 被扶養者コンテンツ -->
-                        <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
-                            <div class="apply-methods">
-                                <div class="apply-method-card">
-                                    <div class="apply-method-icon">📄</div>
-                                    <div class="apply-method-title">エクセル申込書で申し込む</div>
-                                    <div class="apply-method-desc">申込書をダウンロードし、必要事項を記入のうえ健保組合へ提出してください</div>
-                                    <a href="#" class="apply-btn apply-btn-paper">📥 申込書をダウンロード</a>
-                                </div>
-                                <div class="apply-method-card apply-method-digital">
-                                    <div class="apply-recommend-badge">おすすめ</div>
-                                    <div class="apply-method-icon">📱</div>
-                                    <div class="apply-method-title">Googleフォームで申し込む</div>
-                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
-                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
-                                    <div class="apply-qr-area">
-                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
-                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
-                                    </div>
-                                </div>
+                    <!-- ========== パネル2: 補助金申請 ========== -->
+                    <div class="dock-panel" id="panel-claim">
+                        <div class="dock-panel-inner">
+                            <div class="apply-section-title">💰 人間ドック補助金申請</div>
+
+                            <div class="note-box">
+                                <h4>人間ドック補助</h4>
+                                <p><strong>補助率：</strong>受診費用の8割<br>
+                                <strong>補助上限額：</strong>40,000円<br>
+                                <strong>対象者：</strong>30歳以上の被保険者および被扶養者（年度内1回）</p>
+                                <h4>ご利用例</h4>
+                                <ul>
+                                    <li>受診費用が50,000円の場合 → 補助額40,000円（8割）、自己負担10,000円</li>
+                                    <li>受診費用が40,000円の場合 → 補助額32,000円（8割）、自己負担8,000円</li>
+                                </ul>
+                            </div>
+
+                            <div class="note-box" style="border-left-color: #e91e8f;">
+                                <h4 style="color: #c2185b;">👩 婦人科健診補助（女性の方）</h4>
+                                <p>人間ドック受診時にオプションで婦人科項目を受診される場合、別途費用の8割を補助します。</p>
+                                <p><strong>補助率：</strong>受診費用の8割<br>
+                                <strong>補助上限額：</strong>12,000円<br>
+                                <strong>対象者：</strong>人間ドック対象の女性被保険者および女性被扶養者</p>
+                                <h4 style="color: #c2185b;">検査項目（乳房、子宮関係の項目に限る）</h4>
+                                <ul>
+                                    <li>乳がん検診（マンモグラフィーまたは乳房超音波検査）</li>
+                                    <li>子宮頸がん検診</li>
+                                </ul>
+                                <h4 style="color: #c2185b;">ご利用例（人間ドック＋婦人科健診）</h4>
+                                <ul>
+                                    <li>人間ドック50,000円＋婦人科健診15,000円の場合<br>→ 人間ドック補助40,000円＋婦人科補助12,000円＝<strong>合計補助52,000円</strong>、自己負担13,000円</li>
+                                </ul>
+                            </div>
+
+                            <h4>申請に必要な書類</h4>
+                            <ul>
+                                <li>人間ドック補助金申請書</li>
+                                <li>領収書（原本）</li>
+                                <li>健診結果表のコピー</li>
+                            </ul>
+
+                            <div class="document-downloads">
+                                <a href="#" class="download-btn">人間ドック補助金申請書</a>
                             </div>
                         </div>
                     </div>
@@ -424,6 +524,25 @@
                 insuredTab.classList.remove('active');
                 dependentContent.style.display = 'block';
                 insuredContent.style.display = 'none';
+            }
+        }
+
+        function toggleDockPanel(type) {
+            const panel = document.getElementById('panel-' + type);
+            const arrow = document.getElementById('arrow-' + type);
+            const btn = arrow.closest('.dock-choice-btn');
+            const isOpen = panel.classList.contains('open');
+
+            // 全パネルを閉じる
+            document.querySelectorAll('.dock-panel').forEach(p => p.classList.remove('open'));
+            document.querySelectorAll('.dock-choice-arrow').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.dock-choice-btn').forEach(b => b.classList.remove('active'));
+
+            // クリックしたパネルが閉じていたら開く
+            if (!isOpen) {
+                panel.classList.add('open');
+                arrow.classList.add('open');
+                btn.classList.add('active');
             }
         }
     </script>
