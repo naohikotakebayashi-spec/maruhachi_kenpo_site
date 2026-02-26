@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人間ドック等各種健診に関する手続き - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .search-btn { padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .category-nav { background: white; max-width: 1200px; margin: 20px auto; padding: 20px; border-radius: 8px; display: flex; gap: 10px; overflow-x: auto; }
+        .category-nav a { padding: 10px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; white-space: nowrap; font-size: 0.9rem; transition: all 0.3s; }
+        .category-nav a:hover { background: #0066cc; color: white; }
+        .category-nav a.active { background: #0066cc; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+
+        /* アコーディオン */
+        .accordion-item { background: white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        .accordion-header { padding: 20px 25px; background: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; border-left: 4px solid transparent; }
+        .accordion-header:hover { background: #f0f8ff; border-left-color: #0066cc; }
+        .accordion-header h3 { font-size: 1.2rem; color: #333; font-weight: 600; }
+        .accordion-icon { font-size: 1.5rem; color: #0066cc; transition: transform 0.3s; }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #fafafa; }
+        .accordion-item.active .accordion-content { max-height: 5000px; transition: max-height 0.5s ease-in; }
+        .accordion-body { padding: 25px; }
+        .accordion-body h4 { font-size: 1.1rem; color: #0066cc; margin: 20px 0 10px; font-weight: 600; }
+        .accordion-body p { margin-bottom: 15px; line-height: 1.8; }
+        .accordion-body ul { margin: 15px 0 15px 30px; }
+        .accordion-body li { margin-bottom: 8px; }
+
+        /* 申請書ダウンロード・注意ボックス */
+        .document-downloads { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .download-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: #f0f8ff; color: #0066cc; text-decoration: none; border-radius: 4px; border: 2px solid #0066cc; font-weight: 500; transition: all 0.3s; }
+        .download-btn:hover { background: #0066cc; color: white; }
+        .download-btn::before { content: '📄'; font-size: 1.2rem; }
+        .note-box { background: #fff8e1; border-left: 4px solid #ffa000; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .note-box h4 { color: #f57c00; margin-bottom: 10px; }
+
+        /* ===== 申込セクション（A案） ===== */
+        .apply-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px dashed #dde3ea;
+        }
+
+        .apply-section-title {
+            font-size: 1.1rem;
+            color: #0066cc;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0066cc;
+        }
+
+        .apply-person-tabs {
+            display: flex;
+            gap: 0;
+        }
+
+        .apply-tab {
+            padding: 12px 28px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 1;
+            user-select: none;
+        }
+
+        .apply-tab-insured { background: #0066cc; color: white; }
+        .apply-tab-dependent { background: #e8724a; color: white; }
+        .apply-tab:not(.active) { opacity: 0.45; }
+        .apply-tab:not(.active):hover { opacity: 0.7; }
+
+        .apply-tab-content {
+            border: 2px solid #0066cc;
+            border-radius: 0 8px 8px 8px;
+            padding: 25px;
+            background: white;
+        }
+
+        .apply-insured-border { border-color: #0066cc; }
+        .apply-dependent-border { border-color: #e8724a; }
+
+        .apply-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .apply-method-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apply-method-card:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 16px rgba(0,102,204,0.12);
+            transform: translateY(-2px);
+        }
+
+        .apply-method-digital {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+        }
+
+        .apply-recommend-badge {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: #e74c3c;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 32px;
+            transform: rotate(35deg);
+        }
+
+        .apply-method-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .apply-method-title { font-size: 1.05rem; font-weight: 700; color: #333; margin-bottom: 8px; }
+        .apply-method-desc { font-size: 0.85rem; color: #666; margin-bottom: 16px; line-height: 1.6; }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .apply-btn-paper { background: #f5f5f5; color: #333; border: 2px solid #ccc; }
+        .apply-btn-paper:hover { background: #e8e8e8; }
+        .apply-btn-online { background: #0066cc; color: white; border: 2px solid #0066cc; }
+        .apply-btn-online:hover { background: #0052a3; }
+        .apply-btn-orange { background: #e8724a; border-color: #e8724a; }
+        .apply-btn-orange:hover { background: #d4613b; }
+
+        .apply-qr-area { margin-top: 16px; }
+
+        /* メール注意ボックス */
+        .email-notice {
+            background: #fff8e1;
+            border-left: 4px solid #ffa000;
+            border-radius: 4px;
+            padding: 14px 18px;
+            margin-top: 16px;
+            text-align: left;
+        }
+
+        .email-notice h4 {
+            color: #f57c00;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .email-notice p {
+            font-size: 0.82rem;
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .email-notice ul {
+            margin: 8px 0 8px 20px;
+            font-size: 0.82rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .email-notice li { margin-bottom: 4px; }
+
+        .notice-highlight {
+            color: #c62828 !important;
+            font-weight: 600;
+            border-top: 1px dashed #e0c080;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 0.88rem !important;
+        }
+        .apply-qr-img { width: 150px; height: auto; margin: 0 auto; display: block; border-radius: 4px; }
+        .apply-qr-label { font-size: 0.8rem; color: #666; margin-top: 6px; text-align: center; }
+
+        /* Googleフォーム中心レイアウト */
+        .apply-form-main {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+            border-radius: 10px;
+            border: 1px solid #d0e3f5;
+        }
+
+        /* 折りたたみ（エクセル版） */
+        .fallback-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            color: #888;
+            cursor: pointer;
+            border-top: 1px dashed #ddd;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .fallback-toggle:hover { color: #555; }
+
+        .fallback-arrow {
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            color: #aaa;
+        }
+
+        .fallback-arrow.open { transform: rotate(45deg); }
+
+        .fallback-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .fallback-content.open {
+            max-height: 300px;
+            transition: max-height 0.4s ease-in;
+        }
+
+        .fallback-inner {
+            padding: 14px 16px;
+            background: #f9f9f9;
+            border-radius: 0 0 8px 8px;
+            text-align: center;
+        }
+
+        .fallback-inner p {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 12px;
+        }
+
+        /* ===== 2ボタン選択 ===== */
+        .dock-choice-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .dock-choice-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 24px;
+            background: white;
+            border: 2px solid #d0d7de;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .dock-choice-btn:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 16px rgba(0,102,204,0.12);
+            transform: translateY(-2px);
+        }
+
+        .dock-choice-btn.active {
+            border-color: #0066cc;
+            background: #f0f7ff;
+        }
+
+        .dock-choice-icon { font-size: 2rem; flex-shrink: 0; }
+        .dock-choice-title { font-size: 1.05rem; font-weight: 700; color: #333; }
+        .dock-choice-desc { font-size: 0.82rem; color: #888; margin-top: 4px; }
+        .dock-choice-arrow {
+            margin-left: auto;
+            font-size: 1rem;
+            color: #0066cc;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .dock-choice-arrow.open { transform: rotate(180deg); }
+
+        /* パネル */
+        .dock-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .dock-panel.open {
+            max-height: 3000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .dock-panel-inner {
+            padding: 20px 0;
+        }
+
+        /* フッター */
+        footer { background: #2c3e50; color: white; padding: 40px 20px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer-section h3 { color: #fff; margin-bottom: 15px; }
+        .footer-section a { display: block; color: #ddd; text-decoration: none; padding: 5px 0; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .apply-methods { grid-template-columns: 1fr; }
+            .apply-tab { padding: 10px 18px; font-size: 0.85rem; }
+            .dock-choice-buttons { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .main-nav-content { flex-wrap: wrap; justify-content: center; }
+            .category-nav { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-main">
+            <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
+            <button class="search-btn">🔍 検索</button>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <a href="index.html">トップ</a>
+            <a href="index.html">手続き・申請</a>
+            <a href="health/index.html">予防接種・健康づくり関連</a>
+            <a href="benefits/index.html">健康保険制度</a>
+            <a href="contact/index.html">よくある質問</a>
+            <a href="contact/index.html">お問い合わせ</a>
+        </div>
+    </nav>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="index.html">手続き・申請</a><span>›</span>
+        <span>人間ドック等各種健診に関する手続き</span>
+    </div>
+    <div class="category-nav">
+        <a href="procedure-family.html">扶養家族</a>
+        <a href="procedure-certificate.html">資格確認書・限度額</a>
+        <a href="procedure-injury.html">病気・ケガ</a>
+        <a href="procedure-payment.html">立て替え払い</a>
+        <a href="procedure-medical-cost.html">医療費高額</a>
+        <a href="procedure-birth.html">出産</a>
+        <a href="procedure-death.html">死亡</a>
+        <a href="procedure-retirement.html">退職</a>
+        <a href="procedure-checkup.html" class="active">健診</a>
+    </div>
+    <div class="container">
+        <h1 class="page-title">人間ドック等各種健診に関する手続き</h1>
+
+        <!-- ========== 1. 被保険者・被扶養者人間ドック ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>被保険者・被扶養者人間ドック</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>30歳以上の被保険者・被扶養者を対象に、年1回人間ドック受診費用の8割を補助します（上限40,000円）。また、女性の方は婦人科健診も併せてご利用いただけます。</p>
+
+                    <!-- 2つの選択ボタン -->
+                    <div class="dock-choice-buttons">
+                        <div class="dock-choice-btn" onclick="event.stopPropagation(); toggleDockPanel('apply')">
+                            <div class="dock-choice-icon">📋</div>
+                            <div class="dock-choice-text">
+                                <div class="dock-choice-title">人間ドック利用申し込み</div>
+                                <div class="dock-choice-desc">受診前のお申し込みはこちら</div>
+                            </div>
+                            <span class="dock-choice-arrow" id="arrow-apply">▼</span>
+                        </div>
+                        <div class="dock-choice-btn" onclick="event.stopPropagation(); toggleDockPanel('claim')">
+                            <div class="dock-choice-icon">💰</div>
+                            <div class="dock-choice-text">
+                                <div class="dock-choice-title">人間ドック補助金申請</div>
+                                <div class="dock-choice-desc">受診後の補助金申請はこちら</div>
+                            </div>
+                            <span class="dock-choice-arrow" id="arrow-claim">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ========== パネル1: 利用申し込み ========== -->
+                    <div class="dock-panel" id="panel-apply">
+                        <div class="dock-panel-inner">
+                            <div class="apply-section-title">📋 人間ドック利用申し込み</div>
+
+                            <div class="note-box">
+                                <h4>人間ドック補助</h4>
+                                <p><strong>補助率：</strong>受診費用の8割<br>
+                                <strong>補助上限額：</strong>40,000円<br>
+                                <strong>対象者：</strong>30歳以上の被保険者および被扶養者（年度内1回）</p>
+                                <h4>ご利用例</h4>
+                                <ul>
+                                    <li>受診費用が50,000円の場合 → 補助額40,000円（8割）、自己負担10,000円</li>
+                                    <li>受診費用が40,000円の場合 → 補助額32,000円（8割）、自己負担8,000円</li>
+                                </ul>
+                            </div>
+
+                            <div class="note-box" style="border-left-color: #e91e8f;">
+                                <h4 style="color: #c2185b;">👩 婦人科健診補助（女性の方）</h4>
+                                <p>人間ドック受診時にオプションで婦人科項目を受診される場合、別途費用の8割を補助します。</p>
+                                <p><strong>補助率：</strong>受診費用の8割<br>
+                                <strong>補助上限額：</strong>12,000円<br>
+                                <strong>対象者：</strong>人間ドック対象の女性被保険者および女性被扶養者</p>
+                                <h4 style="color: #c2185b;">検査項目（乳房、子宮関係の項目に限る）</h4>
+                                <ul>
+                                    <li>乳がん検診（マンモグラフィーまたは乳房超音波検査）</li>
+                                    <li>子宮頸がん検診</li>
+                                </ul>
+                                <h4 style="color: #c2185b;">ご利用例（人間ドック＋婦人科健診）</h4>
+                                <ul>
+                                    <li>人間ドック50,000円＋婦人科健診15,000円の場合<br>→ 人間ドック補助40,000円＋婦人科補助12,000円＝<strong>合計補助52,000円</strong>、自己負担13,000円</li>
+                                </ul>
+                            </div>
+
+                            <div class="apply-person-tabs">
+                                <div class="apply-tab apply-tab-insured active" onclick="event.stopPropagation(); switchApplyTab('insured')">👤 被保険者</div>
+                                <div class="apply-tab apply-tab-dependent" onclick="event.stopPropagation(); switchApplyTab('dependent')">👨‍👩‍👧 被扶養者</div>
+                            </div>
+
+                            <!-- 被保険者コンテンツ -->
+                            <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
+                                <div class="apply-form-main">
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
+                                    <div class="email-notice">
+                                        <h4>⚠ メールが届かない場合</h4>
+                                        <p>お申し込み後、確認・承認メールが届きます。届かない場合は以下をご確認ください。</p>
+                                        <ul>
+                                            <li><strong>迷惑メールフォルダ</strong>に振り分けられていないかご確認ください</li>
+                                            <li><strong>「@maruhachi.co.jp」からの受信を許可</strong>しているかご確認ください（特にドコモ・au・ソフトバンク等のキャリアメールをご利用の方）</li>
+                                            <li>メールアドレスの<strong>入力間違い</strong>がないかご確認ください</li>
+                                        </ul>
+                                        <p>上記を確認しても届かない場合は、健保組合までお問い合わせください。</p>
+                                        <p class="notice-highlight">※提携病院を受診される方は、受診の際に健保から発行された<strong>承認コードが必要</strong>になります。<strong>窓口で承認メールをお見せください。</strong></p>
+                                    </div>
+                                    <div class="apply-qr-area">
+                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
+                                    </div>
+                                </div>
+                                <div class="fallback-toggle" onclick="event.stopPropagation(); toggleFallback('insured')">
+                                    <span>オンライン申込ができない方はこちら</span>
+                                    <span class="fallback-arrow" id="fallback-arrow-insured">＋</span>
+                                </div>
+                                <div class="fallback-content" id="fallback-insured">
+                                    <div class="fallback-inner">
+                                        <div class="email-notice" style="margin-bottom: 14px;">
+                                            <h4>⚠ お申し込みに関するご注意</h4>
+                                            <p>※こちらで申込しても承認はメールで届きますので、<strong>会社用メールアドレスをお持ちでない方は私用メールアドレスを記入してください。</strong></p>
+                                            <p>※提携病院を受診される方は、受診の際に健保から発行された<strong>承認コードが必要</strong>になります。<strong>窓口で承認メールをお見せください。</strong></p>
+                                        </div>
+                                        <p>インターネット環境がない等の理由でオンライン申込ができない方は、エクセル版の申込書をご利用ください。</p>
+                                        <a href="forms/dock-apply-form.xlsx" class="apply-btn apply-btn-paper" download>📥 エクセル申込書をダウンロード</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 被扶養者コンテンツ -->
+                            <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
+                                <div class="apply-form-main">
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
+                                    <div class="email-notice">
+                                        <h4>⚠ メールが届かない場合</h4>
+                                        <p>お申し込み後、確認・承認メールが届きます。届かない場合は以下をご確認ください。</p>
+                                        <ul>
+                                            <li><strong>迷惑メールフォルダ</strong>に振り分けられていないかご確認ください</li>
+                                            <li><strong>「@maruhachi.co.jp」からの受信を許可</strong>しているかご確認ください（特にドコモ・au・ソフトバンク等のキャリアメールをご利用の方）</li>
+                                            <li>メールアドレスの<strong>入力間違い</strong>がないかご確認ください</li>
+                                        </ul>
+                                        <p>上記を確認しても届かない場合は、健保組合までお問い合わせください。</p>
+                                        <p class="notice-highlight">※提携病院を受診される方は、受診の際に健保から発行された<strong>承認コードが必要</strong>になります。<strong>窓口で承認メールをお見せください。</strong></p>
+                                    </div>
+                                    <div class="apply-qr-area">
+                                        <img src="images/dock-qr.png" alt="人間ドック申請書 QRコード" class="apply-qr-img">
+                                        <div class="apply-qr-label">▲ スマホでスキャン</div>
+                                    </div>
+                                </div>
+                                <div class="fallback-toggle" onclick="event.stopPropagation(); toggleFallback('dependent')">
+                                    <span>オンライン申込ができない方はこちら</span>
+                                    <span class="fallback-arrow" id="fallback-arrow-dependent">＋</span>
+                                </div>
+                                <div class="fallback-content" id="fallback-dependent">
+                                    <div class="fallback-inner">
+                                        <div class="email-notice" style="margin-bottom: 14px;">
+                                            <h4>⚠ お申し込みに関するご注意</h4>
+                                            <p>※こちらで申込しても承認はメールで届きますので、<strong>会社用メールアドレスをお持ちでない方は私用メールアドレスを記入してください。</strong></p>
+                                            <p>※提携病院を受診される方は、受診の際に健保から発行された<strong>承認コードが必要</strong>になります。<strong>窓口で承認メールをお見せください。</strong></p>
+                                        </div>
+                                        <p>インターネット環境がない等の理由でオンライン申込ができない方は、エクセル版の申込書をご利用ください。</p>
+                                        <a href="forms/dock-apply-form.xlsx" class="apply-btn apply-btn-paper" download>📥 エクセル申込書をダウンロード</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========== パネル2: 補助金申請 ========== -->
+                    <div class="dock-panel" id="panel-claim">
+                        <div class="dock-panel-inner">
+                            <div class="apply-section-title">💰 人間ドック補助金申請</div>
+
+                            <p>人間ドック受診後、以下の書類を社会保険窓口へご提出ください。</p>
+
+                            <h4>申請に必要な書類</h4>
+                            <ul>
+                                <li>人間ドック補助金申請書</li>
+                                <li>領収書（原本）</li>
+                                <li>健診結果表のコピー</li>
+                            </ul>
+
+                            <div class="document-downloads">
+                                <a href="forms/dock-claim-form.xlsx" class="download-btn" download>人間ドック等補助金請求書</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 2. レディース健診（被扶養者） ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>レディース健診（被扶養者）</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>被扶養者の女性を対象に、レディース健診を実施します。</p>
+                    <div class="document-downloads">
+                        <a href="#" class="download-btn">レディース健診申込書</a>
+                    </div>
+                    <div class="note-box">
+                        <h4>補助額</h4>
+                        <p>健診費用の一部を補助します。詳細は健保組合までお問い合わせください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 3. 特定健診（被扶養者・短時間労働者） ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>特定健診（被扶養者・短時間労働者）</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>40歳以上の被扶養者および短時間労働者を対象に、生活習慣病の予防・早期発見を目的とした特定健康診査を実施します。</p>
+                    <p>対象の方には、健保組合から<strong>受診券を直接送付</strong>いたしますので、お申し込みの手続きは不要です。届いた受診券をお持ちのうえ、実施医療機関で受診してください。</p>
+
+                    <div class="note-box">
+                        <h4>対象者</h4>
+                        <ul>
+                            <li>40歳以上の被扶養者</li>
+                            <li>短時間労働者（パート・アルバイト等）</li>
+                        </ul>
+                        <h4>費用</h4>
+                        <p>自己負担なし（無料）で受診できます。</p>
+                        <h4>受診の流れ</h4>
+                        <ul>
+                            <li>健保組合から対象者宛に受診券を送付します</li>
+                            <li>届いた受診券と健康保険証（資格確認書）をお持ちのうえ、実施医療機関で受診してください</li>
+                            <li>受診券が届かない場合や紛失された場合は、健保組合までお問い合わせください</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 4. インフルエンザ予防接種 ========== -->
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>インフルエンザ予防接種</h3>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>被保険者・被扶養者全員を対象に、インフルエンザ予防接種費用の一部を補助します。流行シーズンに備え、早めの接種をおすすめします。</p>
+
+                    <div class="note-box">
+                        <h4>補助額</h4>
+                        <p><strong>1人あたり2,000円</strong>（年度内1回限り）</p>
+                        <h4>対象者</h4>
+                        <p>被保険者および被扶養者のすべての方</p>
+                        <h4>補助申請期間</h4>
+                        <p><strong>毎年9月1日～翌年3月31日</strong></p>
+                        <h4>補助金の支払い</h4>
+                        <p>補助金は事業主経由で<strong>給与口座に振り込まれます。</strong></p>
+                    </div>
+
+                    <div class="apply-form-main">
+                        <div class="apply-method-icon">📱</div>
+                        <div class="apply-method-title">Googleフォームで補助金を申請する</div>
+                        <div class="apply-method-desc">接種後、以下のフォームから補助金を申請してください</div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScN0VaSYuFLT9ZZxacDy3A3HFRMLjqnFfe6O_PoK6NG9abUcw/viewform?usp=dialog" target="_blank" class="apply-btn apply-btn-online">申請フォームを開く →</a>
+                        <div class="email-notice">
+                            <h4>⚠ メールが届かない場合</h4>
+                            <p>申請後、確認メールが届きます。届かない場合は以下をご確認ください。</p>
+                            <ul>
+                                <li><strong>迷惑メールフォルダ</strong>に振り分けられていないかご確認ください</li>
+                                <li><strong>「@maruhachi.co.jp」からの受信を許可</strong>しているかご確認ください（特にドコモ・au・ソフトバンク等のキャリアメールをご利用の方）</li>
+                                <li>メールアドレスの<strong>入力間違い</strong>がないかご確認ください</li>
+                            </ul>
+                            <p>上記を確認しても届かない場合は、健保組合までお問い合わせください。</p>
+                        </div>
+                        <div class="apply-qr-area">
+                            <img src="images/flu-qr.png" alt="インフルエンザ申請 QRコード" class="apply-qr-img">
+                            <div class="apply-qr-label">▲ スマホでスキャン</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="about/index.html">アクセス</a>
+                <a href="privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(element) {
+            const accordionItem = element.parentElement;
+            accordionItem.classList.toggle('active');
+        }
+
+        function switchApplyTab(type) {
+            const insuredTab = document.querySelector('.apply-tab-insured');
+            const dependentTab = document.querySelector('.apply-tab-dependent');
+            const insuredContent = document.getElementById('applyTab-insured');
+            const dependentContent = document.getElementById('applyTab-dependent');
+
+            if (type === 'insured') {
+                insuredTab.classList.add('active');
+                dependentTab.classList.remove('active');
+                insuredContent.style.display = 'block';
+                dependentContent.style.display = 'none';
+            } else {
+                dependentTab.classList.add('active');
+                insuredTab.classList.remove('active');
+                dependentContent.style.display = 'block';
+                insuredContent.style.display = 'none';
+            }
+        }
+
+        function toggleDockPanel(type) {
+            const panel = document.getElementById('panel-' + type);
+            const arrow = document.getElementById('arrow-' + type);
+            const btn = arrow.closest('.dock-choice-btn');
+            const isOpen = panel.classList.contains('open');
+
+            // 全パネルを閉じる
+            document.querySelectorAll('.dock-panel').forEach(p => p.classList.remove('open'));
+            document.querySelectorAll('.dock-choice-arrow').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.dock-choice-btn').forEach(b => b.classList.remove('active'));
+
+            // クリックしたパネルが閉じていたら開く
+            if (!isOpen) {
+                panel.classList.add('open');
+                arrow.classList.add('open');
+                btn.classList.add('active');
+            }
+        }
+
+        function toggleFallback(type) {
+            const content = document.getElementById('fallback-' + type);
+            const arrow = document.getElementById('fallback-arrow-' + type);
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
