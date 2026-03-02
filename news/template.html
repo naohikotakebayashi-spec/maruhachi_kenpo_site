@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【ここにタイトル】 - 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        /* 記事スタイル */
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 2px 12px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        .cat-health { background: #e3f2fd; color: #1565c0; }
+        .cat-benefit { background: #e8f5e9; color: #2e7d32; }
+        .cat-info { background: #fff3e0; color: #e65100; }
+        .cat-important { background: #fce4ec; color: #c62828; }
+
+        .article-title {
+            font-size: 1.6rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .article-body {
+            font-size: 1rem;
+            line-height: 2;
+        }
+
+        .article-body p {
+            margin-bottom: 16px;
+        }
+
+        .article-body h3 {
+            font-size: 1.15rem;
+            color: #0066cc;
+            margin: 25px 0 10px;
+            font-weight: 600;
+        }
+
+        .article-body ul {
+            margin: 10px 0 16px 30px;
+        }
+
+        .article-body li {
+            margin-bottom: 6px;
+        }
+
+        .article-body a {
+            color: #0066cc;
+        }
+
+        /* 戻るボタン */
+        .back-link {
+            display: inline-block;
+            padding: 10px 24px;
+            background: #f0f8ff;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #0066cc;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: #0066cc;
+            color: white;
+        }
+
+        footer { background: #333; color: #ccc; padding: 40px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .footer-section h3 { color: white; font-size: 1rem; margin-bottom: 10px; }
+        .footer-section a { color: #ccc; text-decoration: none; display: block; margin-bottom: 5px; font-size: 0.85rem; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { max-width: 1200px; margin: 20px auto 0; padding-top: 20px; border-top: 1px solid #555; text-align: center; font-size: 0.8rem; color: #999; }
+
+        @media (max-width: 768px) {
+            .article-card { padding: 24px 18px; }
+            .article-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-top-inner">丸八真綿健康保険組合</div>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none;"><h1>丸八真綿健康保険組合</h1></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="main-nav-content">
+                <a href="../index.html">トップページ</a>
+                <a href="../about/index.html">当健保組合について</a>
+                <a href="../benefits/index.html">保険給付一覧</a>
+                <a href="../procedure-checkup.html">各種健診手続き</a>
+                <a href="../links.html">リンク集</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="../index.html">トップページ</a>
+        <span>＞</span>
+        <a href="../index.html">お知らせ</a>
+        <span>＞</span>
+        <!-- ★タイトルを変更★ -->
+        ここにタイトル
+    </div>
+
+    <div class="container">
+        <div class="article-card">
+            <div class="article-meta">
+                <!-- ★日付を変更★ -->
+                <span class="article-date">2026.XX.XX</span>
+                <!-- ★カテゴリを変更（cat-health/cat-benefit/cat-info/cat-important）★ -->
+                <span class="article-category cat-info">お知らせ</span>
+            </div>
+
+            <!-- ★タイトルを変更★ -->
+            <h2 class="article-title">ここにタイトル</h2>
+
+            <div class="article-body">
+                <!-- ★ここに本文を記載★ -->
+
+                <p>ここに本文を記載してください。</p>
+
+                <p>段落を分けるときは &lt;p&gt; タグで囲みます。</p>
+
+                <h3>見出しが必要な場合</h3>
+
+                <p>このように h3 タグで見出しを付けられます。</p>
+
+                <ul>
+                    <li>箇条書きも使えます</li>
+                    <li>このように ul / li タグで記載します</li>
+                </ul>
+
+                <p>リンクを貼りたい場合：<a href="../procedure-checkup.html">各種健診手続きページはこちら</a></p>
+
+                <!-- ★本文ここまで★ -->
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">← トップページに戻る</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>当健保組合について</h3>
+                <a href="../about/index.html">アクセス</a>
+                <a href="../privacy.html">個人情報保護について</a>
+            </div>
+            <div class="footer-section">
+                <h3>当健保組合からのご案内</h3>
+                <a href="../benefits/index.html">保険給付一覧</a>
+            </div>
+            <div class="footer-section">
+                <h3>お役立ち情報</h3>
+                <a href="../links.html">リンク集</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 丸八真綿健康保険組合</p>
+        </div>
+    </footer>
+</body>
+</html>
