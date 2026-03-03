@@ -3,653 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>丸八真綿健康保険組合</title>
+    <title>お問い合わせ | 丸八真綿健康保険組合</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .logo a { text-decoration: none; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; text-align: center; white-space: nowrap; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .main-nav a.active { background: #f0f8ff; color: #0066cc; border-bottom: 3px solid #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+
+        /* お問い合わせ方法カード */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
-        body {
-            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f5f5f5;
-        }
-
-        header {
+        .contact-card {
             background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-top: 4px solid #0066cc;
         }
 
-        .header-top {
-            background: #0066cc;
-            padding: 10px 0;
+        .contact-card.green { border-top-color: #2e7d32; }
+        .contact-card.orange { border-top-color: #e65100; }
+
+        .contact-icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
         }
 
-        .header-top-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: right;
-            color: white;
-            font-size: 0.85rem;
-        }
-
-        .header-main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            color: #0066cc;
+        .contact-card .contact-detail {
+            font-size: 1.3rem;
             font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 10px;
         }
 
-        .search-btn {
-            padding: 8px 20px;
+        .contact-card.green .contact-detail { color: #2e7d32; }
+        .contact-card.orange .contact-detail { color: #e65100; }
+
+        .contact-card p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .contact-hours {
+            background: #f8fbff;
+            border-radius: 6px;
+            padding: 8px 15px;
+            margin-top: 12px;
+            font-size: 0.82rem;
+            color: #555;
+            display: inline-block;
+        }
+
+        /* 郵送先 */
+        .mail-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .mail-section h3 {
+            font-size: 1.2rem;
+            color: #0066cc;
+            margin-bottom: 15px;
+            padding-left: 12px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .address-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px 25px;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+
+        /* お問い合わせフォーム */
+        .form-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .form-section h3 {
+            font-size: 1.3rem;
+            color: #0066cc;
+            margin-bottom: 8px;
+            padding-left: 12px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .form-section .form-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .form-group label .required {
+            display: inline-block;
+            background: #c62828;
+            color: white;
+            font-size: 0.7rem;
+            padding: 1px 8px;
+            border-radius: 3px;
+            margin-left: 6px;
+            font-weight: normal;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-note {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .submit-area {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 14px 60px;
             background: #0066cc;
             color: white;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .main-nav {
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 3px solid #0066cc;
-        }
-
-        .main-nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .main-nav a {
-            padding: 18px 15px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 500;
-            transition: all 0.3s;
-            text-align: center;
-            white-space: nowrap;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .main-nav a:hover {
-            background: #f0f8ff;
-            color: #0066cc;
+        .submit-btn:hover {
+            background: #0052a3;
         }
 
-        .sub-nav {
-            background: #f8f8f8;
-            border-bottom: 1px solid #ddd;
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
 
-        .sub-nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 10px;
-            gap: 10px;
-        }
-
-        .sub-nav a {
-            padding: 8px 15px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-        }
-
-        .sub-nav a:hover {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
-        }
-
-        .important-notice {
-            background: #fff8f0;
-            border: 3px solid #ff6b00;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-
-        .important-notice-title {
-            color: #ff6b00;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .important-notice-content {
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .important-notice-content a {
-            color: #0066cc;
-            text-decoration: underline;
-        }
-
-        .procedures-section {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: #0066cc;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #0066cc;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title::before {
-            content: '📋';
-            font-size: 2rem;
-        }
-
-        .procedures-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .procedure-card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .procedure-card:hover {
-            border-color: #0066cc;
-            box-shadow: 0 4px 15px rgba(0,102,204,0.2);
-            transform: translateY(-5px);
-        }
-
-        .procedure-icon {
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .procedure-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #0066cc;
-            margin-bottom: 8px;
-        }
-
-        .procedure-desc {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .news-section {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-        }
-
-        .news-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .news-item:last-of-type {
-            border-bottom: none;
-        }
-
-        .news-item:hover {
-            background: #f8fbff;
-            margin: 0 -10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 4px;
-        }
-
-        .news-date {
+        .privacy-note {
+            font-size: 0.82rem;
             color: #888;
-            font-size: 0.88rem;
-            white-space: nowrap;
-            flex-shrink: 0;
-            padding-top: 2px;
-        }
-
-        .news-category {
-            flex-shrink: 0;
-            display: inline-block;
-            padding: 2px 10px;
-            font-size: 0.73rem;
-            font-weight: 600;
-            border-radius: 3px;
-            min-width: 65px;
             text-align: center;
+            margin-top: 12px;
         }
 
-        .cat-health { background: #e3f2fd; color: #1565c0; }
-        .cat-benefit { background: #e8f5e9; color: #2e7d32; }
-        .cat-info { background: #fff3e0; color: #e65100; }
-        .cat-important { background: #fce4ec; color: #c62828; }
-
-        .news-link {
-            color: #333;
-            text-decoration: none;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .news-link:hover {
+        .privacy-note a {
             color: #0066cc;
-            text-decoration: underline;
         }
 
-        .news-badge {
-            display: inline-block;
-            background: #ff6b00;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            margin-left: 5px;
-        }
-
-        .news-new {
-            display: inline-block;
-            background: #ff1744;
-            color: white;
-            font-size: 0.65rem;
-            font-weight: bold;
-            padding: 1px 6px;
-            border-radius: 3px;
-            margin-left: 6px;
-            vertical-align: middle;
-            animation: blink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .news-more {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .news-more a {
-            display: inline-block;
-            padding: 10px 40px;
-            background: #0066cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
-        .sidebar-banner {
-            background: white;
+        /* 送信完了メッセージ */
+        .success-message {
+            display: none;
+            background: #e8f5e9;
+            border: 1px solid #66bb6a;
             border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 30px;
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .sidebar-banner a {
-            display: block;
-            text-decoration: none;
-        }
+        .success-message .success-icon { font-size: 3rem; margin-bottom: 10px; }
+        .success-message h3 { color: #2e7d32; margin-bottom: 10px; }
+        .success-message p { color: #555; font-size: 0.95rem; }
 
-        .quick-links {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .quick-links-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #0066cc;
-            margin-bottom: 15px;
-        }
-
-        .quick-links a {
-            display: block;
-            padding: 10px;
-            margin-bottom: 8px;
-            background: #f8f8f8;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .quick-links a:hover {
-            background: #0066cc;
-            color: white;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 20px 20px;
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .footer-section a {
-            display: block;
-            color: #ddd;
-            text-decoration: none;
-            padding: 5px 0;
-            font-size: 0.9rem;
-        }
-
-        .footer-section a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
-            color: #999;
-            font-size: 0.85rem;
-        }
+        /* フッター */
+        footer { background: #333; color: #ccc; padding: 40px 20px; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #999; font-size: 0.85rem; }
 
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .procedures-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .main-nav-content {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .main-nav-content { flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-top">
-            <div class="header-top-inner">
-                日本語 | English
-            </div>
+            <div class="header-top-inner">丸八真綿健康保険組合</div>
         </div>
         <div class="header-main">
             <div class="logo">
-                <h1>丸八真綿健康保険組合</h1>
+                <a href="../index.html"><h1>丸八真綿健康保険組合</h1></a>
             </div>
-            <button class="search-btn">🔍 検索</button>
         </div>
+        <nav class="main-nav">
+            <div class="main-nav-content">
+                <a href="../index.html">トップ</a>
+                <a href="../health/index.html">予防接種・健康づくり関連</a>
+                <a href="../benefits/index.html">健康保険制度</a>
+                <a href="index.html">よくある質問</a>
+                <a href="index.html" class="active">お問い合わせ</a>
+            </div>
+        </nav>
     </header>
 
-    <nav class="main-nav">
-        <div class="main-nav-content">
-            <a href="index.html">トップ</a>
-            <a href="health/index.html">予防接種・健康づくり関連</a>
-            <a href="benefits/index.html">健康保険制度</a>
-            <a href="contact/index.html">よくある質問</a>
-            <a href="contact/index.html">お問い合わせ</a>
-        </div>
-    </nav>
-
-    <nav class="sub-nav">
-        <div class="sub-nav-content">
-            <a href="forms/index.html">各種届出用紙一覧</a>
-            <a href="#">KOSMO Web（電子手続き）</a>
-            <a href="benefits/index.html">保険給付一覧</a>
-            <a href="about/index.html">健康保険証・マイナ保険証</a>
-            <a href="health/index.html">こころとからだの健康相談</a>
-            <a href="health/index.html">無料歯科健診</a>
-        </div>
-    </nav>
+    <div class="breadcrumb">
+        <a href="../index.html">トップページ</a>
+        <span>＞</span>
+        お問い合わせ
+    </div>
 
     <div class="container">
-        <main>
-            <div class="important-notice">
-                <div class="important-notice-title">重要なお知らせ</div>
-                <div class="important-notice-content">
-                    ①「令和7年(2025年)12月2日(火)から、従来の健康保険証は利用できません。マイナ保険証での受診が原則です。詳しくは<a href="#">こちら</a><br><br>
-                    ②インフルエンザ予防接種補助申請の受付を開始しました。詳しくは<a href="health/index.html">こちら</a>
-                </div>
+        <h2 class="page-title">お問い合わせ</h2>
+
+        <!-- お問い合わせ方法カード -->
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>お電話</h3>
+                <div class="contact-detail">045-473-0908</div>
+                <p>お急ぎの方はお電話をご利用ください。</p>
+                <div class="contact-hours">平日 9:00～16:30</div>
+            </div>
+            <div class="contact-card green">
+                <div class="contact-icon">📠</div>
+                <h3>FAX</h3>
+                <div class="contact-detail">045-473-2708</div>
+                <p>書類の送付等はFAXもご利用いただけます。</p>
+                <div class="contact-hours">24時間受付</div>
+            </div>
+            <div class="contact-card orange">
+                <div class="contact-icon">✉️</div>
+                <h3>Eメール</h3>
+                <div class="contact-detail">kenpo@maruhachi.co.jp</div>
+                <p>メールでのお問い合わせも受け付けております。</p>
+                <div class="contact-hours">24時間受付（返信は営業時間内）</div>
+            </div>
+        </div>
+
+        <!-- 郵送先 -->
+        <div class="mail-section">
+            <h3>郵送でのお問い合わせ・届出書類の送付先</h3>
+            <div class="address-box">
+                〒222-0033<br>
+                神奈川県横浜市港北区新横浜3丁目8番地12<br>
+                <strong>丸八真綿健康保険組合</strong><br>
+                <span style="font-size: 0.85rem; color: #888;">※届出書類を郵送される場合は、送付状を添えてお送りください。</span>
+            </div>
+        </div>
+
+        <!-- お問い合わせフォーム -->
+        <div class="form-section">
+            <h3>お問い合わせフォーム</h3>
+            <p class="form-desc">下記のフォームに必要事項をご入力のうえ、「送信する」ボタンを押してください。内容を確認のうえ、折り返しご連絡いたします。</p>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✅</div>
+                <h3>お問い合わせを送信しました</h3>
+                <p>内容を確認のうえ、折り返しご連絡いたします。<br>通常2～3営業日以内に返信いたします。</p>
             </div>
 
-            <div class="procedures-section">
-                <h2 class="section-title">手続き・申請</h2>
-                <div class="procedures-grid">
-                    <a href="procedure-family.html" class="procedure-card">
-                        <div class="procedure-icon">👨‍👩‍👧‍👦</div>
-                        <div class="procedure-title">扶養家族に関する手続き</div>
-                        <div class="procedure-desc">扶養申請（結婚・出生・離職等）／扶養削除（就職・収入超過・離婚等）</div>
-                    </a>
-                    <a href="procedure-certificate.html" class="procedure-card">
-                        <div class="procedure-icon">🪪</div>
-                        <div class="procedure-title">資格確認書・限度額適用認定証</div>
-                        <div class="procedure-desc">紛失・氏名変更等による再発行／限度額適用認定証の発行等</div>
-                    </a>
-                    <a href="procedure-injury.html" class="procedure-card">
-                        <div class="procedure-icon">🏥</div>
-                        <div class="procedure-title">病気やケガをしたとき</div>
-                        <div class="procedure-desc">傷病手当金／事故（自損・第三者）／人工透析等の特定疾病</div>
-                    </a>
-                    <a href="procedure-payment.html" class="procedure-card">
-                        <div class="procedure-icon">💳</div>
-                        <div class="procedure-title">立て替え払いをしたとき</div>
-                        <div class="procedure-desc">小児弱視眼鏡／治療用装具／はり・きゅう・マッサージ／保険証未受領</div>
-                    </a>
-                    <a href="procedure-medical-cost.html" class="procedure-card">
-                        <div class="procedure-icon">💰</div>
-                        <div class="procedure-title">医療費が高額になるとき</div>
-                        <div class="procedure-desc">限度額適用認定証の発行／医療費助成制度の利用／医療費控除の申請</div>
-                    </a>
-                    <a href="procedure-birth.html" class="procedure-card">
-                        <div class="procedure-icon">👶</div>
-                        <div class="procedure-title">出産したとき</div>
-                        <div class="procedure-desc">出産育児一時金／出産手当金（被保険者出産のための休業）／出生児の扶養</div>
-                    </a>
-                    <a href="procedure-death.html" class="procedure-card">
-                        <div class="procedure-icon">💐</div>
-                        <div class="procedure-title">亡くなったとき</div>
-                        <div class="procedure-desc">被保険者の死亡／被扶養者の死亡</div>
-                    </a>
-                    <a href="procedure-retirement.html" class="procedure-card">
-                        <div class="procedure-icon">🏢</div>
-                        <div class="procedure-title">退職後の健康保険</div>
-                        <div class="procedure-desc">任意継続被保険者の資格取得・喪失／加入中の住所、銀行口座の変更等</div>
-                    </a>
-                    <a href="procedure-checkup.html" class="procedure-card">
-                        <div class="procedure-icon">🩺</div>
-                        <div class="procedure-title">人間ドック等各種健診</div>
-                        <div class="procedure-desc">被保険者人間ドック・がん健診/被扶養者人間ドック・節目健診・特定健診</div>
-                    </a>
-                </div>
-            </div>
+            <form id="contactForm" action="https://formsubmit.co/kenpo@maruhachi.co.jp" method="POST">
+                <!-- FormSubmit設定 -->
+                <input type="hidden" name="_subject" value="【健保HP】お問い合わせがありました">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://naohikotakebayashi-spec.github.io/maruhachi_kenpo_site/contact/thanks.html">
+                <input type="text" name="_honey" style="display:none">
 
-            <div class="news-section">
-                <h2 class="section-title">お知らせ</h2>
-
-                <!-- ============================================================
-                     ★ 新しいお知らせはここに追加（この行の下にコピペ）★
-                     
-                     【コピペ用テンプレート】
-                     <div class="news-item">
-                         <span class="news-date">2026.XX.XX</span>
-                         <span class="news-category cat-info">お知らせ</span>
-                         <a href="news/YYYYMMDD-xxxxx.html" class="news-link">タイトル<span class="news-new">NEW</span></a>
-                     </div>
-                     
-                     カテゴリ: cat-health(健診), cat-benefit(給付), cat-info(お知らせ), cat-important(重要)
-                     NEW不要なら <span class="news-new">NEW</span> を削除
-                     ============================================================ -->
-
-                <div class="news-item">
-                    <span class="news-date">2026.03.15</span>
-                    <span class="news-category cat-info">お知らせ</span>
-                    <a href="news/20260315-renewal.html" class="news-link">ホームページをリニューアルしました<span class="news-new">NEW</span></a>
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2026.03.01</span>
-                    <span class="news-category cat-health">健診</span>
-                    <a href="#" class="news-link">健康ポータルサイト「kencom（ケンコム）」をご活用ください</a>
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2025.11.26</span>
-                    <span class="news-category cat-health">健診</span>
-                    <a href="#" class="news-link">【健保よりお知らせ】無料歯科健診　選べる歯科医院が増えました！</a>
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2025.10.24</span>
-                    <span class="news-category cat-benefit">給付</span>
-                    <a href="#" class="news-link">令和8年度　任意継続被保険者の標準報酬月額の上限額改定について</a>
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2025.10.15</span>
-                    <span class="news-category cat-important">重要</span>
-                    <a href="#" class="news-link">【参加者募集】「抱え込まない介護」オンラインセミナー開催！</a>
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2025.10.01</span>
-                    <span class="news-category cat-important">重要</span>
-                    <a href="#" class="news-link">19歳以上23歳未満の被扶養者の収入基準一部変更について</a>
-                </div>
-            </div>
-        </main>
-
-        <aside>
-            <div class="quick-links">
-                <div class="quick-links-title">クイックリンク</div>
-                <a href="#" style="color: #999; cursor: default;">準備中</a>
-                <a href="#" style="color: #999; cursor: default;">準備中</a>
-                <a href="#" style="color: #999; cursor: default;">準備中</a>
-                <a href="#" style="color: #999; cursor: default;">準備中</a>
-            </div>
-
-            <div class="sidebar-banner">
-                <a href="https://kencom.jp/login" target="_blank">
-                    <div style="background: #e3f2fd; padding: 20px; border-radius: 4px;">
-                        <div style="font-size: 1.2rem; color: #0066cc; font-weight: 600;">kencom（ケンコム）</div>
-                        <div style="font-size: 0.82rem; color: #666; margin-top: 10px; line-height: 1.6;">健診結果の確認や歩数記録、健康情報の配信など、楽しみながら健康づくりに取り組めるポータルサイトです。</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>お名前 <span class="required">必須</span></label>
+                        <input type="text" name="お名前" required placeholder="例：山田 太郎">
                     </div>
-                </a>
-            </div>
-
-            <div class="sidebar-banner">
-                <a href="health/index.html">
-                    <div style="background: #fff3e0; padding: 20px; border-radius: 4px;">
-                        <div style="font-size: 1.2rem; color: #ff6b00; font-weight: 600;">無料歯科健診</div>
-                        <div style="font-size: 0.9rem; color: #666; margin-top: 10px;">年1回無料で受診できます</div>
+                    <div class="form-group">
+                        <label>社員番号</label>
+                        <input type="text" name="社員番号" placeholder="例：12345（ご不明な場合は空欄で結構です）">
                     </div>
-                </a>
-            </div>
+                </div>
 
-            <div class="sidebar-banner">
-                <a href="#">
-                    <div style="background: #f3e5f5; padding: 20px; border-radius: 4px;">
-                        <div style="font-size: 1.2rem; color: #9c27b0; font-weight: 600;">健保広報誌</div>
-                        <div style="font-size: 0.9rem; color: #666; margin-top: 10px;">最新号はこちら</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>メールアドレス <span class="required">必須</span></label>
+                        <input type="email" name="メールアドレス" required placeholder="例：taro@example.com">
+                        <div class="form-note">返信先となりますので、正確にご入力ください。</div>
                     </div>
-                </a>
-            </div>
-        </aside>
+                    <div class="form-group">
+                        <label>電話番号</label>
+                        <input type="tel" name="電話番号" placeholder="例：090-1234-5678">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>お問い合わせ種別 <span class="required">必須</span></label>
+                    <select name="お問い合わせ種別" required>
+                        <option value="">選択してください</option>
+                        <option value="資格関連">資格関連（加入・喪失・扶養認定等）</option>
+                        <option value="保険給付">保険給付（傷病手当金・高額療養費等）</option>
+                        <option value="健診関連">健診関連（人間ドック・特定健診等）</option>
+                        <option value="予防接種">予防接種（インフルエンザ補助等）</option>
+                        <option value="保険証関連">保険証・資格確認書関連</option>
+                        <option value="kencom">kencom（ケンコム）について</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>お問い合わせ内容 <span class="required">必須</span></label>
+                    <textarea name="お問い合わせ内容" required placeholder="お問い合わせ内容を具体的にご記入ください。"></textarea>
+                </div>
+
+                <div class="submit-area">
+                    <button type="submit" class="submit-btn">送信する</button>
+                </div>
+                <p class="privacy-note">
+                    ご入力いただいた個人情報は、お問い合わせへの回答にのみ使用いたします。<br>
+                    詳しくは<a href="../privacy.html">個人情報保護について</a>をご覧ください。
+                </p>
+            </form>
+        </div>
     </div>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>当健保組合について</h3>
-                <a href="about/index.html">アクセス</a>
-                <a href="privacy.html">個人情報保護について</a>
-                <a href="#">第3期データヘルス計画書</a>
+            <div class="footer-bottom">
+                <p>〒222-0033 神奈川県横浜市港北区新横浜3丁目8番地12</p>
+                <p>TEL: 045-473-0908　FAX: 045-473-2708　E-mail: kenpo@maruhachi.co.jp</p>
+                <p>受付時間: 平日 9:00～16:30（土日祝日、お盆期間、年末年始を除く）</p>
+                <p style="margin-top: 15px;">©丸八真綿健康保険組合 All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h3>当健保組合からのご案内</h3>
-                <a href="about/index.html">当組合の保険料</a>
-                <a href="benefits/index.html">保険給付一覧</a>
-                <a href="kenin_notice.html">家族調査とは</a>
-            </div>
-            <div class="footer-section">
-                <h3>お役立ち情報</h3>
-                <a href="#">ジェネリック医薬品の知識</a>
-                <a href="#">臓器提供に関する意思表示</a>
-                <a href="links.html">リンク集</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>〒222-0033 神奈川県横浜市港北区新横浜3丁目8番地12</p>
-            <p>TEL: 045-473-0908　FAX: 045-473-2708　E-mail: kenpo@maruhachi.co.jp</p>
-            <p>受付時間: 平日 9:00～16:30（土日祝日、お盆期間、年末年始を除く）</p>
-            <p style="margin-top: 15px;">©丸八真綿健康保険組合 All rights reserved.</p>
         </div>
     </footer>
 </body>
