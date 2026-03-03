@@ -239,19 +239,51 @@
             padding: 15px 0;
             border-bottom: 1px solid #eee;
             display: flex;
-            gap: 15px;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .news-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .news-item:hover {
+            background: #f8fbff;
+            margin: 0 -10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 4px;
         }
 
         .news-date {
-            color: #999;
-            font-size: 0.9rem;
+            color: #888;
+            font-size: 0.88rem;
             white-space: nowrap;
+            flex-shrink: 0;
+            padding-top: 2px;
         }
+
+        .news-category {
+            flex-shrink: 0;
+            display: inline-block;
+            padding: 2px 10px;
+            font-size: 0.73rem;
+            font-weight: 600;
+            border-radius: 3px;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .cat-health { background: #e3f2fd; color: #1565c0; }
+        .cat-benefit { background: #e8f5e9; color: #2e7d32; }
+        .cat-info { background: #fff3e0; color: #e65100; }
+        .cat-important { background: #fce4ec; color: #c62828; }
 
         .news-link {
             color: #333;
             text-decoration: none;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .news-link:hover {
@@ -267,6 +299,24 @@
             border-radius: 3px;
             font-size: 0.75rem;
             margin-left: 5px;
+        }
+
+        .news-new {
+            display: inline-block;
+            background: #ff1744;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-left: 6px;
+            vertical-align: middle;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .news-more {
@@ -488,28 +538,50 @@
 
             <div class="news-section">
                 <h2 class="section-title">お知らせ</h2>
+
+                <!-- ============================================================
+                     ★ 新しいお知らせはここに追加（この行の下にコピペ）★
+                     
+                     【コピペ用テンプレート】
+                     <div class="news-item">
+                         <span class="news-date">2026.XX.XX</span>
+                         <span class="news-category cat-info">お知らせ</span>
+                         <a href="news/YYYYMMDD-xxxxx.html" class="news-link">タイトル<span class="news-new">NEW</span></a>
+                     </div>
+                     
+                     カテゴリ: cat-health(健診), cat-benefit(給付), cat-info(お知らせ), cat-important(重要)
+                     NEW不要なら <span class="news-new">NEW</span> を削除
+                     ============================================================ -->
+
                 <div class="news-item">
-                    <span class="news-date">2025年12月22日</span>
+                    <span class="news-date">2026.03.15</span>
+                    <span class="news-category cat-info">お知らせ</span>
+                    <a href="news/20260315-renewal.html" class="news-link">ホームページをリニューアルしました<span class="news-new">NEW</span></a>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2025.12.22</span>
+                    <span class="news-category cat-info">お知らせ</span>
                     <a href="#" class="news-link">年末年始　休業のお知らせ</a>
                 </div>
                 <div class="news-item">
-                    <span class="news-date">2025年11月26日</span>
+                    <span class="news-date">2025.11.26</span>
+                    <span class="news-category cat-health">健診</span>
                     <a href="#" class="news-link">【健保よりお知らせ】無料歯科健診　選べる歯科医院が増えました！</a>
                 </div>
                 <div class="news-item">
-                    <span class="news-date">2025年10月24日</span>
+                    <span class="news-date">2025.10.24</span>
+                    <span class="news-category cat-benefit">給付</span>
                     <a href="#" class="news-link">令和8年度　任意継続被保険者の標準報酬月額の上限額改定について</a>
                 </div>
                 <div class="news-item">
-                    <span class="news-date">2025年10月15日</span>
-                    <a href="#" class="news-link">【参加者募集】「抱え込まない介護」オンラインセミナー開催！<span class="news-badge">重要</span></a>
+                    <span class="news-date">2025.10.15</span>
+                    <span class="news-category cat-important">重要</span>
+                    <a href="#" class="news-link">【参加者募集】「抱え込まない介護」オンラインセミナー開催！</a>
                 </div>
                 <div class="news-item">
-                    <span class="news-date">2025年10月1日</span>
+                    <span class="news-date">2025.10.01</span>
+                    <span class="news-category cat-important">重要</span>
                     <a href="#" class="news-link">19歳以上23歳未満の被扶養者の収入基準一部変更について</a>
-                </div>
-                <div class="news-more">
-                    <a href="#">もっと見る</a>
                 </div>
             </div>
         </main>
