@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人情報保護について | 丸八真綿健康保険組合</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-top { background: #0066cc; padding: 10px 0; }
+        .header-top-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; color: white; font-size: 0.85rem; }
+        .header-main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .logo h1 { font-size: 1.8rem; color: #0066cc; font-weight: 600; }
+        .logo a { text-decoration: none; }
+        .main-nav { background: white; border-top: 1px solid #e0e0e0; border-bottom: 3px solid #0066cc; }
+        .main-nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; }
+        .main-nav a { padding: 18px 15px; text-decoration: none; color: #333; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; white-space: nowrap; }
+        .main-nav a:hover { background: #f0f8ff; color: #0066cc; }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 15px 20px; font-size: 0.85rem; }
+        .breadcrumb a { color: #0066cc; text-decoration: none; }
+        .breadcrumb span { margin: 0 5px; color: #999; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .page-title { font-size: 2rem; color: #0066cc; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 3px solid #0066cc; }
+
+        /* ページ内ナビ */
+        .page-nav { background: white; border-radius: 8px; padding: 15px 20px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; font-size: 0.9rem; }
+        .page-nav a { color: #0066cc; text-decoration: none; padding: 4px 10px; border-right: 1px solid #ddd; }
+        .page-nav a:last-child { border-right: none; }
+        .page-nav a:hover { text-decoration: underline; }
+
+        .content-wrapper { background: white; border-radius: 8px; padding: 35px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .section { margin-bottom: 30px; }
+        .section h2 { font-size: 1.3rem; color: #0066cc; margin-bottom: 15px; padding-left: 15px; border-left: 5px solid #0066cc; }
+        .section h3 { font-size: 1.05rem; color: #333; margin: 18px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e0e0e0; }
+        .section p { margin-bottom: 10px; line-height: 1.9; font-size: 0.93rem; }
+        .section ul, .section ol { margin: 10px 0 15px 25px; font-size: 0.93rem; }
+        .section li { margin-bottom: 6px; line-height: 1.7; }
+
+        .policy-item { padding: 12px 0; }
+        .policy-num { display: inline-block; background: #0066cc; color: white; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 0.82rem; font-weight: 600; margin-right: 8px; flex-shrink: 0; }
+
+        .purpose-category { background: #f8fbff; border: 1px solid #d0e4f5; border-radius: 6px; padding: 18px; margin-bottom: 12px; }
+        .purpose-category h4 { font-size: 0.95rem; color: #0066cc; margin-bottom: 8px; }
+        .purpose-category ul { margin-left: 20px; }
+        .purpose-category li { font-size: 0.88rem; margin-bottom: 4px; }
+        .mark-internal { color: #0066cc; font-weight: 600; margin-right: 3px; }
+        .mark-external { color: #e65100; font-weight: 600; margin-right: 3px; }
+
+        .legend-box { background: #f5f5f5; padding: 10px 15px; border-radius: 4px; font-size: 0.82rem; margin: 15px 0; }
+
+        .info-box { background: #e3f2fd; border-left: 4px solid #0066cc; padding: 18px; margin: 18px 0; border-radius: 4px; font-size: 0.93rem; }
+
+        .top-link { text-align: right; margin-top: 8px; }
+        .top-link a { font-size: 0.82rem; color: #0066cc; text-decoration: none; }
+        .top-link a:hover { text-decoration: underline; }
+
+        .back-link { display: inline-block; margin-top: 10px; color: #0066cc; text-decoration: none; font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
+        footer { background: #333; color: #ccc; padding: 40px 20px; margin-top: 40px; }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; text-align: center; color: #999; font-size: 0.85rem; }
+        @media (max-width: 768px) {
+            .main-nav-content { flex-direction: column; }
+            .content-wrapper { padding: 20px; }
+            .page-nav a { display: inline-block; margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-top-inner">丸八真綿健康保険組合</div>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <a href="index.html"><h1>丸八真綿健康保険組合</h1></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="main-nav-content">
+                <a href="index.html">トップ</a>
+                <a href="health/index.html">予防接種・健康づくり関連</a>
+                <a href="benefits/index.html">健康保険制度</a>
+                <a href="contact/index.html">お問い合わせ</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">トップページ</a>
+        <span>＞</span>
+        個人情報保護について
+    </div>
+
+    <div class="container">
+        <h2 class="page-title">個人情報保護について</h2>
+
+        <div class="page-nav">
+            <a href="#policy">個人情報保護ポリシー</a>
+            <a href="#purpose">個人情報の利用目的</a>
+            <a href="#third-party">第三者への提供</a>
+            <a href="#joint-use">共同利用</a>
+            <a href="#disclosure">診療報酬明細書等の開示</a>
+        </div>
+
+        <!-- 個人情報保護ポリシー -->
+        <div id="policy" class="content-wrapper">
+            <div class="section">
+                <h2>🔒 個人情報保護ポリシー</h2>
+                <p>丸八真綿健康保険組合は、加入者個人に関する情報（以下「個人情報」といいます。）を適切に保護する観点から、以下の取り組みを推進します。</p>
+
+                <div class="policy-item">
+                    <p><span class="policy-num">1</span>当健康保険組合は、取得した加入者の個人情報について、適切な安全措置を講じることにより、加入者の個人情報の漏えい、紛失、き損又は加入者の個人情報への不正なアクセスを防止することに努めます。</p>
+                </div>
+                <div class="policy-item">
+                    <p><span class="policy-num">2</span>当健康保険組合は、加入者からご提供いただいた個人情報を、加入者の健康の保持・増進など加入者にとって有益と思われる目的のためのみに使用いたします。</p>
+                </div>
+                <div class="policy-item">
+                    <p><span class="policy-num">3</span>当健康保険組合は、あらかじめ加入者の事前の同意を得た場合を除き、加入者の個人情報を第三者に提供いたしません。ただし、次の各号に該当する場合は、加入者の事前の同意を得ることなく、加入者の個人情報を第三者に提供することがあります。</p>
+                    <ul style="margin-left: 40px;">
+                        <li>法令の定めに基づく場合</li>
+                        <li>人の生命、身体又は財産の保護のために必要であって、加入者の同意を得ることが困難である場合</li>
+                        <li>公衆衛生の向上または児童の健全な育成の推進のために必要であって、加入者の同意を得ることが困難である場合</li>
+                        <li>国の機関若しくは地方公共団体又はその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、加入者の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがある場合</li>
+                    </ul>
+                </div>
+                <div class="policy-item">
+                    <p><span class="policy-num">4</span>当健康保険組合は、職員に対し個人情報保護に関する教育啓蒙活動を実施するほか、個人情報を取り扱う部門ごとに管理責任者を置き、個人情報の適切な管理に努めます。</p>
+                </div>
+                <div class="policy-item">
+                    <p><span class="policy-num">5</span>当健康保険組合の業務を委託する場合については、より個人情報の保護に配慮したものに見直し・改善を図ります。業務委託契約を締結する際には、業務委託の相手としての適格性を十分審査するとともに、契約書の内容についてもより個人情報の保護に配慮したものとします。</p>
+                </div>
+                <div class="policy-item">
+                    <p><span class="policy-num">6</span>加入者が、加入者の個人情報の照会、修正等を希望される場合、当健康保険組合担当窓口までご連絡いただければ、合理的な範囲ですみやかに対応させていただきます。</p>
+                </div>
+                <div class="policy-item">
+                    <p><span class="policy-num">7</span>当健康保険組合は、加入者の個人情報の取り扱いに関係する法令その他の規範を遵守するとともに、本個人情報保護ポリシーの内容を継続的に見直し、改善に努めます。</p>
+                </div>
+            </div>
+            <div class="top-link"><a href="#top">▲ このページのトップへ</a></div>
+        </div>
+
+        <!-- 個人情報の利用目的 -->
+        <div id="purpose" class="content-wrapper">
+            <div class="section">
+                <h2>📋 個人情報の利用目的</h2>
+                <p>当組合は、被保険者やその家族（以下「加入者」）の氏名、性別、生年月日などのほか、適用関係情報、現金給付関係情報、レセプト関係情報、健康診査関係情報、健康管理に関する情報などの個人情報を管理しています。</p>
+                <p>個人情報保護法では、個人情報取扱事業者は個人情報を取得した場合、その利用目的を本人に通知、または公表しなければならないとされています。当組合が業務上使用する個人情報の主な利用目的は以下のとおりです。</p>
+
+                <div class="legend-box">
+                    <span class="mark-internal">●</span> 健康保険組合の内部での利用に係る事例　
+                    <span class="mark-external">○</span> 他の事業者等への情報提供を伴う事例
+                </div>
+
+                <div class="purpose-category">
+                    <h4>1. 保険料徴収等適用関係</h4>
+                    <ul>
+                        <li><span class="mark-internal">●</span> 被保険者資格の確認および標準報酬月額・標準賞与額の把握</li>
+                        <li><span class="mark-internal">●</span> 健康保険料等の徴収</li>
+                        <li><span class="mark-internal">●</span> 被扶養者の認定</li>
+                        <li><span class="mark-internal">●</span> 健康保険被保険者証の発行</li>
+                    </ul>
+                </div>
+
+                <div class="purpose-category">
+                    <h4>2. 被保険者等に対する保険給付</h4>
+                    <ul>
+                        <li><span class="mark-internal">●</span> 保険給付および付加給付の実施</li>
+                        <li><span class="mark-internal">●</span> 高額療養費および一部負担還元金等の自動払い</li>
+                        <li><span class="mark-external">○</span> 第三者行為に係る損害保険会社等への求償</li>
+                        <li><span class="mark-external">○</span> 健康保険組合連合会の高額医療給付の共同事業</li>
+                    </ul>
+                </div>
+
+                <div class="purpose-category">
+                    <h4>3. 診療報酬の審査・支払</h4>
+                    <ul>
+                        <li><span class="mark-internal">●</span> 診療報酬明細書（レセプト）等の内容点検・審査および支払</li>
+                    </ul>
+                </div>
+
+                <div class="purpose-category">
+                    <h4>4. 保健事業</h4>
+                    <ul>
+                        <li><span class="mark-internal">●</span> 健康の保持・増進のための各種健診、保健指導および健康相談</li>
+                        <li><span class="mark-internal">●</span> 高額医療費・出産費に係る資金貸付事業の実施</li>
+                        <li><span class="mark-external">○</span> 保健指導、健康相談に係る事業者等への委託</li>
+                        <li><span class="mark-external">○</span> 医療機関等への健診の委託</li>
+                        <li><span class="mark-external">○</span> 健康増進施設の運営の委託</li>
+                        <li><span class="mark-external">○</span> 健診結果の事業者への提供</li>
+                        <li><span class="mark-external">○</span> 被保険者等への医療費通知</li>
+                        <li><span class="mark-external">○</span> 健康保険組合連合会主催の共同事業</li>
+                        <li><span class="mark-external">○</span> 保健事業の事業実施（常備薬斡旋・血圧計配布・高齢者健康推進事業）に係る委託</li>
+                    </ul>
+                </div>
+
+                <div class="purpose-category">
+                    <h4>5. 健康保険組合の運営の安定化</h4>
+                    <ul>
+                        <li><span class="mark-internal">●</span> 医療費分析、疾病統計、事業統計</li>
+                    </ul>
+                </div>
+
+                <div class="purpose-category">
+                    <h4>6. その他</h4>
+                    <ul>
+                        <li><span class="mark-internal">●</span> 健康保険組合の管理運営業務のうち、業務の維持・改善のための基礎資料</li>
+                        <li><span class="mark-internal">●</span> 健康保険組合の管理運営に係る基礎資料</li>
+                        <li><span class="mark-internal">●</span> 適正な経理事務の執行</li>
+                        <li><span class="mark-external">○</span> 業務の適正処理のための照会または回答（保険者間の情報交換）</li>
+                        <li><span class="mark-external">○</span> 第三者求償事務において、保険会社・医療機関等への相談または届出等</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="top-link"><a href="#top">▲ このページのトップへ</a></div>
+        </div>
+
+        <!-- 第三者への提供 -->
+        <div id="third-party" class="content-wrapper">
+            <div class="section">
+                <h2>🤝 個人情報の第三者への提供について</h2>
+                <p>個人情報保護法では、個人情報取扱事業者は、あらかじめ本人の同意を得ないで、個人情報を第三者に提供してはならないとされています。しかし、被保険者にとって利益となるもの、または事業者側の負担が膨大である上、明示的な同意を得ることが必ずしも被保険者本人等にとって合理的であるとはいえないものについては、あらかじめ公表しておいて被保険者から特段明確な反対・留保の意思表示がないものについては「同意」が得られたものとして取り扱ってよいこととされています。</p>
+                <p>当組合では、以下の事項につきその主旨に該当するものといたしますので、同意されない場合には、書面にて当組合までお申し出ください。お申し出がない場合には、同意していただいたものとさせていただきます。</p>
+
+                <div class="info-box">
+                    <ol>
+                        <li style="margin-bottom: 10px;">高額療養費に該当した場合には申請に基づかず支給すること。また、その支給は直接被保険者の給与振込口座に行うこと。</li>
+                        <li style="margin-bottom: 10px;">一部負担還元金等療養付加金に該当した場合には申請に基づかず支給すること。また、その支給は直接被保険者の給与振込口座に行うこと。</li>
+                        <li>医療費通知については世帯分まとめて被保険者本人に通知すること。</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="top-link"><a href="#top">▲ このページのトップへ</a></div>
+        </div>
+
+        <!-- 共同利用 -->
+        <div id="joint-use" class="content-wrapper">
+            <div class="section">
+                <h2>🔗 個人情報の共同利用について</h2>
+                <p>個人情報保護法では、個人データを特定の者と共同で利用する場合には、共同利用する趣旨、共同利用する個人データの項目、共同利用者、共同利用目的、データ管理責任者の氏名または名称について、あらかじめ本人に通知または公表することとされています。</p>
+                <p>当組合が共同利用する事業は以下のとおりです。</p>
+
+                <div class="info-box">
+                    <ol>
+                        <li style="margin-bottom: 8px;">健保連との共同事業「高額医療給付に関する交付金交付事業」</li>
+                        <li>事業主との共同事業「健康診断・人間ドック等健診事業」</li>
+                    </ol>
+                </div>
+                <p>共同利用について問い合わせのある方は、組合事務所までご連絡ください。</p>
+            </div>
+            <div class="top-link"><a href="#top">▲ このページのトップへ</a></div>
+        </div>
+
+        <!-- 診療報酬明細書等の開示 -->
+        <div id="disclosure" class="content-wrapper">
+            <div class="section">
+                <h2>📄 診療報酬明細書等の開示について</h2>
+                <p>当組合では、個人のプライバシーの保護および診療上の問題に係る取扱いに十分配慮しつつ、被保険者へのサービスの一層の充実を図るため、診療報酬明細書（レセプト）の開示に関する規程を定めています。</p>
+
+                <h3>開示対象</h3>
+                <p>組合が保管する5年間分のレセプトが対象です。</p>
+
+                <h3>開示依頼ができる方</h3>
+                <ul>
+                    <li>被保険者および被扶養者本人（被保険者であった者、被扶養者であった者を含む。ただし死亡している者を除く）</li>
+                    <li>被保険者が未成年者又は成年被後見人の場合における法定代理人</li>
+                    <li>被保険者からレセプトの開示依頼に関する委任を受けた弁護士</li>
+                    <li>被保険者が死亡している場合にあっては、当該被保険者の父母、配偶者又は子（遺族）</li>
+                    <li>遺族が未成年者又は成年被後見人の場合における法定代理人</li>
+                    <li>遺族からレセプトの開示依頼に関する委任を受けた弁護士</li>
+                </ul>
+
+                <h3>業務責任者</h3>
+                <p>レセプトの開示に係る業務責任者は理事長とします。理事長は常務理事に事務を委任することができます。</p>
+            </div>
+            <div class="top-link"><a href="#top">▲ このページのトップへ</a></div>
+        </div>
+
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>〒222-0033 神奈川県横浜市港北区新横浜3丁目8番地12</p>
+            <p>TEL: 045-473-0908　FAX: 045-473-2708　E-mail: kenpo@maruhachi.co.jp</p>
+            <p>受付時間: 平日 9:00～16:30（土日祝日、お盆期間、年末年始を除く）</p>
+            <p style="margin-top: 15px;">©丸八真綿健康保険組合 All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
