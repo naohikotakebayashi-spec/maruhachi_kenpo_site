@@ -202,82 +202,6 @@
         .apply-qr-img { width: 150px; height: auto; margin: 0 auto; display: block; border-radius: 4px; }
         .apply-qr-label { font-size: 0.8rem; color: #666; margin-top: 6px; text-align: center; }
 
-        /* 2ステップ メール事前登録 */
-        .apply-flow-bar {
-            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-bottom: 20px;
-            border: 1px solid #c8e6c9;
-            text-align: left;
-        }
-        .apply-flow-bar h4 { margin: 0 0 10px; color: #2e7d32; font-size: 0.95rem; }
-        .apply-flow-steps {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .apply-flow-num {
-            background: #2e7d32;
-            color: white;
-            border-radius: 50%;
-            width: 26px; height: 26px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-        .apply-flow-text { font-size: 0.88rem; color: #333; }
-        .apply-flow-arrow { color: #2e7d32; font-size: 1.1rem; flex-shrink: 0; }
-
-        .apply-step-card {
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 18px;
-            text-align: left;
-        }
-        .apply-step-header {
-            padding: 10px 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .apply-step-header-num {
-            background: white;
-            border-radius: 50%;
-            width: 30px; height: 30px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.95rem;
-            flex-shrink: 0;
-        }
-        .apply-step-header-text { font-size: 1rem; font-weight: bold; color: white; }
-        .apply-step-body { padding: 14px 18px; }
-        .apply-step-body p { font-size: 0.88rem; color: #555; line-height: 1.7; margin-bottom: 10px; }
-        .apply-step-body .step-note { color: #888; font-size: 0.82rem; }
-
-        .apply-step-card-email { border: 2px solid #1565c0; }
-        .apply-step-card-email .apply-step-header { background: #1565c0; color: white; }
-        .apply-step-card-email .apply-step-header-num { color: #1565c0; }
-
-        .apply-step-card-form { border: 2px solid #2e7d32; }
-        .apply-step-card-form .apply-step-header { background: #2e7d32; color: white; }
-        .apply-step-card-form .apply-step-header-num { color: #2e7d32; }
-
-        .apply-step-card-form-orange { border: 2px solid #e8724a; }
-        .apply-step-card-form-orange .apply-step-header { background: #e8724a; color: white; }
-        .apply-step-card-form-orange .apply-step-header-num { color: #e8724a; }
-
-        .apply-btn-email { background: #1565c0; color: white; border: 2px solid #1565c0; }
-        .apply-btn-email:hover { background: #0d47a1; }
-        .apply-btn-green { background: #2e7d32; color: white; border: 2px solid #2e7d32; }
-        .apply-btn-green:hover { background: #1b5e20; }
-
         /* Googleフォーム中心レイアウト */
         .apply-form-main {
             text-align: center;
@@ -415,19 +339,16 @@
 </head>
 <body>
     <header>
-        <div class="header-top"><div class="header-top-inner">日本語 | English</div></div>
+        <div class="header-top"><div class="header-top-inner">丸八真綿健康保険組合</div></div>
         <div class="header-main">
             <div class="logo"><h1>丸八真綿健康保険組合</h1></div>
-            <button class="search-btn">🔍 検索</button>
         </div>
     </header>
     <nav class="main-nav">
         <div class="main-nav-content">
             <a href="index.html">トップ</a>
-            <a href="index.html">手続き・申請</a>
             <a href="health/index.html">予防接種・健康づくり関連</a>
             <a href="benefits/index.html">健康保険制度</a>
-            <a href="contact/index.html">よくある質問</a>
             <a href="contact/index.html">お問い合わせ</a>
         </div>
     </nav>
@@ -522,45 +443,10 @@
                             <!-- 被保険者コンテンツ -->
                             <div class="apply-tab-content apply-insured-border" id="applyTab-insured">
                                 <div class="apply-form-main">
-                                    <!-- フロー図 -->
-                                    <div class="apply-flow-bar">
-                                        <h4>📌 お申し込みの流れ</h4>
-                                        <div class="apply-flow-steps">
-                                            <span class="apply-flow-num">1</span>
-                                            <span class="apply-flow-text">メール事前登録（初回のみ）</span>
-                                            <span class="apply-flow-arrow">→</span>
-                                            <span class="apply-flow-num">2</span>
-                                            <span class="apply-flow-text">人間ドック利用申し込み</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- STEP 1: メール事前登録 -->
-                                    <div class="apply-step-card apply-step-card-email">
-                                        <div class="apply-step-header">
-                                            <span class="apply-step-header-num">1</span>
-                                            <span class="apply-step-header-text">メール事前登録（初回のみ）</span>
-                                        </div>
-                                        <div class="apply-step-body">
-                                            <p>セキュリティ対策のため、お申し込み前にメールアドレスの事前登録をお願いしております。<br>
-                                            <strong>社員番号・受診者氏名・メールアドレス</strong>を登録してください。</p>
-                                            <p class="step-note">※被扶養者が受診される場合は、受診者ごとに登録が必要です。<br>※メールアドレスを変更された場合は再度登録してください。</p>
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTQhVwbssh02wk9l4oc07XEJcxh6Npl15vulRHjuUgZpzLtw/viewform" target="_blank" class="apply-btn apply-btn-email">✉ メール事前登録フォームを開く →</a>
-                                        </div>
-                                    </div>
-
-                                    <!-- STEP 2: 人間ドック申し込み -->
-                                    <div class="apply-step-card apply-step-card-form">
-                                        <div class="apply-step-header">
-                                            <span class="apply-step-header-num">2</span>
-                                            <span class="apply-step-header-text">人間ドック利用申し込み</span>
-                                        </div>
-                                        <div class="apply-step-body">
-                                            <p>メール事前登録完了後、以下のフォームからお申し込みください。<br>
-                                            スマートフォンやPCから24時間いつでもお申し込みいただけます。</p>
-                                            <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-green">📱 申し込みフォームを開く →</a>
-                                        </div>
-                                    </div>
-
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online">フォームを開く →</a>
                                     <div class="email-notice">
                                         <h4>⚠ メールが届かない場合</h4>
                                         <p>お申し込み後、確認・承認メールが届きます。届かない場合は以下をご確認ください。</p>
@@ -597,45 +483,10 @@
                             <!-- 被扶養者コンテンツ -->
                             <div class="apply-tab-content apply-dependent-border" id="applyTab-dependent" style="display:none;">
                                 <div class="apply-form-main">
-                                    <!-- フロー図 -->
-                                    <div class="apply-flow-bar">
-                                        <h4>📌 お申し込みの流れ</h4>
-                                        <div class="apply-flow-steps">
-                                            <span class="apply-flow-num">1</span>
-                                            <span class="apply-flow-text">メール事前登録（初回のみ）</span>
-                                            <span class="apply-flow-arrow">→</span>
-                                            <span class="apply-flow-num">2</span>
-                                            <span class="apply-flow-text">人間ドック利用申し込み</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- STEP 1: メール事前登録 -->
-                                    <div class="apply-step-card apply-step-card-email">
-                                        <div class="apply-step-header">
-                                            <span class="apply-step-header-num">1</span>
-                                            <span class="apply-step-header-text">メール事前登録（初回のみ）</span>
-                                        </div>
-                                        <div class="apply-step-body">
-                                            <p>セキュリティ対策のため、お申し込み前にメールアドレスの事前登録をお願いしております。<br>
-                                            <strong>社員番号・受診者氏名・メールアドレス</strong>を登録してください。</p>
-                                            <p class="step-note">※被扶養者が受診される場合は、受診者ごとに登録が必要です。<br>※メールアドレスを変更された場合は再度登録してください。</p>
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTQhVwbssh02wk9l4oc07XEJcxh6Npl15vulRHjuUgZpzLtw/viewform" target="_blank" class="apply-btn apply-btn-email">✉ メール事前登録フォームを開く →</a>
-                                        </div>
-                                    </div>
-
-                                    <!-- STEP 2: 人間ドック申し込み -->
-                                    <div class="apply-step-card apply-step-card-form-orange">
-                                        <div class="apply-step-header">
-                                            <span class="apply-step-header-num">2</span>
-                                            <span class="apply-step-header-text">人間ドック利用申し込み</span>
-                                        </div>
-                                        <div class="apply-step-body">
-                                            <p>メール事前登録完了後、以下のフォームからお申し込みください。<br>
-                                            スマートフォンやPCから24時間いつでもお申し込みいただけます。</p>
-                                            <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">📱 申し込みフォームを開く →</a>
-                                        </div>
-                                    </div>
-
+                                    <div class="apply-method-icon">📱</div>
+                                    <div class="apply-method-title">Googleフォームで申し込む</div>
+                                    <div class="apply-method-desc">スマートフォンやPCから24時間いつでもお申し込みいただけます</div>
+                                    <a href="https://docs.google.com/forms/d/1bObEAxc9v9M_zf-g5yC9gtubFXjogRroxP-2mwepSAA/viewform" target="_blank" class="apply-btn apply-btn-online apply-btn-orange">フォームを開く →</a>
                                     <div class="email-notice">
                                         <h4>⚠ メールが届かない場合</h4>
                                         <p>お申し込み後、確認・承認メールが届きます。届かない場合は以下をご確認ください。</p>
@@ -756,7 +607,8 @@
 
                     <div class="note-box">
                         <h4>補助額</h4>
-                        <p><strong>1人あたり2,000円</strong>（年度内1回限り）</p>
+                        <p><strong>上限2,000円/回</strong>（年度内1回限り）<br>
+                        <span style="font-size: 0.85rem; color: #666;">※接種費用2,000円（税込）以上の場合は一律2,000円を補助する。<br>※接種費用2,000円（税込）未満の場合は実費を補助する。</span></p>
                         <h4>対象者</h4>
                         <p>被保険者および被扶養者のすべての方</p>
                         <h4>補助申請期間</h4>
