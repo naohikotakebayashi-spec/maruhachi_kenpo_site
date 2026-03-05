@@ -709,7 +709,7 @@
         </div>
 
         <!-- ========== 4. インフルエンザ予防接種 ========== -->
-        <div class="accordion-item">
+        <div class="accordion-item" id="influenza">
             <div class="accordion-header" onclick="toggleAccordion(this)">
                 <h3>インフルエンザ予防接種 <span style="color: #c62828; font-size: 0.85rem; margin-left: 10px;">※申請受付は9月1日から</span></h3>
                 <span class="accordion-icon">▼</span>
@@ -830,6 +830,20 @@
             content.classList.toggle('open');
             arrow.classList.toggle('open');
         }
+
+        // URLハッシュで該当アコーディオンを自動展開＆スクロール
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target && target.classList.contains('accordion-item')) {
+                    target.classList.add('active');
+                    setTimeout(function() {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        });
     </script>
 </body>
 </html>
