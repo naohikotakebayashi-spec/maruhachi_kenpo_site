@@ -351,6 +351,7 @@
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .quick-links-title {
@@ -358,6 +359,8 @@
             font-weight: 600;
             color: #0066cc;
             margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0066cc;
         }
 
         .quick-links a {
@@ -375,6 +378,50 @@
         .quick-links a:hover {
             background: #0066cc;
             color: white;
+        }
+
+        .quick-links .ql-featured {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .quick-links .ql-featured:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .quick-links .ql-kokoro {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+        .quick-links .ql-kokoro:hover {
+            background: linear-gradient(135deg, #2e7d32, #388e3c);
+            color: white;
+        }
+
+        .quick-links .ql-otc {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1565c0;
+            border-left: 4px solid #1565c0;
+        }
+        .quick-links .ql-otc:hover {
+            background: linear-gradient(135deg, #1565c0, #1976d2);
+            color: white;
+        }
+
+        .quick-links .ql-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
         }
 
         footer {
@@ -575,9 +622,15 @@
 
         <aside>
             <div class="quick-links">
-                <div class="quick-links-title">クイックリンク</div>
-                <a href="links.html#kokoro">こころとからだの健康相談</a>
-                <a href="selfmedication.html">スイッチOTC医薬品（セルフメディケーション）とは</a>
+                <div class="quick-links-title">📌 クイックリンク</div>
+                <a href="links.html#kokoro" class="ql-featured ql-kokoro">
+                    <span class="ql-icon">🌿</span>
+                    <span>こころとからだの健康相談</span>
+                </a>
+                <a href="selfmedication.html" class="ql-featured ql-otc">
+                    <span class="ql-icon">💊</span>
+                    <span>スイッチOTC医薬品（セルフメディケーション）とは</span>
+                </a>
                 <a href="#" style="color: #999; cursor: default;">準備中</a>
                 <a href="#" style="color: #999; cursor: default;">準備中</a>
             </div>
