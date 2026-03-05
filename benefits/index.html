@@ -415,40 +415,23 @@
     <div class="top-bar"></div>
 
     <header>
-        <div class="header-content">
+        <div class="header-top">
+            <div class="header-top-inner">丸八真綿健康保険組合</div>
+        </div>
+        <div class="header-main">
             <div class="logo">
-                <a href="../index.html">
-                    <span class="logo-text">丸八真綿</span>
-                    <h1>健康保険組合</h1>
-                </a>
-            </div>
-            <div class="header-nav">
-                <div class="header-links">
-                    <a href="../index.html">ホーム</a>
-                    <a href="../contact/index.html">お問い合わせ</a>
-                    <a href="../privacy.html">個人情報の取り扱いについて</a>
-                    <a href="../links.html">関連リンク</a>
-                    <a href="../sitemap.html">サイトマップ</a>
-                </div>
-                <div class="font-size-control">
-                    <span class="label">文字サイズ</span>
-                    <button>小</button>
-                    <button class="active">中</button>
-                    <button>大</button>
-                </div>
-                <div class="search-box">
-                    <input type="text" placeholder="検索">
-                    <button>🔍</button>
-                </div>
+                <a href="../index.html"><h1>丸八真綿健康保険組合</h1></a>
             </div>
         </div>
     </header>
 
     <nav class="main-nav">
         <div class="main-nav-content">
+            <a href="../index.html">トップ</a>
             <a href="../about/index.html">健保組合のご案内</a>
-            <a href="index.html" class="active">病気やケガをしたとき</a>
-            <a href="../health/index.html">疾病予防・健康づくり（保健事業）</a>
+            <a href="../health/index.html">予防接種・健康づくり関連</a>
+            <a href="index.html" class="active">健康保険制度</a>
+            <a href="../contact/index.html">お問い合わせ</a>
         </div>
     </nav>
 
@@ -637,8 +620,8 @@
                     給付に関するご質問やご不明な点がございましたら、お気軽に健保組合までお問い合わせください。
                 </p>
                 <p style="margin-top: 15px;">
-                    <strong>電話：</strong>045-XXX-XXXX（平日 9:00～17:00）<br>
-                    <strong>FAX：</strong>045-XXX-XXXX
+                    <strong>電話：</strong>045-473-0908（平日 9:00～16:30）<br>
+                    <strong>FAX：</strong>045-473-2708
                 </p>
                 <p style="margin-top: 15px;">
                     <a href="../contact/index.html" style="color: #0066cc; font-weight: 500;">お問い合わせフォームはこちら →</a>
@@ -648,29 +631,12 @@
     </div>
 
     <footer>
-        <div class="footer-content">
-            <p>© 2025 丸八真綿健康保険組合 All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <p>〒222-0033 神奈川県横浜市港北区新横浜3丁目8番地12</p>
+            <p>TEL: 045-473-0908　FAX: 045-473-2708　E-mail: kenpo@maruhachi.co.jp</p>
+            <p>受付時間: 平日 9:00～16:30（土日祝日、お盆期間、年末年始を除く）</p>
+            <p style="margin-top: 15px;">©丸八真綿健康保険組合 All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // 文字サイズ調整機能
-        const fontSizeButtons = document.querySelectorAll('.font-size-control button');
-        fontSizeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                fontSizeButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                const size = this.textContent;
-                if (size === '小') {
-                    document.body.style.fontSize = '14px';
-                } else if (size === '中') {
-                    document.body.style.fontSize = '16px';
-                } else if (size === '大') {
-                    document.body.style.fontSize = '18px';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
